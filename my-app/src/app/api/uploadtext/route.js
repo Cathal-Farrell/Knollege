@@ -38,7 +38,7 @@ export async function GET(req, res) {
 
   console.log(collection.find().toArray);
 
-  const filter = { _id: 100};
+  const filter = { name: "temp"};
 
   const updateDocument = {
     $set: {

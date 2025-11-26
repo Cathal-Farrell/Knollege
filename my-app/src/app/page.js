@@ -20,20 +20,16 @@ export default function MultilineTextFields() {
 
     console.log("Sent text:" + text)
 
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?email=${text}`)
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${text}`)
   }
 
   const handleSync = (event) => {
           
     console.log("handling sync");
 
-    let text = data.get('text')
-
+    let text = runDBCallAsync(`http://localhost:3000/api/synctext?userID=${100}`)
+  
     console.log(text)
-
-    console.log("Sent text:" + text)
-
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${text}`)
   }
 
   async function runDBCallAsync(url) {

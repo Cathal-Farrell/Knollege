@@ -4,7 +4,7 @@ export async function GET(req, res) {
 
   // the api. This goes to the console.
 
-  console.log("in the upload api page")
+  console.log("in the sync api page")
 
   // get the values
 
@@ -12,11 +12,10 @@ export async function GET(req, res) {
 
   const { searchParams } = new URL(req.url)
 
-  const noteText = searchParams.get('text')
+  const syncUser = searchParams.get('userID')
   
-  console.log(noteText);
+  console.log(syncUser);
 
- 
   // database call goes here
 
   const { MongoClient } = require('mongodb');
@@ -38,20 +37,20 @@ export async function GET(req, res) {
 
   console.log(collection.find().toArray);
 
-  const filter = { userID: 100};
-
-  const updateDocument = {
-    $set: {
-        text: noteText,
-    },
-  };
+  
 
   await collection.updateOne(filter, updateDocument);
 
+  const data = await collection.find({"userID": syncUser}).toArray();
+
+  console.log(data);
 
   // at the end of the process we need to send something back.
 
+  return data;
+
   return Response.json({ "data":"valid" })
+
 
 }
 

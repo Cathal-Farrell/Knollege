@@ -3,27 +3,49 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import * as React from 'react';
 
 export default function MultilineTextFields() {
 
-  const handleSubmit = (event) => {
-          
-    console.log("handling submit");
+  const inputRef = React.useRef(null);
+  let textChanged = false;
 
-    event.preventDefault();
+  // Run loop every 5 seconds
+  React.useEffect(() => {
+    const intervalID = setInterval(() => {
+      if (textChanged == true) {
+        handleUploadText();
+        textChanged = false;
+      }
+      else {
+        console.log("No change");
+        handleSyncText();
+      }
+    }, 5000);
 
-    const data = new FormData(event.currentTarget);
+    // Cleanup interval when component unmounts
+    return () => clearInterval(intervalID);
+  }, []);
 
-    let text = data.get('textField')
-
-    console.log(text)
-
-    console.log("Sent text:" + text)
-
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${text}`)
+  
+  function handleTextChanged() {
+    console.log("text changed");
+    textChanged = true;
   }
 
-  const handleSync = (event) => {
+  
+  function handleUploadText() {
+    console.log("called the function");
+
+    // Get current textbox value
+    const data = inputRef.current?.value || "";
+
+    console.log("current text:", data);
+
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}`);
+  }
+
+  const handleSyncText = (event) => {
           
     console.log("handling sync");
 
@@ -56,33 +78,20 @@ export default function MultilineTextFields() {
       <Box
         component="form"
         sx={{ '& .MuiTextField-root': { m: 1, width: '100ch' } }}
-        onSubmit={handleSubmit}
-        on
+        
         noValidate
         autoComplete="off"
       >
         <TextField
+          inputRef={inputRef}
           id="textField"
           name="textField"
           label="Multiline"
           multiline
           rows={25}
           defaultValue="Default Value"
+          onChange={handleTextChanged}
         />
-
-        <Button 
-          type="submit"
-          variant="contained"
-        >
-          submit
-        </Button>
-        <Button 
-          type="button"
-          onClick={handleSync}
-          variant="contained"
-        >
-          sync
-        </Button>
       </Box>
 
       

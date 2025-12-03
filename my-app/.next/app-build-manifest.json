@@ -15,6 +15,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/uploadtext/route.js"
     ],
+    "/api/synctext/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/synctext/route.js"
+    ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

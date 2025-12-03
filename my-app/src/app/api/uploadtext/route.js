@@ -34,11 +34,11 @@ export async function GET(req, res) {
 
   const db = client.db(dbName);
 
-  const collection = db.collection('notes'); // collection name
+  const collection = db.collection('text'); // collection name
 
-  console.log(collection.find().toArray);
+  console.log(await collection.find({}).toArray());
 
-  const filter = { userID: 100};
+  const filter = { userID: '100'};
 
   const updateDocument = {
     $set: {

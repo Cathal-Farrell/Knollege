@@ -1,56 +1,83 @@
 export async function GET(req, res) {
 
-  // Make a note we are on
+        // Make a note we are on
 
-  // the api. This goes to the console.
+        // the api. This goes to the console.
 
-  console.log("in the sync api page")
-
-  // get the values
-
-  // that were sent across to us.
-
-  const { searchParams } = new URL(req.url)
-
-  const syncUser = searchParams.get('userID')
-  
-  console.log(syncUser);
-
-  // database call goes here
-
-  const { MongoClient } = require('mongodb');
-
-  const url = 'mongodb://root:example@localhost:27017/';
-
-  const client = new MongoClient(url);
-
-  const dbName = 'app'; // database name
+        console.log("in the api page")
 
 
-  await client.connect();
+        // get the values
 
-  console.log('Connected successfully to server');
+        // that were sent across to us.
 
-  const db = client.db(dbName);
+        const { searchParams } = new URL(req.url)
 
-  const collection = db.collection('notes'); // collection name
+        const noteUserID = searchParams.get('userID')
+        
+        console.log(noteUserID);
 
-  console.log(collection.find().toArray);
+ 
 
-  
+        // =================================================
 
-  await collection.updateOne(filter, updateDocument);
+        const { MongoClient } = require('mongodb');
 
-  const data = await collection.find({"userID": syncUser}).toArray();
+ 
 
-  console.log(data);
+        const url = 'mongodb://root:example@localhost:27017/';
 
-  // at the end of the process we need to send something back.
+        const client = new MongoClient(url);
 
-  return data;
+   
 
-  return Response.json({ "data":"valid" })
+   
 
+        const dbName = 'app'; // database name
 
-}
+ 
+
+        await client.connect();
+
+        console.log('Connected successfully to server');
+
+        const db = client.db(dbName);
+
+        const collection = db.collection('text'); // collection name
+
+ 
+        const filter = { userID: noteUserID};
+ 
+
+        const findResult = await collection.find(filter).toArray();
+
+        console.log('Found documents =>', findResult);
+
+ 
+
+   
+
+ 
+
+   //==========================================================
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+        // at the end of the process we need to send something back.
+
+        return Response.json(findResult)
+
+  }
+
+ 
+
+ 
 

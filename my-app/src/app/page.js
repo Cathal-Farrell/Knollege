@@ -51,6 +51,8 @@ export default function MultilineTextFields() {
 
     let text = runDBCallAsync(`http://localhost:3000/api/synctext?userID=${100}`)
   
+   // inputRef.current?.value = text;
+
     console.log(text)
   }
 

@@ -12,6 +12,7 @@ export default function MultilineTextFields() {
 
   // Run loop every 5 seconds
   React.useEffect(() => {
+    handleSyncText();
     const intervalID = setInterval(() => {
       if (textChanged == true) {
         handleUploadText();
@@ -49,11 +50,8 @@ export default function MultilineTextFields() {
           
     console.log("handling sync");
 
-    let text = runDBCallAsync(`http://localhost:3000/api/synctext?userID=${100}`)
-  
-   // inputRef.current?.value = text;
+    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?userID=${100}`)
 
-    console.log(text)
   }
 
   async function runDBCallAsync(url) {
@@ -75,6 +73,28 @@ export default function MultilineTextFields() {
 
   }
 
+  async function runDBCallAsyncDownload(url) {
+
+    const res = await fetch(url);
+
+    const data = await res.json();
+
+
+    if(data.data== "valid"){
+
+      console.log("login is valid!")
+
+    } else {
+
+      console.log("not valid  ")
+
+    }
+
+ 
+    inputRef.current.value = data[0].text;
+
+  }
+
   return (
     <container>
       <Box
@@ -88,10 +108,9 @@ export default function MultilineTextFields() {
           inputRef={inputRef}
           id="textField"
           name="textField"
-          label="Multiline"
           multiline
           rows={25}
-          defaultValue="Default Value"
+          defaultValue=""
           onChange={handleTextChanged}
         />
       </Box>

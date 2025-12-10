@@ -1,6 +1,5 @@
 {
   "/api/synctext/route": "app/api/synctext/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/uploadtext/route": "app/api/uploadtext/route.js",
   "/page": "app/page.js"
 }

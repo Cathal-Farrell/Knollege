@@ -43,7 +43,7 @@ export async function GET(req, res) {
 
         const db = client.db(dbName);
 
-        const collection = db.collection('text'); // collection name
+        const collection = db.collection('notes'); // collection name
 
  
         const filter = { userID: noteUserID};

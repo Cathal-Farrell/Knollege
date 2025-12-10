@@ -4,10 +4,15 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import { useState, useEffect } from 'react';
 
 export default function MultilineTextFields() {
 
   const inputRef = React.useRef(null);
+  const noteIDRef = React.useRef(null);
   let textChanged = false;
 
   // Run loop every 5 seconds
@@ -40,17 +45,20 @@ export default function MultilineTextFields() {
 
     // Get current textbox value
     const data = inputRef.current?.value || "";
+    const noteID = noteIDRef.current?.value || "";
 
     console.log("current text:", data);
 
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}`);
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteID}`);
   }
 
   const handleSyncText = (event) => {
           
     console.log("handling sync");
 
-    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?userID=${100}`)
+    const noteID = noteIDRef.current?.value;
+    console.log(noteID);
+    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteID}`)
 
   }
 
@@ -80,42 +88,85 @@ export default function MultilineTextFields() {
     const data = await res.json();
 
 
-    if(data.data== "valid"){
+    if(data.length > 0){
 
-      console.log("login is valid!")
+      console.log("data is valid!")
 
     } else {
 
       console.log("not valid  ")
+      data[0] = {"text" : "Error: File not found"}
 
     }
+   
 
+    console.log(data[0]);
  
     inputRef.current.value = data[0].text;
 
   }
 
-  return (
-    <container>
-      <Box
-        component="form"
-        sx={{ '& .MuiTextField-root': { m: 1, width: '100ch' } }}
-        
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          inputRef={inputRef}
-          id="textField"
-          name="textField"
-          multiline
-          rows={25}
-          defaultValue=""
-          onChange={handleTextChanged}
-        />
-      </Box>
+  const Item = styled(Paper)(({ theme }) => ({
+          backgroundColor: '#fff',
+          ...theme.typography.body2,
+          padding: theme.spacing(1),
+          textAlign: 'center',
+          color: (theme.vars ?? theme).palette.text.secondary,
+          ...theme.applyStyles('dark', {
+              backgroundColor: '#1A2027',
+          }),
+      }));
 
-      
-    </container>
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2}>
+            <Grid size={2}>
+              <Item>
+              <Button variant="outlined" href="/"> Home </Button>
+              </Item>
+            </Grid>
+            <Grid size={10}>
+              <Item>[Quill editor bar]</Item>
+            </Grid>
+            <Grid size={2}>
+              <Item>
+                <Box
+                    sx={{ '& > :not(style)': { m: 1, width: '15ch' } }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField 
+                        id="outlined-basic" 
+                        label="User" 
+                        variant="outlined" 
+                        defaultValue={noteIDRef.current?.value || "1"}
+                        inputRef={noteIDRef}/>
+                </Box>
+              </Item>
+            </Grid>
+            <Grid size={8}>
+              <Box
+                component="form"
+                sx={{ '& .MuiTextField-root': { m: 1, width: '100ch' } }}
+                
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  inputRef={inputRef}
+                  id="textField"
+                  name="textField"
+                  multiline
+                  rows={25}
+                  defaultValue=""
+                  onChange={handleTextChanged}
+                />
+              </Box>
+            </Grid>
+            <Grid size={2}>
+              
+            </Grid>
+          </Grid>
+        </Box>
   );
 }

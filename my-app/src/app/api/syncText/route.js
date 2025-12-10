@@ -13,9 +13,10 @@ export async function GET(req, res) {
 
         const { searchParams } = new URL(req.url)
 
-        const noteUserID = searchParams.get('userID')
+        const noteID = searchParams.get('noteID')
+
+        console.log(noteID);
         
-        console.log(noteUserID);
 
  
 
@@ -46,7 +47,7 @@ export async function GET(req, res) {
         const collection = db.collection('notes'); // collection name
 
  
-        const filter = { userID: noteUserID};
+        const filter = { noteID: noteID};
  
 
         const findResult = await collection.find(filter).toArray();

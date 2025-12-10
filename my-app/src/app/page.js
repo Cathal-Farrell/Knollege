@@ -29,7 +29,7 @@ export default function BasicGrid() {
     function handleSearchFile(url) {
         console.log("handling file search");
 
-        const inputUserID = userIDRef.current?.value || "0";
+        const inputUserID = userIDRef.current?.value;
         runDBCallAsync(`http://localhost:3000/api/searchfiles?userID=${inputUserID}`);
     }
 
@@ -89,7 +89,7 @@ export default function BasicGrid() {
                     id="outlined-basic" 
                     label="User" 
                     variant="outlined" 
-                    defaultValue={userIDRef.current?.value}
+                    defaultValue={userIDRef.current?.value || "100"}
                     inputRef={userIDRef}/>
             </Box>
             {console.log()}
@@ -110,7 +110,7 @@ export default function BasicGrid() {
 
                     {console.log(item.userID)}
 
-                    <Button variant="outlined"> Edit </Button>
+                    <Button variant="outlined" href="/editor"> Edit </Button>
 
                 </div>
 

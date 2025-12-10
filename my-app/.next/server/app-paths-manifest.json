@@ -1,5 +1,4 @@
 {
-  "/api/synctext/route": "app/api/synctext/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
   "/page": "app/page.js"
 }

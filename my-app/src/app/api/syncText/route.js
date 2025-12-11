@@ -15,7 +15,11 @@ export async function GET(req, res) {
 
         const noteID = searchParams.get('noteID')
 
+        const userID = searchParams.get('userID')
+
         console.log(noteID);
+
+        console.log(userID);
         
 
  
@@ -47,7 +51,10 @@ export async function GET(req, res) {
         const collection = db.collection('notes'); // collection name
 
  
-        const filter = { noteID: noteID};
+        const filter = { 
+          noteID: noteID,
+          userID: userID
+        };
  
 
         const findResult = await collection.find(filter).toArray();
@@ -55,9 +62,6 @@ export async function GET(req, res) {
         console.log('Found documents =>', findResult);
 
  
-
-   
-
  
 
    //==========================================================

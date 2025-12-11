@@ -13,9 +13,14 @@ export async function GET(req, res) {
   const { searchParams } = new URL(req.url)
 
   const noteText = searchParams.get('text')
+
+  const noteID = searchParams.get('noteID')
+
+  const userID = searchParams.get('userID')
   
   console.log(noteText);
-
+  console.log(noteID);
+  console.log(userID);
  
   // database call goes here
 
@@ -36,9 +41,13 @@ export async function GET(req, res) {
 
   const collection = db.collection('notes'); // collection name
 
-  console.log(await collection.find({ userID: '100'}).toArray());
-
-  const filter = { userID: '100'};
+  const filter = { 
+          noteID: noteID,
+          userID: userID
+        };
+      
+  console.log(await collection.find(filter).toArray());
+        
 
   const updateDocument = {
     $set: {

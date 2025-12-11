@@ -13,6 +13,7 @@ export default function MultilineTextFields() {
 
   const inputRef = React.useRef(null);
   const noteIDRef = React.useRef(null);
+  const userIDRef = React.useRef(null);
   let textChanged = false;
 
   // Run loop every 5 seconds
@@ -45,11 +46,12 @@ export default function MultilineTextFields() {
 
     // Get current textbox value
     const data = inputRef.current?.value || "";
-    const noteID = noteIDRef.current?.value || "";
+    const noteID = noteIDRef.current?.value;
+    const userID = userIDRef.current?.value;
 
     console.log("current text:", data);
 
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteID}`);
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteID}&userID=${userID}`);
   }
 
   const handleSyncText = (event) => {
@@ -58,7 +60,9 @@ export default function MultilineTextFields() {
 
     const noteID = noteIDRef.current?.value;
     console.log(noteID);
-    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteID}`)
+    const userID = userIDRef.current?.value;
+    console.log(userID);
+    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteID}&userID=${userID}`)
 
   }
 
@@ -137,10 +141,16 @@ export default function MultilineTextFields() {
                 >
                     <TextField 
                         id="outlined-basic" 
-                        label="User" 
+                        label="Note File" 
                         variant="outlined" 
                         defaultValue={noteIDRef.current?.value || "1"}
                         inputRef={noteIDRef}/>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="User" 
+                        variant="outlined" 
+                        defaultValue={userIDRef.current?.value || "100"}
+                        inputRef={userIDRef}/>
                 </Box>
               </Item>
             </Grid>

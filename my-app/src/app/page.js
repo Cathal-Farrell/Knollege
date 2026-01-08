@@ -75,8 +75,15 @@ export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid size={12}>
-          <Item>size=8</Item>
+        <Grid size={6}>
+          <Item>
+          <Button variant="outlined" href="/"> Home </Button>
+          </Item>
+        </Grid>
+        <Grid size={6}>
+          <Item>
+          <Button variant="outlined" href="/chats"> Message </Button>
+          </Item>
         </Grid>
         <Grid size={2}>
           <Item>
@@ -102,11 +109,11 @@ export default function BasicGrid() {
 
                 <div style={{padding: '20px'}} key={i} >
 
-                    ID: {item.noteID}
+                    fileID: {item.noteID}
 
-                    - 
+                    ---
 
-                    {item.userID}
+                    userID: {item.userID + ""}
 
                     {console.log(item.userID)}
 

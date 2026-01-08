@@ -124,13 +124,15 @@ export default function MultilineTextFields() {
   return (
     <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid size={2}>
+            <Grid size={6}>
               <Item>
               <Button variant="outlined" href="/"> Home </Button>
               </Item>
             </Grid>
-            <Grid size={10}>
-              <Item>[Quill editor bar]</Item>
+            <Grid size={6}>
+              <Item>
+              <Button variant="outlined" href="/chats"> Message </Button>
+              </Item>
             </Grid>
             <Grid size={2}>
               <Item>
@@ -154,24 +156,31 @@ export default function MultilineTextFields() {
                 </Box>
               </Item>
             </Grid>
+            <Grid size={10}>
+              <Item>[Quill editor bar]</Item>
+              <Item>
+                <Box
+                  component="form"
+                  sx={{ '& .MuiTextField-root': { m: 1, width: '150ch' } }}
+                  
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField
+                    inputRef={inputRef}
+                    id="textField"
+                    name="textField"
+                    multiline
+                    rows={25}
+                    defaultValue=""
+                    onChange={handleTextChanged}
+                  />
+                </Box>
+              </Item>
+              
+            </Grid>
             <Grid size={8}>
-              <Box
-                component="form"
-                sx={{ '& .MuiTextField-root': { m: 1, width: '100ch' } }}
-                
-                noValidate
-                autoComplete="off"
-              >
-                <TextField
-                  inputRef={inputRef}
-                  id="textField"
-                  name="textField"
-                  multiline
-                  rows={25}
-                  defaultValue=""
-                  onChange={handleTextChanged}
-                />
-              </Box>
+              
             </Grid>
             <Grid size={2}>
               

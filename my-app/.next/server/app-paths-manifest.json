@@ -1,5 +1,10 @@
 {
-  "/api/newregister/route": "app/api/newregister/route.js",
-  "/login/page": "app/login/page.js",
-  "/signup/page": "app/signup/page.js"
+  "/api/syncmsg/route": "app/api/syncmsg/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/uploadmsg/route": "app/api/uploadmsg/route.js",
+  "/signup/page": "app/signup/page.js",
+  "/page": "app/page.js",
+  "/editor/page": "app/editor/page.js",
+  "/chats/page": "app/chats/page.js",
+  "/message/page": "app/message/page.js"
 }

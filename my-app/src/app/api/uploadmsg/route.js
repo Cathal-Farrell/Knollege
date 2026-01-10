@@ -39,7 +39,7 @@ export async function GET(req, res) {
 
   const db = client.db(dbName);
 
-  const collection = db.collection('notes'); // collection name
+  const collection = db.collection('chats'); // collection name
 
   const filter = { 
           chatID: chatID,
@@ -51,12 +51,14 @@ export async function GET(req, res) {
 
   const updateDocument = {
     $push: [
-        "user" + userID,  chatText,
+        "userID", "400"
     ]
   };
 
-  await collection.updateOne(filter, updateDocument);
-
+  await collection.updateOne(
+   { chatID: "1" },
+   { $push: { text: ["user " + userID, chatText] } }
+  )
 
   // at the end of the process we need to send something back.
 

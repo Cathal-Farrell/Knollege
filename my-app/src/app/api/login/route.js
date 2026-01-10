@@ -55,7 +55,7 @@ export async function GET(req, res) {
 
   let valid = false
 
-  if(findResult.length >0 ){
+  if(findResult.length > 0){
 
           valid = true;
 

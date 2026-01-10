@@ -46,13 +46,15 @@ export default function MultilineTextFields() {
     console.log("called the function");
 
     // Get current textbox value
-    const data = outputRef.current?.value || "";
+    const data = inputRef.current?.value || "";
     const chatID = chatIDRef.current?.value;
     const userID = userIDRef.current?.value;
 
     console.log("current text:", data);
 
     runDBCallAsync(`http://localhost:3000/api/uploadmsg?text=${encodeURIComponent(data)}&chatID=${chatID}&userID=${userID}`);
+
+    inputRef.current.value = "";
   }
 
   const handleSyncText = (event) => {
@@ -206,7 +208,7 @@ export default function MultilineTextFields() {
                     </Box>
                   </Grid>
                   <Grid size={1}>
-                    <Button variant="outlined" onClick={null}>
+                    <Button variant="outlined" onClick={() => handleUploadText()}>
                       Send
                     </Button>
                   </Grid>

@@ -65,24 +65,50 @@ export default function Home() {
 
       console.log("login is valid!")
 
-    } else {
+    } else if (data.data == "invalid"){
 
       console.log("not valid  ")
+      handleClickOpenInvalid();
+    } else if (data.data == "incomplete"){
 
+      console.log("not complete  ")
+      handleClickOpenIncomplete();
+    } else if (data.data == "inconsistent"){
+
+      console.log("not consistent  ")
+      handleClickOpenInconsistent();
     }
 
   }
 
 
 
-    const [open, setOpen] = React.useState(false);
+    const [openInvalid, setOpenInvalid] = React.useState(false);
+    const [openIncomplete, setOpenIncomplete] = React.useState(false);
+    const [openInconsistent, setOpenInconsistent] = React.useState(false);
   
-    const handleClickOpen = () => {
-        setOpen(true);
+    const handleClickOpenInvalid = () => {
+        setOpenInvalid(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleClickOpenIncomplete = () => {
+        setOpenIncomplete(true);
+    };
+
+    const handleClickOpenInconsistent = () => {
+        setOpenInconsistent(true);
+    };
+
+    const handleCloseInvalid = () => {
+        setOpenInvalid(false);
+    };
+
+    const handleCloseIncomplete = () => {
+        setOpenIncomplete(false);
+    };
+
+    const handleCloseInconsistent = () => {
+        setOpenInconsistent(false);
     };
 
 
@@ -207,21 +233,63 @@ export default function Home() {
         </Grid>
 
         <Dialog
-            open={open}
-            onClose={handleClose}
+            open={openInvalid}
+            onClose={handleCloseInvalid}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
             <DialogTitle id="alert-dialog-title">
-            {"Login failed!"}
+            {"Sign-up failed!"}
             </DialogTitle>
             <DialogContent>
             <DialogContentText id="alert-dialog-description">
-                please try again.
+                This e-mail is already in use by another account.
             </DialogContentText>
             </DialogContent>
             <DialogActions>
-            <Button onClick={handleClose} autoFocus>
+            <Button onClick={handleCloseInvalid} autoFocus>
+                Okay
+            </Button>
+            </DialogActions>
+        </Dialog>
+
+        <Dialog
+            open={openIncomplete}
+            onClose={handleCloseIncomplete}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">
+            {"Sign-up failed!"}
+            </DialogTitle>
+            <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                Please fill-in all input fields.
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleCloseIncomplete} autoFocus>
+                Okay
+            </Button>
+            </DialogActions>
+        </Dialog>
+
+        <Dialog
+            open={openInconsistent}
+            onClose={handleCloseInconsistent}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">
+            {"Sign-up failed!"}
+            </DialogTitle>
+            <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                Passwords do not match.
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleCloseInconsistent} autoFocus>
                 Okay
             </Button>
             </DialogActions>

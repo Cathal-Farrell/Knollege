@@ -75,8 +75,20 @@ export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid size={12}>
-          <Item>size=8</Item>
+        <Grid size={4}>
+          <Item>
+          <Button variant="outlined" href="/"> Home </Button>
+          </Item>
+        </Grid>
+        <Grid size={4}>
+          <Item>
+          <Button variant="outlined" href="/login"> Login </Button>
+          </Item>
+        </Grid>
+        <Grid size={4}>
+          <Item>
+          <Button variant="outlined" href="/chats"> Message </Button>
+          </Item>
         </Grid>
         <Grid size={2}>
           <Item>
@@ -92,7 +104,6 @@ export default function BasicGrid() {
                     defaultValue={userIDRef.current?.value || "100"}
                     inputRef={userIDRef}/>
             </Box>
-            {console.log()}
           </Item>
         </Grid>
         <Grid size={8}>
@@ -119,7 +130,9 @@ export default function BasicGrid() {
             }
         </Grid>
         <Grid size={2}>
-          <Item>size=8</Item>
+          <Item>
+            <Button variant="outlined" href="/createchat"> New Chat </Button>
+          </Item>
         </Grid>
       </Grid>
     </Box>

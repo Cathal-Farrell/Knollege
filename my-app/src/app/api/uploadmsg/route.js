@@ -49,14 +49,8 @@ export async function GET(req, res) {
   console.log(await collection.find(filter).toArray());
         
 
-  const updateDocument = {
-    $push: [
-        "userID", "400"
-    ]
-  };
-
   await collection.updateOne(
-   { chatID: "1" },
+   { chatID: chatID },
    { $push: { text: ["user " + userID, chatText] } }
   )
 

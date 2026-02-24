@@ -1,8 +1,12 @@
 {
-  "/api/syncmsg/route": "app/api/syncmsg/route.js",
-  "/api/uploadmsg/route": "app/api/uploadmsg/route.js",
-  "/chats/page": "app/chats/page.js",
+  "/api/newregister/route": "app/api/newregister/route.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/uploadtext/route": "app/api/uploadtext/route.js",
   "/page": "app/page.js",
-  "/message/page": "app/message/page.js",
-  "/createchat/page": "app/createchat/page.js"
+  "/chats/page": "app/chats/page.js",
+  "/editor/page": "app/editor/page.js",
+  "/login/page": "app/login/page.js",
+  "/signup/page": "app/signup/page.js"
 }

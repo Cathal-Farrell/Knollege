@@ -1,9 +1,4 @@
 {
-  "/api/syncmsg/route": "app/api/syncmsg/route.js",
-  "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/page": "app/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/message/page": "app/message/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/editor/page": "app/editor/page.js"
+  "/api/test/route": "app/api/test/route.js",
+  "/test/page": "app/test/page.js"
 }

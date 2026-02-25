@@ -19,6 +19,5 @@ No searching for groups/chats.
 Can message into chats.
 
 V0.1 - Vlad:
-
 Done some designing on the home page, added a profile icon where a user can select to log in(takes you to the login page),
 go into settings or log out (not working fully yet). Added icons for the users to navigate through the buttons easier and changed the layout.

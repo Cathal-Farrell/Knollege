@@ -27,9 +27,20 @@ export default function MultilineTextFields() {
       }
       else {
         console.log("No change");
-        handleSyncText();
+        
+        // https://nodejs.org/en/learn/asynchronous-work/discover-promises-in-nodejs
+        let myPromise = new Promise((resolve, reject) => {
+          let success = handleLiveSyncText()
+
+          if (success != null) {
+              resolve('Operation was successful!');
+          } else {
+              reject('Something went wrong.');
+          }
+        });
+
       }
-    }, 5000);
+    }, 1000);
 
     // Cleanup interval when component unmounts
     return () => clearInterval(intervalID);
@@ -59,13 +70,25 @@ export default function MultilineTextFields() {
 
   const handleSyncText = (event) => {
           
-    console.log("handling sync");
+    console.log("handling repeated sync");
 
     const chatID = chatIDRef.current?.value;
     console.log(chatID);
     const userID = userIDRef.current?.value;
     console.log(userID);
     runDBCallAsyncDownload(`http://localhost:3000/api/syncmsg?chatID=${chatID}&userID=${userID}`)
+
+  }
+  
+  const handleLiveSyncText = (event) => {
+          
+    console.log("handling sync");
+
+    const chatID = chatIDRef.current?.value;
+    console.log(chatID);
+    const userID = userIDRef.current?.value;
+    console.log(userID);
+    runDBCallAsyncDownload(`http://localhost:3000/api/repeatsyncmsg?chatID=${chatID}&userID=${userID}`)
 
   }
 

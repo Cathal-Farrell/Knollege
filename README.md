@@ -18,6 +18,9 @@ Can create chats with permitted members.
 No searching for groups/chats.
 Can message into chats.
 
-V0.1 - Vlad:
+V1.1 - Vlad:
 Done some designing on the home page, added a profile icon where a user can select to log in(takes you to the login page),
 go into settings or log out (not working fully yet). Added icons for the users to navigate through the buttons easier and changed the layout.
+
+V1.2 - Cathal:
+Long polling implemented on messages, timeout = 30secs, 1 sec cooldown required between inputs for fast messages. Doesn't seem to work when I have one user on firefox and another user on opera GX, two users on firefox does work.

@@ -25,8 +25,7 @@ go into settings or log out (not working fully yet). Added icons for the users t
 V1.2 - Cathal:
 Long polling implemented on messages, timeout = 30secs, 1 sec cooldown required between inputs for fast messages. Doesn't seem to work when I have one user on firefox and another user on opera GX, two users on firefox does work.
 
-V1.3 - Vlad
-Almost finished designing the Dashboard page(Home), Looks like the wirefame
+V1.3 - Vlad:                                                                                                                                                 Almost finished designing the Dashboard page(Home), Looks like the wirefame
 1. Addded a left side bar that allows to open a file or foled(not yet implemented).
 2. Flex layout that creates a 2 column layout that has a sidebar and then a New+ files section, aligned using marginleft(easiest way to understand how it works)
 3. New Styled cards instead of a boring looking filesid and user id, Implemented transitions, hovering and colours so it looks more appealing 

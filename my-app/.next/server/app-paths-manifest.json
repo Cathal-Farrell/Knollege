@@ -1,10 +1,6 @@
 {
-  "/api/repeatsyncmsg/route": "app/api/repeatsyncmsg/route.js",
-  "/api/searchchat/route": "app/api/searchchat/route.js",
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/api/syncmsg/route": "app/api/syncmsg/route.js",
-  "/api/uploadmsg/route": "app/api/uploadmsg/route.js",
+  "/api/synctext/route": "app/api/synctext/route.js",
   "/page": "app/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/message/page": "app/message/page.js"
+  "/editor/page": "app/editor/page.js"
 }

@@ -217,7 +217,7 @@ export default function BasicGrid() {
             marginLeft={-25}
           >
             {[
-              { title: "Blank Document", icon: <FileOpenIcon />, link: "/editor" },
+              { title: "Blank Document", icon: <FileOpenIcon />, link: "/editor", onClick: "handleSearchFile()" },
               { title: "Formatted Document", icon: <FolderIcon />, link: "/formatteddoc" },
               { title: "Colourful Document", icon: <AddCircleIcon />, link: "/colordoc" },
               { title: "Ghannt Chart Document", icon: <HomeIcon />, link: "/ghanttdoc" },
@@ -304,9 +304,9 @@ export default function BasicGrid() {
                 </Typography>
               </Box>
 
-              {/* RIGHT SIDE: Edit button */}
-              <Button variant="outlined" href="/editor">
-                Edit
+              {/* RIGHT SIDE: Delete button */}
+              <Button variant="outlined" onClick={() => deleteFile()}>
+                Delete
               </Button>
             </Paper>
           ))}

@@ -15,15 +15,40 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchfiles/route.js"
     ],
-    "/editor/page": [
+    "/chats/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/editor/page.js"
+      "static/chunks/app/chats/page.js"
     ],
-    "/api/synctext/route": [
+    "/api/searchchat/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/synctext/route.js"
+      "static/chunks/app/api/searchchat/route.js"
+    ],
+    "/message/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/message/page.js"
+    ],
+    "/api/syncmsg/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/syncmsg/route.js"
+    ],
+    "/api/repeatsyncmsg/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/repeatsyncmsg/route.js"
+    ],
+    "/createchat/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/createchat/page.js"
+    ],
+    "/api/uploadmsg/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/uploadmsg/route.js"
     ]
   }
 }

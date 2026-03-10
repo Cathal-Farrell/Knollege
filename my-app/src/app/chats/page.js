@@ -121,7 +121,7 @@ export default function BasicGrid() {
 
                     {console.log(item.userID)}
 
-                    <Button variant="outlined" href="/message"> Message </Button>
+                    <Button variant="outlined" href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value || "100")}`}> Message </Button>
 
                 </div>
 

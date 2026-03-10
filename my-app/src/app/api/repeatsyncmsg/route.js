@@ -60,9 +60,10 @@ export async function GET(req, res) {
  
 
         const findResult = await collection.find(filter).toArray();
-
+          if (findResult.length === 0) {
+          return Response.json([]);
+          }
         console.log('Found update documents =>', findResult[0].text);
-
  
  
 
@@ -75,6 +76,9 @@ export async function GET(req, res) {
           console.log("hello" + i)
 
           let newResult = await collection.find(filter).toArray();
+          if (findResult.length === 0) {
+          return Response.json([]);
+          }
           console.log(findResult[0].text, '<= Found new documents =>', newResult[0].text);
           console.log(findResult[0].text.length, newResult[0].text.length)
           console.log(findResult[0].text.length == newResult[0].text.length)

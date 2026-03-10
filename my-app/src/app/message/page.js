@@ -8,6 +8,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+
 
 export default function MultilineTextFields() {
 
@@ -15,6 +17,10 @@ export default function MultilineTextFields() {
   const outputRef = React.useRef(null);
   const chatIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
+  const searchParams = useSearchParams();
+  const chatIDUrl = searchParams.get('chatID') || '1';
+  const userIDUrl = searchParams.get('userID') || '100';
+
   let textChanged = false;
 
   // Run loop every 5 seconds
@@ -27,18 +33,7 @@ export default function MultilineTextFields() {
       }
       else {
         console.log("No change");
-        
-        // https://nodejs.org/en/learn/asynchronous-work/discover-promises-in-nodejs
-        let myPromise = new Promise((resolve, reject) => {
-          let success = handleLiveSyncText()
-
-          if (success != null) {
-              resolve('Operation was successful!');
-          } else {
-              reject('Something went wrong.');
-          }
-        });
-
+        handleLiveSyncText();
       }
     }, 1000);
 
@@ -95,7 +90,10 @@ export default function MultilineTextFields() {
   async function runDBCallAsync(url) {
 
     const res = await fetch(url);
-
+    if (!res.ok) {
+    outputRef.current.value = "sync request failed";
+    return;
+    }
     const data = await res.json();
 
 
@@ -125,7 +123,8 @@ export default function MultilineTextFields() {
     } else {
 
       console.log("not valid  ")
-      data[0] = {"text" : "Error: File not found"}
+      outputRef.current.value = "File Not Found";
+      return;
 
     }
    
@@ -186,13 +185,13 @@ export default function MultilineTextFields() {
                         id="outlined-basic" 
                         label="Chat" 
                         variant="outlined" 
-                        defaultValue={chatIDRef.current?.value || "1"}
+                        defaultValue={chatIDUrl}
                         inputRef={chatIDRef}/>
                     <TextField 
                         id="outlined-basic" 
                         label="User" 
                         variant="outlined" 
-                        defaultValue={userIDRef.current?.value || "100"}
+                        defaultValue={userIDUrl}
                         inputRef={userIDRef}/>
                 </Box>
               </Item>

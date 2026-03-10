@@ -1,5 +1,8 @@
 {
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/repeatsyncmsg/route": "app/api/repeatsyncmsg/route.js",
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/chats/page": "app/chats/page.js",
   "/page": "app/page.js",
-  "/editor/page": "app/editor/page.js"
+  "/message/page": "app/message/page.js"
 }

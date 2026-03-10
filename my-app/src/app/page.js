@@ -46,6 +46,7 @@ export default function BasicGrid() {
 
     const [data, setData] = useState(null)
     const userIDRef = React.useRef(null);
+    const newFileNameRef = React.useRef(null);
 
     // Avatar menu state (https://mui.com/material-ui/react-menu/#account-menu)
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -58,7 +59,6 @@ export default function BasicGrid() {
     const handleAvatarClose = () => {
       setAnchorEl(null);
     };
-
 
     React.useEffect(() => {
         handleSearchFile()
@@ -102,6 +102,22 @@ export default function BasicGrid() {
 
         }
 
+    }
+
+    async function handleCreateNewFile(url) {
+      console.log("handling file search");
+
+      const inputUserID = userIDRef.current?.value;
+      const fileName = newFileNameRef.current?.value;
+      await fetch(`http://localhost:3000/api/createfile?userID=${inputUserID}&fileName=${fileName}`);
+    }
+
+    async function handleDeleteFile(url) {
+      console.log("handling file search");
+
+      const inputUserID = userIDRef.current?.value;
+      const fileName = newFileNameRef.current?.value;
+      await fetch(`http://localhost:3000/api/deletefile?userID=${inputUserID}&fileName=${fileName}`);
     }
 
     if (!data) return <p>Loading</p>
@@ -217,7 +233,7 @@ export default function BasicGrid() {
             marginLeft={-25}
           >
             {[
-              { title: "Blank Document", icon: <FileOpenIcon />, link: "/editor", onClick: "handleSearchFile()" },
+              { title: "Blank Document", icon: <FileOpenIcon />, link: "/editor" },
               { title: "Formatted Document", icon: <FolderIcon />, link: "/formatteddoc" },
               { title: "Colourful Document", icon: <AddCircleIcon />, link: "/colordoc" },
               { title: "Ghannt Chart Document", icon: <HomeIcon />, link: "/ghanttdoc" },
@@ -275,6 +291,17 @@ export default function BasicGrid() {
             </Box>
             {console.log()}
           </Item>
+          <Item>
+            <TextField 
+              id="outlined-basic" 
+              label="File Name" 
+              variant="outlined" 
+              defaultValue={newFileNameRef.current?.value || "Test"}
+              inputRef={newFileNameRef}/>
+            <Button variant="outlined" onClick={() => handleCreateNewFile()}>
+              Create new
+            </Button>
+          </Item>
         </Grid>
         <Grid size={8}>
           {data.map((item, i) => (
@@ -296,7 +323,7 @@ export default function BasicGrid() {
             >
               <Box>
                 <Typography sx={{ fontWeight: 600, fontSize: "1rem" }}>
-                  {item.noteID}
+                  {item.noteID||"" + item.fileName||""}
                 </Typography>
 
                 <Typography sx={{ fontSize: "0.85rem", color: "text.secondary" }}>
@@ -305,7 +332,7 @@ export default function BasicGrid() {
               </Box>
 
               {/* RIGHT SIDE: Delete button */}
-              <Button variant="outlined" onClick={() => deleteFile()}>
+              <Button variant="outlined" onClick={() => handleDeleteFile()}>
                 Delete
               </Button>
             </Paper>

@@ -28,4 +28,10 @@ Long polling implemented on messages, timeout = 30secs, 1 sec cooldown required 
 V1.3 - Vlad: Almost finished designing the Dashboard page(Home), Looks like the wirefame
 1. Addded a left side bar that allows to open a file or foled(not yet implemented).
 2. Flex layout that creates a 2 column layout that has a sidebar and then a New+ files section, aligned using marginleft(easiest way to understand how it works)
-3. New Styled cards instead of a boring looking filesid and user id, Implemented transitions, hovering and colours so it looks more appealing 
+3. New Styled cards instead of a boring looking filesid and user id, Implemented transitions, hovering and colours so it looks more appealing
+
+V1.4 - Oscar: Group Chats now mostly working, issues with URL parameters, files, and user ids and other errors now resolved.
+              Chats no longer require an initial message send to be rendered properly.
+              Messages page styling refomatted, now more readable.
+              Sessions development in progress.
+              

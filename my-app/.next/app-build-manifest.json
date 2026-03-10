@@ -49,6 +49,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/uploadmsg/route.js"
+    ],
+    "/api/newchat/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/newchat/route.js"
     ]
   }
 }

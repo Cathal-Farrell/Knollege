@@ -25,35 +25,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchchat/route.js"
     ],
-    "/message/page": [
+    "/signup/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/message/page.js"
+      "static/chunks/app/signup/page.js"
     ],
-    "/api/syncmsg/route": [
+    "/api/newregister/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/syncmsg/route.js"
+      "static/chunks/app/api/newregister/route.js"
     ],
-    "/api/repeatsyncmsg/route": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/repeatsyncmsg/route.js"
+      "static/chunks/app/login/page.js"
     ],
-    "/createchat/page": [
+    "/api/login/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/createchat/page.js"
-    ],
-    "/api/uploadmsg/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/uploadmsg/route.js"
-    ],
-    "/api/newchat/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/newchat/route.js"
+      "static/chunks/app/api/login/route.js"
     ]
   }
 }

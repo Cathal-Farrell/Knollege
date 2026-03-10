@@ -111,14 +111,23 @@ export default function BasicGrid() {
 
                 data.map((item, i) => (
 
-                <div style={{padding: '20px'}} key={i} >
+                <div style={{
+                  padding: '20px',
+                  borderBottom: '1px solid #ddd',
+                  display : 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  fontFamily: 'Arial, sans-serif'
+                }} key={i} >
 
-                    chatID: {item.chatID}
+                  <div>
+                    <div><strong>{item.chatName}</strong></div>
+                    
+                    <div>members: {(item.userID || []).join(', ')}</div>
 
-                    ---
-
-                    userID: {item.userID + ""}
-
+                    <div>chatID: {item.chatID}</div>
+                  </div>
+                    
                     {console.log(item.userID)}
 
                     <Button variant="outlined" href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value || "100")}`}> Message </Button>

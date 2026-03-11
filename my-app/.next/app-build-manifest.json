@@ -15,47 +15,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchfiles/route.js"
     ],
-<<<<<<< Updated upstream
-    "/chats/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/chats/page.js"
-    ],
-    "/api/searchchat/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/searchchat/route.js"
-    ],
-    "/signup/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/signup/page.js"
-    ],
-    "/api/newregister/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/newregister/route.js"
-    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/login/page.js"
     ],
-    "/api/login/route": [
+    "/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/login/route.js"
-=======
-    "/api/createfile/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/createfile/route.js"
-    ],
-    "/api/deletefile/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/deletefile/route.js"
->>>>>>> Stashed changes
+      "static/chunks/app/profile/page.js"
     ]
   }
 }

@@ -317,24 +317,27 @@ export default function BasicGrid() {
                 alignItems: "center",
                 borderRadius: 2,
                 transition: "0.2s",
-                "&:hover": { transform: "scale(1.03)",backgroundColor: "#e3f2fd"},
-                "&:active": { backgroundColor: "#5ba8e8"},
+                "&:hover": { transform: "scale(1.03)"}
               }}
             >
-              <Box>
+              <Box >
                 <Typography sx={{ fontWeight: 600, fontSize: "1rem" }}>
                   {item.noteID||"" + item.fileName||""}
                 </Typography>
-
+                
                 <Typography sx={{ fontSize: "0.85rem", color: "text.secondary" }}>
                   User: {item.userID}
                 </Typography>
+                <Button variant="outlined" href="/editor">
+                EDIT
+                </Button>
               </Box>
 
               {/* RIGHT SIDE: Delete button */}
               <Button variant="outlined" onClick={() => handleDeleteFile()}>
                 Delete
               </Button>
+              
             </Paper>
           ))}
         </Grid>

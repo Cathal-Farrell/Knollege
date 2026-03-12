@@ -1,11 +1,30 @@
 "use client";
-
+import {useEffect, useState} from "react";
 import { Box, Paper, Typography, Avatar, TextField, Button, Stack } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 export default function ProfilePage() {
+    const [profile, setProfile] = useState({theme: "system", profilePicture: "" });
+
+    useEffect(() => {
+        fetch(`/api/getProfile?userID=testUser`)
+        .then(res => res.json())
+        .then(data => setProfile(data));
+    }, []);
+
+    const handleSave = () => {
+    fetch(`/api/updateProfile?userID=testUser&displayName=${profile.displayName}&email=${profile.email}
+        &bio=${profile.bio}&age=${profile.age}&school=${profile.school}`)
+        .then(res => res.json())
+        .then(data => {
+        console.log("Profile updated:", data);
+        alert("Profile saved!");
+        });
+    };
+
   return (
+
     <Box sx={{ p: 4, maxWidth: 600, mx: "auto" }}>
 
         <Button
@@ -17,13 +36,8 @@ export default function ProfilePage() {
             fontWeight: 600,
             borderRadius: 2,
             px: 2.5,
-            "&:hover": {
-            backgroundColor: "#1565c0",
-            transform: "scale(1.03)"
-            },
-            "&:active": {
-            backgroundColor: "#0d47a1"
-            }
+            "&:hover": { backgroundColor: "#1565c0", transform: "scale(1.03)"},
+            "&:active": { backgroundColor: "#0d47a1"}
         }}
         >
         Back to Dashboard
@@ -37,31 +51,57 @@ export default function ProfilePage() {
 
       {/* Profile Card */}
       <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-
         <Stack spacing={3} alignItems="center">
-
           {/* Avatar */}
           <Avatar sx={{ width: 100, height: 100 }} />
 
-          {/* Name */}
-          <TextField fullWidth label="Display Name" defaultValue="Vlad" />
+        <TextField
+            fullWidth
+            label="Display Name"
+            value={profile.displayName || ""}
+            onChange={(e) => setProfile({ ...profile, displayName: e.target.value })}
+        />
 
-          {/* Email */}
-          <TextField fullWidth label="Email" defaultValue="vlad@example.com" />
+        <TextField
+            fullWidth
+            label="Email"
+            value={profile.email || ""}
+            onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+        />
 
-          {/* Bio */}
-          <TextField
+        <TextField
+            fullWidth
+            label="Age (optional)"
+            type="number"
+            value={profile.age || ""}
+            onChange={(e) => setProfile({ ...profile, age: e.target.value })}
+        />
+
+        <TextField
+            fullWidth
+            label="School (optional)"
+            value={profile.school || ""}
+            onChange={(e) => setProfile({ ...profile, school: e.target.value })}
+        />
+
+
+        <TextField
             fullWidth
             label="Bio"
             multiline
             rows={3}
-            placeholder="Write something about yourself..."
-          />
+            value={profile.bio || ""}
+            onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
+        />
 
-          {/* Save Button */}
-          <Button variant="contained" size="large" sx={{ width: "100%" }}>
+
+        {/* Save Button */}
+        <Button variant="contained" size="large" sx={{
+            width: "100%" }}
+            onClick={handleSave}
+        >
             Save Changes
-          </Button>
+        </Button>
 
         </Stack>
       </Paper>

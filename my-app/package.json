@@ -12,13 +12,17 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.5",
+    "@tiptap/cli": "^3.19.0",
+    "@tiptap/pm": "^3.20.1",
+    "@tiptap/react": "^3.20.1",
+    "@tiptap/starter-kit": "^3.20.1",
+    "iron-session": "^8.0.3",
     "mongodb": "^7.0.0",
     "next": "^15.5.9",
     "node": "^25.8.0",
     "package.json": "^0.0.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-router-dom": "^7.12.0",
-    "iron-session": "^8.0.3"
+    "react-router-dom": "^7.12.0"
   }
 }

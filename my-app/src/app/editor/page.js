@@ -8,6 +8,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
+import { useEditor, EditorContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
 
 export default function MultilineTextFields() {
 
@@ -15,6 +17,7 @@ export default function MultilineTextFields() {
   const noteIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
   let textChanged = false;
+  let editor = null;
 
   // Run loop every 5 seconds
   React.useEffect(() => {
@@ -107,6 +110,7 @@ export default function MultilineTextFields() {
     console.log(data[0]);
  
     inputRef.current.value = data[0].text;
+    editor.commands.setContent(data[0].text)
 
   }
 
@@ -120,6 +124,21 @@ export default function MultilineTextFields() {
               backgroundColor: '#1A2027',
           }),
       }));
+
+
+  const Tiptap = () => {
+    editor = useEditor({
+      extensions: [StarterKit],
+      content: inputRef.current?.value || "Nothing",
+      // Don't render immediately on the server to avoid SSR issues
+      immediatelyRender: false,
+    })
+
+    return <EditorContent editor={editor} />
+  }
+
+
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -162,8 +181,10 @@ export default function MultilineTextFields() {
               </Item>
             </Grid>
             <Grid size={10}>
-              <Item>[Quill editor bar]</Item>
-              <Item>
+              <Item id="toolbar">
+                    <Tiptap/>
+              </Item>
+              <Item id="editor">
                 <Box
                   component="form"
                   sx={{ '& .MuiTextField-root': { m: 1, width: '150ch' } }}

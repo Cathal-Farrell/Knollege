@@ -26,12 +26,20 @@ V1.2 - Cathal:
 Long polling implemented on messages, timeout = 30secs, 1 sec cooldown required between inputs for fast messages. Doesn't seem to work when I have one user on firefox and another user on opera GX, two users on firefox does work.
 
 V1.3 - Vlad: Almost finished designing the Dashboard page(Home), Looks like the wirefame
-1. Addded a left side bar that allows to open a file or foled(not yet implemented).
-2. Flex layout that creates a 2 column layout that has a sidebar and then a New+ files section, aligned using marginleft(easiest way to understand how it works)
-3. New Styled cards instead of a boring looking filesid and user id, Implemented transitions, hovering and colours so it looks more appealing
+          1. Addded a left side bar that allows to open a file or foled(not yet implemented).
+          2. Flex layout that creates a 2 column layout that has a sidebar and then a New+ files section, aligned using marginleft
+          (easiest way to understand how it works)
+          3. New Styled cards instead of a boring looking filesid and user id, Implemented transitions, hovering and colours so it looks more appealing
 
 V1.4 - Oscar: Group Chats now mostly working, issues with URL parameters, files, and user ids and other errors now resolved.
               Chats no longer require an initial message send to be rendered properly.
               Messages page styling refomatted, now more readable.
               Sessions development in progress.
+
+V1.5 - Vlad:Profile page created with personalisation (Will be fully working when sessions are fully implemented - Still works to test)
+          1. Implemented a getProfile api that fetches all the info that has been saved from the database and prints it back 
+          2. Also implemented a updateProfile api that retreives info from searchParams(email, name, age, school, bio) when pressing the save button
+          it saves it into the database updates it and returns the updated profile
+          3. Added card like layout that looks like a from using paper, with textfields and placeholders in them, also as a back button to go back and a save
+            button so when pressed it saves the info into database and displays "Profile saved!"
               

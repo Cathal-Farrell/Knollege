@@ -1,5 +1,6 @@
 {
-  "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/signup/page": "app/signup/page.js",
   "/page": "app/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/login/page": "app/login/page.js"
 }

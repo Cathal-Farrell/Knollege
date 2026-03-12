@@ -3,11 +3,13 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
+
 
 
 export default function BasicGrid() {
@@ -60,6 +62,13 @@ export default function BasicGrid() {
     }
 
     if (!data) return <p>Loading</p>
+
+    async function handleDeleteChat(chatID) {
+    if (!window.confirm("Delete this chat?")) return;
+
+    await fetch(`http://localhost:3000/api/deletechat?chatID=${encodeURIComponent(chatID)}`);
+    handleSearchChat(); 
+    }
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: '#fff',
@@ -130,8 +139,19 @@ export default function BasicGrid() {
                     
                     {console.log(item.userID)}
 
-                    <Button variant="outlined" href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value || "100")}`}> Message </Button>
+                    <Button 
+                    variant="outlined" 
+                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value || "100")}`}> 
+                    Message 
+                    </Button>
 
+                    <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => handleDeleteChat(item.chatID)}>
+                    {<DeleteIcon />}
+                    
+                    </Button>
                 </div>
 
                 ))

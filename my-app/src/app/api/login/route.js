@@ -1,3 +1,5 @@
+import { getSession } from '../../lib/session';
+
 export async function GET(req, res) {
 
   // Make a note we are on
@@ -47,19 +49,25 @@ export async function GET(req, res) {
           password: pass
         };
 
-  const findResult = await collection.find(filter).toArray();
+  const findUser = await collection.find(filter).toArray();
 
   
 
-  console.log('Found documents =>', findResult);
+  console.log('Found documents =>', findUser);
 
   let valid = false
 
-  if(findResult.length > 0){
+  if(findUser.length > 0){
 
           valid = true;
 
           console.log("login valid")
+
+          const session = await getSession();
+           session.userID = String(findUser[0]._id);
+          session.email = findUser[0].email;
+
+          await session.save();
 
   } else {
 

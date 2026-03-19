@@ -1,6 +1,6 @@
 {
-  "/api/synctext/route": "app/api/synctext/route.js",
-  "/api/getProfile/route": "app/api/getProfile/route.js",
-  "/api/updateProfile/route": "app/api/updateProfile/route.js",
-  "/profile/page": "app/profile/page.js"
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/api/deletefile/route": "app/api/deletefile/route.js",
+  "/profile/page": "app/profile/page.js",
+  "/page": "app/page.js"
 }

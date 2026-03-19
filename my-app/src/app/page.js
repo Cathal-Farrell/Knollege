@@ -112,12 +112,12 @@ export default function BasicGrid() {
       await fetch(`http://localhost:3000/api/createfile?userID=${inputUserID}&fileName=${fileName}`);
     }
 
-    async function handleDeleteFile(url) {
+    async function handleDeleteFile(userID, fileName) {
       console.log("handling file search");
 
-      const inputUserID = userIDRef.current?.value;
-      const fileName = newFileNameRef.current?.value;
-      await fetch(`http://localhost:3000/api/deletefile?userID=${inputUserID}&fileName=${fileName}`);
+      //const inputUserID = userIDRef.current?.value;
+      //const fileName = newFileNameRef.current?.value;
+      await fetch(`http://localhost:3000/api/deletefile?userID=${userID}&fileName=${fileName}`);
     }
 
     if (!data) return <p>Loading</p>
@@ -334,7 +334,7 @@ export default function BasicGrid() {
               </Box>
 
               {/* RIGHT SIDE: Delete button */}
-              <Button variant="outlined" onClick={() => handleDeleteFile()}>
+              <Button variant="outlined" onClick={() => handleDeleteFile(item.userID, item.fileName)}>
                 Delete
               </Button>
               

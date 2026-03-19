@@ -1,10 +1,5 @@
 {
   "pages": {
-    "/api/synctext/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/synctext/route.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -20,10 +15,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/getProfile/route.js"
     ],
-    "/api/updateProfile/route": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/updateProfile/route.js"
+      "static/chunks/app/page.js"
+    ],
+    "/api/searchfiles/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/searchfiles/route.js"
+    ],
+    "/api/createfile/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/createfile/route.js"
+    ],
+    "/api/deletefile/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/deletefile/route.js"
     ]
   }
 }

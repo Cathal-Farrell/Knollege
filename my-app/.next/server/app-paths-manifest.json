@@ -1,6 +1,5 @@
 {
-  "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/api/deletefile/route": "app/api/deletefile/route.js",
-  "/profile/page": "app/profile/page.js",
+  "/api/synctext/route": "app/api/synctext/route.js",
+  "/editor/page": "app/editor/page.js",
   "/page": "app/page.js"
 }

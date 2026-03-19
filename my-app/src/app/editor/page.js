@@ -130,6 +130,7 @@ export default function MultilineTextFields() {
     editor = useEditor({
       extensions: [StarterKit],
       content: inputRef.current?.value || "Nothing",
+      
       // Don't render immediately on the server to avoid SSR issues
       immediatelyRender: false,
     })

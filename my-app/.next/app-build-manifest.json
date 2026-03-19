@@ -1,39 +1,34 @@
 {
   "pages": {
+    "/api/searchfiles/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/searchfiles/route.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/layout.js"
-    ],
-    "/profile/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/profile/page.js"
-    ],
-    "/api/getProfile/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/getProfile/route.js"
     ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/api/searchfiles/route": [
+    "/editor/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/searchfiles/route.js"
+      "static/chunks/app/editor/page.js"
     ],
-    "/api/createfile/route": [
+    "/api/synctext/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/createfile/route.js"
+      "static/chunks/app/api/synctext/route.js"
     ],
-    "/api/deletefile/route": [
+    "/api/uploadtext/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/deletefile/route.js"
+      "static/chunks/app/api/uploadtext/route.js"
     ]
   }
 }

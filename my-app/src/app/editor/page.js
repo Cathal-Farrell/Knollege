@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import { Markdown } from '@tiptap/markdown'
 
 export default function MultilineTextFields() {
 
@@ -128,14 +129,23 @@ export default function MultilineTextFields() {
 
   const Tiptap = () => {
     editor = useEditor({
-      extensions: [StarterKit],
+      extensions: [StarterKit, Markdown],
       content: inputRef.current?.value || "Nothing",
-      
+      onUpdate: () => {
+        // The content has changed.
+        console.log("tiptap text changed");
+        textChanged = true;
+      },
       // Don't render immediately on the server to avoid SSR issues
       immediatelyRender: false,
     })
 
-    return <EditorContent editor={editor} />
+    return <EditorContent editor={editor} 
+      onChange={({ editor }) => {
+        // The content has changed.
+        console.log("tiptap text changed");
+        textChanged = true;
+      }}/>
   }
 
 

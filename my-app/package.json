@@ -13,6 +13,7 @@
     "@mui/icons-material": "^7.3.8",
     "@mui/material": "^7.3.5",
     "@tiptap/cli": "^3.19.0",
+    "@tiptap/markdown": "^3.20.4",
     "@tiptap/pm": "^3.20.1",
     "@tiptap/react": "^3.20.1",
     "@tiptap/starter-kit": "^3.20.1",

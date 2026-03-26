@@ -7,15 +7,37 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export default function ProfilePage() {
 
     const [profile, setProfile] = useState({theme: "system", profilePicture: "" });
+     const [sessionEmail, setSessionEmail] = useState(null);
+     useEffect(() => {
+
+     fetch('/api/session')
+            .then((res) => res.json())
+            .then((data) => {
+            if (data.email && data.email !== "Not Logged In") {
+            setSessionEmail(data.email);
+            setProfile((prev) => ({
+        ...prev,
+          email: prev.email || data.email,
+                }));
+            }
+        })
+}, []);
 
     useEffect(() => {
-        fetch(`/api/getProfile?userID=testUser`)
+        if (sessionEmail) {
+        fetch(`/api/getProfile?userID=${encodeURIComponent(sessionEmail)}`)
         .then(res => res.json())
-        .then(data => setProfile(data));
-    }, []);
+        .then(data => {
+        setProfile({
+            ...data,
+            email: data.email || sessionEmail 
+             });
+        });
+        }
+    }, [sessionEmail]);
 
     const handleSave = () => {
-    fetch(`/api/updateProfile?userID=testUser&displayName=${profile.displayName}&email=${profile.email}
+    fetch(`/api/updateProfile?userID=${encodeURIComponent(sessionEmail)}&displayName=${profile.displayName}&email=${profile.email}
         &bio=${profile.bio}&age=${profile.age}&school=${profile.school}`)
         .then(res => res.json())
         .then(data => {
@@ -66,8 +88,9 @@ export default function ProfilePage() {
         <TextField
             fullWidth
             label="Email"
-            value={profile.email || ""}
+            value={sessionEmail || ""}
             onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+            disabled={true}
         />
 
         <TextField

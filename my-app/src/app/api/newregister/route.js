@@ -77,13 +77,6 @@ export async function GET(req, res) {
 
     const insertDetails = await collection.insertOne(updateJSON);
 
-    const session = await getSession();
-    session.userID = String(insertDetails.insertedId);
-    session.email = email;
-
-    await session.save();
-
-
     
     // database call goes here
 

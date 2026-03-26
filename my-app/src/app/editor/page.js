@@ -21,11 +21,21 @@ export default function MultilineTextFields() {
   const searchParams = useSearchParams();
   const noteIDURL = searchParams.get('noteID') || '1';
   const userIDURL = searchParams.get('userID') || '100';
+  const [userEmail, setUserEmail] = useState("100");
   let textChanged = false;
   let editor = null;
 
   // Run loop every 5 seconds
   React.useEffect(() => {
+     async function fetchSession() {
+            const res = await fetch('http://localhost:3000/api/session');
+            const sessionData = await res.json();
+            if (sessionData.email !== "Not Logged In") {
+                setUserEmail(sessionData.email);
+            }
+        }
+        fetchSession();
+
     handleSyncText();
     const intervalID = setInterval(() => {
       if (textChanged == true) {
@@ -190,7 +200,7 @@ export default function MultilineTextFields() {
                         id="outlined-basic" 
                         label="User" 
                         variant="outlined" 
-                        defaultValue={userIDURL}
+                        defaultValue={userEmail}
                         inputRef={userIDRef}/>
                 </Box>
               </Item>

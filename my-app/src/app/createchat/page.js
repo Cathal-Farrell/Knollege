@@ -176,7 +176,7 @@ export default function Home() {
                         required
                         fullWidth
                         name="members"
-                        label="Members, seperate with commas"
+                        label="Emails, seperate with commas"
                         type="members"
                         id="members"
                         autoComplete=""

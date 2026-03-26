@@ -7,9 +7,20 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export default function ChatDetails() {
 
     const [data, setData] = useState(null)
+    const [userEmail, setUserEmail] = useState("100");
     const userIDRef = React.useRef(null);
     
     React.useEffect(() => {
+
+       async function fetchSession() {
+            const res = await fetch('http://localhost:3000/api/session');
+            const sessionData = await res.json();
+            if (sessionData.email !== "Not Logged In") {
+            setUserEmail(sessionData.email);
+            }
+        }
+        fetchSession();
+
             handleSearchMembers()
             const intervalID = setInterval(() => {
                 handleSearchMembers()
@@ -83,7 +94,7 @@ export default function ChatDetails() {
                     id="outlined-basic" 
                     label="User" 
                     variant="outlined" 
-                    defaultValue={userIDRef.current?.value || "100"}
+                    defaultValue={userEmail}
                     inputRef={userIDRef}/>
             </Box>
           </Item>

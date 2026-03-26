@@ -53,19 +53,19 @@ export async function GET(req, res) {
   const findResult = await collection.find(filter).toArray();
 
 
-  const membersArray = members.split(",")
+ const membersArray = members.split(",").map(email => email.trim());
 
   // Test if all membersArray's items are numbers
   // https://www.geeksforgeeks.org/javascript/how-to-check-if-string-contains-only-digits-in-javascript/
-  const regex = /^\d+$/;
-  var isNumbersPass = true;
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var isEmailsPass = true;
   for (let i in membersArray) {
     console.log(regex.test(membersArray[i]))
     if (regex.test(membersArray[i]) == false) {
         console.log("failed");
-        isNumbersPass = false;
+        isEmailsPass = false;
     }
-    console.log(isNumbersPass);
+    console.log(isEmailsPass);
   }
 
   if (chatName == "" || chatID == "" || members == "") {
@@ -74,7 +74,7 @@ export async function GET(req, res) {
   else if (findResult.length > 0) {
     return Response.json({ "data": "invalid" })
   }
-  else if (isNumbersPass == false) {
+  else if (isEmailsPass == false) {
     return Response.json({ "data": "incompliant" })
   }
   else {
@@ -86,7 +86,7 @@ export async function GET(req, res) {
       text: []
     }
 
-    collection.insertOne(updateJSON);
+    await collection.insertOne(updateJSON);
     
     // database call goes here
 

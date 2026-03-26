@@ -45,6 +45,7 @@ import { useState, useEffect } from 'react';
 export default function BasicGrid() {
 
     const [data, setData] = useState(null)
+    const [userEmail, setUserEmail] = useState("100");
     const userIDRef = React.useRef(null);
     const newFileNameRef = React.useRef(null);
 
@@ -60,7 +61,25 @@ export default function BasicGrid() {
       setAnchorEl(null);
     };
 
+ const handleLogout = async () => {
+      handleAvatarClose();
+      await fetch('http://localhost:3000/api/logout');
+      
+      window.location.reload(); 
+    };
+
     React.useEffect(() => {
+
+      async function fetchSession() {
+        const res = await fetch('http://localhost:3000/api/session');
+        const sessionData = await res.json();
+        if (sessionData.email !== "Not Logged In") {
+            setUserEmail(sessionData.email);
+        }
+        }
+        fetchSession();
+
+
         handleSearchFile()
         const intervalID = setInterval(() => {
             handleSearchFile()
@@ -163,7 +182,7 @@ export default function BasicGrid() {
             </ListItemIcon>
             Settings
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <Logout fontSize="small" />
             </ListItemIcon>
@@ -286,7 +305,7 @@ export default function BasicGrid() {
                     id="outlined-basic" 
                     label="User" 
                     variant="outlined" 
-                    defaultValue={userIDRef.current?.value || "100"}
+                    defaultValue={userEmail}
                     inputRef={userIDRef}/>
             </Box>
             {console.log()}

@@ -1,4 +1,6 @@
-import { getSession } from '../../lib/session';
+import { login } from '../../lib/session';
+import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export async function GET(req, res) {
 
@@ -49,25 +51,30 @@ export async function GET(req, res) {
           password: pass
         };
 
-  const findUser = await collection.find(filter).toArray();
+  const findResult = await collection.find(filter).toArray();
 
   
 
-  console.log('Found documents =>', findUser);
+  console.log('Found documents =>', findResult);
 
   let valid = false
 
-  if(findUser.length > 0){
+  if(findResult.length > 0){
 
           valid = true;
-
           console.log("login valid")
 
-          const session = await getSession();
-           session.userID = String(findUser[0]._id);
-          session.email = findUser[0].email;
+          const formData = new FormData();
 
-          await session.save();
+          formData.append('email', email);
+
+          await login(formData);
+
+          const cookieStore = await cookies();
+          const sessionValue = cookieStore.get('session')?.value;
+          console.log("sess id:", sessionValue);
+
+       
 
   } else {
 

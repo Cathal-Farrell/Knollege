@@ -1,6 +1,11 @@
 {
-  "/api/synctext/route": "app/api/synctext/route.js",
-  "/api/uploadtext/route": "app/api/uploadtext/route.js",
-  "/editor/page": "app/editor/page.js",
+  "/api/session/route": "app/api/session/route.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/api/logout/route": "app/api/logout/route.js",
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/login/page": "app/login/page.js",
+  "/signup/page": "app/signup/page.js",
+  "/chats/page": "app/chats/page.js",
   "/page": "app/page.js"
 }

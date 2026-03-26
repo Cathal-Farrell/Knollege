@@ -5,6 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
 export default function ProfilePage() {
+
     const [profile, setProfile] = useState({theme: "system", profilePicture: "" });
 
     useEffect(() => {
@@ -94,14 +95,15 @@ export default function ProfilePage() {
             onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
         />
 
-
-        {/* Save Button */}
-        <Button variant="contained" size="large" sx={{
-            width: "100%" }}
-            onClick={handleSave}
-        >
-            Save Changes
-        </Button>
+        
+            {/* Save Button */}
+            <Button variant="contained" size="large" sx={{
+                width: "100%" }}
+                onClick={handleSave}
+            >
+                Save Changes
+            </Button>
+        
 
         </Stack>
       </Paper>

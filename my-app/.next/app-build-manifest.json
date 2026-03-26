@@ -5,6 +5,14 @@
       "static/chunks/main-app.js",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< Updated upstream
+=======
+    "/editor/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editor/page.js"
+    ],
+>>>>>>> Stashed changes
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -20,10 +28,22 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchfiles/route.js"
     ],
+<<<<<<< Updated upstream
     "/api/logout/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/logout/route.js"
+=======
+    "/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/page.js"
+    ],
+    "/api/getProfile/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/getProfile/route.js"
+>>>>>>> Stashed changes
     ]
   }
 }

@@ -119,11 +119,13 @@ export default function BasicGrid() {
                 autoComplete="off"
             >
                 <TextField 
-                    id="outlined-basic" 
-                    label="User" 
-                    variant="outlined" 
-                    defaultValue={userEmail}
-                    inputRef={userIDRef}/>
+                    label="User Email:"
+                    variant="outlined"
+                    value={userEmail}
+                    inputRef={userIDRef}
+                    slotProps={{
+                      htmlInput: { readOnly: true },
+                    }}/>
             </Box>
           </Item>
         </Grid>

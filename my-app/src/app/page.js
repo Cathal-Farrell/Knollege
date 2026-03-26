@@ -297,16 +297,18 @@ export default function BasicGrid() {
         <Grid size={2}>
           <Item>
             <Box
-                sx={{ '& > :not(style)': { m: 1, width: '15ch' } }}
+                sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
                 noValidate
                 autoComplete="off"
             >
                 <TextField 
-                    id="outlined-basic" 
-                    label="User" 
-                    variant="outlined" 
-                    defaultValue={userEmail}
-                    inputRef={userIDRef}/>
+                    label="User Email:"
+                    variant="outlined"
+                    value={userEmail}
+                    inputRef={userIDRef}
+                    slotProps={{
+                      htmlInput: { readOnly: true },
+                    }}/>
             </Box>
             {console.log()}
           </Item>

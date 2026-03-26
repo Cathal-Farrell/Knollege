@@ -48,7 +48,6 @@ export default function MultilineTextFields() {
       }
     }, 5000);
 
-    // Cleanup interval when component unmounts
     return () => clearInterval(intervalID);
   }, []);
 
@@ -197,11 +196,13 @@ export default function MultilineTextFields() {
                         defaultValue={noteIDURL}
                         inputRef={noteIDRef}/>
                     <TextField 
-                        id="outlined-basic" 
-                        label="User" 
-                        variant="outlined" 
-                        defaultValue={userEmail}
-                        inputRef={userIDRef}/>
+                        label="User Email:"
+                    variant="outlined"
+                    value={userEmail}
+                    inputRef={userIDRef}
+                    slotProps={{
+                      htmlInput: { readOnly: true },
+                    }}/>
                 </Box>
               </Item>
             </Grid>

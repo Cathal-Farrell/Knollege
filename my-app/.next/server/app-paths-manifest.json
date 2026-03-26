@@ -1,11 +1,11 @@
 {
-  "/api/session/route": "app/api/session/route.js",
-  "/api/getProfile/route": "app/api/getProfile/route.js",
-  "/api/updateProfile/route": "app/api/updateProfile/route.js",
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/login/page": "app/login/page.js",
-  "/profile/page": "app/profile/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/session/route": "app/api/session/route.js",
+  "/api/searchchat/route": "app/api/searchchat/route.js",
   "/page": "app/page.js",
-  "/editor/page": "app/editor/page.js",
-  "/createchat/page": "app/createchat/page.js"
+  "/chats/page": "app/chats/page.js",
+  "/message/page": "app/message/page.js",
+  "/login/page": "app/login/page.js",
+  "/editor/page": "app/editor/page.js"
 }

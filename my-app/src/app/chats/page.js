@@ -114,7 +114,7 @@ export default function BasicGrid() {
         <Grid size={2}>
           <Item>
             <Box
-                sx={{ '& > :not(style)': { m: 1, width: '15ch' } }}
+                sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
                 noValidate
                 autoComplete="off"
             >

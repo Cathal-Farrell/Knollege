@@ -20,20 +20,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchfiles/route.js"
     ],
-    "/login/page": [
+    "/api/logout/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
-    ],
-    "/signup/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/signup/page.js"
-    ],
-    "/api/login/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/login/route.js"
+      "static/chunks/app/api/logout/route.js"
     ],
     "/chats/page": [
       "static/chunks/webpack.js",
@@ -45,30 +35,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchchat/route.js"
     ],
-    "/message/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/message/page.js"
+      "static/chunks/app/login/page.js"
     ],
-    "/api/syncmsg/route": [
+    "/api/login/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/syncmsg/route.js"
+      "static/chunks/app/api/login/route.js"
     ],
-    "/api/repeatsyncmsg/route": [
+    "/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/repeatsyncmsg/route.js"
+      "static/chunks/app/profile/page.js"
     ],
-    "/editor/page": [
+    "/api/getProfile/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/editor/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/getProfile/route.js"
     ]
   }
 }

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: /Users/oscarneiland/Documents/GitHub/Knollege/Knollege/my-app/src/app/api/searchchat/route.js
+=======
+// File: C:\Users\Catha\Documents\GitHub\Knollege\my-app\src\app\api\searchchat\route.js
+>>>>>>> 65121a428a64f881f5105d754385f4b69be21c44
 import * as entry from '../../../../../src/app/api/searchchat/route.js'
 import type { NextRequest } from 'next/server.js'
 

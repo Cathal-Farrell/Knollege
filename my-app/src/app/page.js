@@ -347,7 +347,7 @@ export default function BasicGrid() {
                 <Typography sx={{ fontSize: "0.85rem", color: "text.secondary" }}>
                   User: {item.userID}
                 </Typography>
-                <Button variant="outlined" href="/editor">
+                <Button variant="outlined" href={`/editor?userID=${userIDRef.current?.value || "100"}&noteID=${item.noteID}`}>
                 EDIT
                 </Button>
               </Box>

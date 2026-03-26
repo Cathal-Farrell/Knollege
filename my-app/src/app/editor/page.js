@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { Markdown } from '@tiptap/markdown'
@@ -17,6 +18,9 @@ export default function MultilineTextFields() {
   const inputRef = React.useRef(null);
   const noteIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
+  const searchParams = useSearchParams();
+  const noteIDURL = searchParams.get('noteID') || '1';
+  const userIDURL = searchParams.get('userID') || '100';
   let textChanged = false;
   let editor = null;
 
@@ -180,13 +184,13 @@ export default function MultilineTextFields() {
                         id="outlined-basic" 
                         label="Note File" 
                         variant="outlined" 
-                        defaultValue={noteIDRef.current?.value || "1"}
+                        defaultValue={noteIDURL}
                         inputRef={noteIDRef}/>
                     <TextField 
                         id="outlined-basic" 
                         label="User" 
                         variant="outlined" 
-                        defaultValue={userIDRef.current?.value || "100"}
+                        defaultValue={userIDURL}
                         inputRef={userIDRef}/>
                 </Box>
               </Item>

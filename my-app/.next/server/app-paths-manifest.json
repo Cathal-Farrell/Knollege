@@ -1,7 +1,6 @@
 {
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/page": "app/page.js",
-  "/login/page": "app/login/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/chats/page": "app/chats/page.js"
+  "/api/logout/route": "app/api/logout/route.js",
+  "/api/session/route": "app/api/session/route.js",
+  "/page": "app/page.js"
 }

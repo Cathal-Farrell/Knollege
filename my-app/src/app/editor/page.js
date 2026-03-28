@@ -161,11 +161,37 @@ export default function MultilineTextFields() {
       }}/>
   }
 
-
-
-
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
+
+          <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
+            {[
+              ["😀", "#fff7b3"],
+              ["🙂", "#d9ffb3"],
+              ["😐", "#e8e8e8"],
+              ["😢", "#cfe6ff"],
+              ["😡", "#ffb3b3"]
+            ].map(([emoji, color]) => (
+              <Button
+                key={emoji}
+                onClick={() => {
+                  document.documentElement.style.setProperty("--mood-bg", color);
+                }}
+                sx={{ 
+                  display: "block",
+                  mb: 1,
+                  background: "white",
+                  borderRadius: "50px",
+                  minWidth: "60px",
+                  fontSize: "1.4rem",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+                }}
+              >
+                {emoji}
+              </Button>
+            ))}
+          </Box>
+
           <Grid container spacing={2}>
             <Grid size={4}>
               <Item>

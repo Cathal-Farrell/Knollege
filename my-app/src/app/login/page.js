@@ -54,11 +54,12 @@ export default function Home() {
     const data = await res.json();
 
 
-    if(data.data== "true"){
+    if (data.data == "true") {
+        
+    alert("Login successful!");
 
-      console.log("login is valid!")
-      return (<Navigate replace to="/" />)
-
+    window.location.href = "/"; 
+    return;
     } else {
 
       console.log("not valid  ")

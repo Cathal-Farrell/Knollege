@@ -64,8 +64,9 @@ export default function BasicGrid() {
  const handleLogout = async () => {
       handleAvatarClose();
       await fetch('http://localhost:3000/api/logout');
-      
-      window.location.reload(); 
+      alert("You have been logged out.");
+      window.location.href = "/login"; 
+ 
     };
 
     React.useEffect(() => {

@@ -23,10 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 // https://medium.com/@reactcompany01/how-to-redirect-urls-in-reactjs-507411f9e7b7
 import { Redirect, Navigate } from 'react-router-dom';
 
-
-export default function Home() {
-
-  const handleSubmit = (event) => {
+export const handleSubmit = (event) => {
 
     console.log("handling submit");
 
@@ -54,7 +51,7 @@ export default function Home() {
 
   }; // end handle submit
 
-  async function runDBCallAsync(url) {
+export async function runDBCallAsync(url) {
 
     const res = await fetch(url);
 
@@ -79,9 +76,15 @@ export default function Home() {
       handleClickOpenInconsistent();
     }
 
+    return data.data
+
   }
 
+export default function Home() {
 
+  
+
+  
 
     const [openInvalid, setOpenInvalid] = React.useState(false);
     const [openIncomplete, setOpenIncomplete] = React.useState(false);
@@ -110,8 +113,6 @@ export default function Home() {
     const handleCloseInconsistent = () => {
         setOpenInconsistent(false);
     };
-
-
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: '#fff',
@@ -298,5 +299,5 @@ export default function Home() {
     </Box>
 
   ); // end return
-
+  
 }

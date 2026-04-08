@@ -23,35 +23,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 // https://medium.com/@reactcompany01/how-to-redirect-urls-in-reactjs-507411f9e7b7
 import { Redirect, Navigate } from 'react-router-dom';
 
-export const handleSubmit = (event) => {
 
-    console.log("handling submit");
 
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-
-    let name = data.get('name')
-
-    let email = data.get('email')
-
-    let pass = data.get('pass')
-
-    let confirmPass = data.get('confirmPass')
-
-    console.log("Sent name:" + name)
-
-    console.log("Sent email:" + email)
-
-    console.log("Sent pass:" + pass)
-
-    console.log("Sent confirm pass:" + confirmPass)
-
-    runDBCallAsync(`http://localhost:3000/api/newregister?name=${name}&email=${email}&pass=${pass}&confirmPass=${confirmPass}`)
-
-  }; // end handle submit
-
-export async function runDBCallAsync(url) {
+export async function runDBCallAsync(url, setOpenInvalid, setOpenIncomplete, setOpenInconsistent) {
 
     const res = await fetch(url);
 
@@ -65,15 +39,15 @@ export async function runDBCallAsync(url) {
     } else if (data.data == "invalid"){
 
       console.log("not valid  ")
-      handleClickOpenInvalid();
+      setOpenInvalid(true);
     } else if (data.data == "incomplete"){
 
       console.log("not complete  ")
-      handleClickOpenIncomplete();
+      setOpenIncomplete(true);
     } else if (data.data == "inconsistent"){
 
       console.log("not consistent  ")
-      handleClickOpenInconsistent();
+      setOpenInconsistent(true);
     }
 
     return data.data
@@ -81,10 +55,6 @@ export async function runDBCallAsync(url) {
   }
 
 export default function Home() {
-
-  
-
-  
 
     const [openInvalid, setOpenInvalid] = React.useState(false);
     const [openIncomplete, setOpenIncomplete] = React.useState(false);
@@ -113,6 +83,39 @@ export default function Home() {
     const handleCloseInconsistent = () => {
         setOpenInconsistent(false);
     };
+
+    const handleSubmit = (event) => {
+
+        console.log("handling submit");
+
+        event.preventDefault();
+
+        const data = new FormData(event.currentTarget);
+
+        let name = data.get('name')
+
+        let email = data.get('email')
+
+        let pass = data.get('pass')
+
+        let confirmPass = data.get('confirmPass')
+
+        console.log("Sent name:" + name)
+
+        console.log("Sent email:" + email)
+
+        console.log("Sent pass:" + pass)
+
+        console.log("Sent confirm pass:" + confirmPass)
+
+        runDBCallAsync(
+            `http://localhost:3000/api/newregister?name=${name}&email=${email}&pass=${pass}&confirmPass=${confirmPass}`,
+            setOpenInvalid,
+            setOpenIncomplete,
+            setOpenInconsistent
+        )
+
+    }; // end handle submit
 
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: '#fff',

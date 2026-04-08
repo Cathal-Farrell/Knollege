@@ -24,6 +24,28 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Redirect, Navigate } from 'react-router-dom';
 
 
+export async function runDBCallAsync(url, setOpen) {
+
+  const res = await fetch(url);
+
+  const data = await res.json();
+
+
+  if (data.data == "true") {
+    
+    console.log("login valid")
+    alert("Login successful!");
+
+    window.location.href = "/"; 
+    return;
+  } else {
+
+    console.log("not valid")
+    setOpen(true)
+  }
+
+}
+
 
 export default function Home() {
 
@@ -43,32 +65,9 @@ export default function Home() {
 
     console.log("Sent pass:" + pass)
 
-    runDBCallAsync(`http://localhost:3000/api/login?email=${email}&pass=${pass}`)
+    runDBCallAsync(`http://localhost:3000/api/login?email=${email}&pass=${pass}`, setOpen)
 
  }; // end handle submit
-
-  async function runDBCallAsync(url) {
-
-    const res = await fetch(url);
-
-    const data = await res.json();
-
-
-    if (data.data == "true") {
-        
-    alert("Login successful!");
-
-    window.location.href = "/"; 
-    return;
-    } else {
-
-      console.log("not valid  ")
-      handleClickOpen()
-    }
-
-  }
-
-
 
   const [open, setOpen] = React.useState(false);
 

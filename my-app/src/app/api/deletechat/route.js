@@ -72,7 +72,7 @@ export async function GET(req, res) {
 
         // at the end of the process we need to send something back.
 
-        return Response.json(findResult)
+        return Response.json({ "data":"valid" })
 
   }
 

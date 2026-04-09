@@ -65,7 +65,7 @@ export default function MultilineTextFields() {
 
   const handleSyncText = (event) => {
           
-    console.log("handling repeated sync");
+    console.log("handling sync");
 
     const chatID = chatIDRef.current?.value;
     console.log(chatID);
@@ -77,7 +77,7 @@ export default function MultilineTextFields() {
   
   const handleLiveSyncText = (event) => {
           
-    console.log("handling sync");
+    console.log("handling repeated sync");
 
     const chatID = chatIDRef.current?.value;
     console.log(chatID);

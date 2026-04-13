@@ -1,12 +1,9 @@
 {
-  "/api/repeatsyncmsg/route": "app/api/repeatsyncmsg/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/newregister/route": "app/api/newregister/route.js",
+  "/api/newchat/route": "app/api/newchat/route.js",
+  "/api/uploadmsg/route": "app/api/uploadmsg/route.js",
+  "/api/login/route": "app/api/login/route.js",
   "/api/syncmsg/route": "app/api/syncmsg/route.js",
-  "/api/session/route": "app/api/session/route.js",
-  "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/page": "app/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/login/page": "app/login/page.js",
-  "/createchat/page": "app/createchat/page.js",
-  "/message/page": "app/message/page.js"
+  "/api/deleteUser/route": "app/api/deleteUser/route.js",
+  "/api/deletechat/route": "app/api/deletechat/route.js"
 }

@@ -38,15 +38,15 @@ export async function runDBCallAsync(url, setOpenInvalid, setOpenIncomplete, set
 
     } else if (data.data == "invalid"){
 
-      console.log("not valid  ")
+      console.log("not valid")
       setOpenInvalid(true);
     } else if (data.data == "incomplete"){
 
-      console.log("not complete  ")
+      console.log("not complete")
       setOpenIncomplete(true);
     } else if (data.data == "inconsistent"){
 
-      console.log("not consistent  ")
+      console.log("not consistent")
       setOpenInconsistent(true);
     }
 

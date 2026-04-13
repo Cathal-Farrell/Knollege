@@ -58,7 +58,7 @@ export async function GET(req, res) {
    //==========================================================
 
         if (findResult[0] == null)
-            return null
+            return Response.json({"data":"not valid"})
 
     
         const deleteResult = await collection.deleteOne(filter);

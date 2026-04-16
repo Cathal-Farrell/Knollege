@@ -1,5 +1,10 @@
+<<<<<<< HEAD:my-app/.next/types/app/api/removegroupmember/route.ts
 // File: /Users/oscarneiland/Documents/GitHub/Knollege/Knollege/my-app/src/app/api/removegroupmember/route.js
 import * as entry from '../../../../../src/app/api/removegroupmember/route.js'
+=======
+// File: C:\Users\Catha\Documents\GitHub\Knollege\my-app\src\app\api\searchfiles\route.js
+import * as entry from '../../../../../src/app/api/searchfiles/route.js'
+>>>>>>> 8d8225ad7ea46083898acc6a415bfb42b19f663a:my-app/.next/types/app/api/searchfiles/route.ts
 import type { NextRequest } from 'next/server.js'
 
 type TEntry = typeof import('../../../../../src/app/api/removegroupmember/route.js')

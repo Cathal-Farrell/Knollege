@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb'
+
 export async function GET(req, res) {
 
         // Make a note we are on
@@ -52,7 +54,7 @@ export async function GET(req, res) {
 
  
         const filter = { 
-          noteID: noteID,
+          _id: new ObjectId(noteID),
           userID: userID
         };
  

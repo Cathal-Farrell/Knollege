@@ -9,9 +9,6 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import { Markdown } from '@tiptap/markdown'
 
 export default function MultilineTextFields() {
 
@@ -19,11 +16,17 @@ export default function MultilineTextFields() {
   const noteIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
   const searchParams = useSearchParams();
-  const noteIDURL = searchParams.get('noteID') || '1';
-  const userIDURL = searchParams.get('userID') || '100';
-  const [userEmail, setUserEmail] = useState("100");
-  let textChanged = false;
-  let editor = null;
+  const noteIDURL = searchParams.get('noteID');
+  const userIDURL = searchParams.get('userID');
+  const [userEmail, setUserEmail] = useState(null);
+  const userEmailRef = React.useRef(null);
+  const textChanged = React.useRef(false);;
+
+
+  // Update ref whenever userEmail changes
+  React.useEffect(() => {
+    userEmailRef.current = userEmail;
+  }, [userEmail]);
 
   // Run loop every 5 seconds
   React.useEffect(() => {
@@ -38,23 +41,25 @@ export default function MultilineTextFields() {
 
     handleSyncText();
     const intervalID = setInterval(() => {
-      if (textChanged == true) {
+      console.log(textChanged);
+      if (textChanged.current == true) {
+        console.log("Saving");
         handleUploadText();
-        textChanged = false;
+        textChanged.current = false;
       }
       else {
         console.log("No change");
+        console.log(userEmail);
         handleSyncText();
       }
     }, 5000);
 
     return () => clearInterval(intervalID);
   }, []);
-
-  
+    
   function handleTextChanged() {
     console.log("text changed");
-    textChanged = true;
+    textChanged.current = true;
   }
 
   
@@ -63,23 +68,17 @@ export default function MultilineTextFields() {
 
     // Get current textbox value
     const data = inputRef.current?.value || "";
-    const noteID = noteIDRef.current?.value;
-    const userID = userIDRef.current?.value;
 
     console.log("current text:", data);
 
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteID}&userID=${userID}`);
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteIDURL}&userID=${userEmailRef.current}`);
   }
 
   const handleSyncText = (event) => {
           
     console.log("handling sync");
 
-    const noteID = noteIDRef.current?.value;
-    console.log(noteID);
-    const userID = userIDRef.current?.value;
-    console.log(userID);
-    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteID}&userID=${userID}`)
+    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteIDURL}&userID=${userEmailRef.current}`)
 
   }
 
@@ -124,8 +123,6 @@ export default function MultilineTextFields() {
     console.log(data[0]);
  
     inputRef.current.value = data[0].text;
-    editor.commands.setContent(data[0].text)
-
   }
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -138,28 +135,6 @@ export default function MultilineTextFields() {
               backgroundColor: '#1A2027',
           }),
       }));
-
-
-  const Tiptap = () => {
-    editor = useEditor({
-      extensions: [StarterKit, Markdown],
-      content: inputRef.current?.value || "Nothing",
-      onUpdate: () => {
-        // The content has changed.
-        console.log("tiptap text changed");
-        textChanged = true;
-      },
-      // Don't render immediately on the server to avoid SSR issues
-      immediatelyRender: false,
-    })
-
-    return <EditorContent editor={editor} 
-      onChange={({ editor }) => {
-        // The content has changed.
-        console.log("tiptap text changed");
-        textChanged = true;
-      }}/>
-  }
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
@@ -233,9 +208,6 @@ export default function MultilineTextFields() {
               </Item>
             </Grid>
             <Grid size={10}>
-              <Item id="toolbar">
-                    <Tiptap/>
-              </Item>
               <Item id="editor">
                 <Box
                   component="form"

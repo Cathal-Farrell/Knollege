@@ -1,5 +1,4 @@
 {
-  "/api/updatechatname/route": "app/api/updatechatname/route.js",
-  "/groupdetails/page": "app/groupdetails/page.js",
-  "/chats/page": "app/chats/page.js"
+  "/chats/page": "app/chats/page.js",
+  "/groupdetails/page": "app/groupdetails/page.js"
 }

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Box, Paper, Typography, Button, Stack } from "@mui/material";
+import { Box, Paper, Typography, Button, Stack, TextField } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function GroupDetails() {
@@ -11,6 +11,8 @@ export default function GroupDetails() {
   const userID = searchParams.get("userID");
 
 const [chatName, setChatName] = useState(null);
+const [chatAdmin, setChatAdmin] = useState("");
+const [newChatName, setNewChatName] = useState("");
 const [members, setMembers] = useState([]);
 
  useEffect(() => {
@@ -22,6 +24,8 @@ const [members, setMembers] = useState([]);
     const data = await res.json();
 
   setChatName(data.chatName);
+    setChatAdmin(data.admin || "");
+    setNewChatName(data.chatName || "");
     let memberList = data.userID;
     const memberData = [];
 
@@ -42,6 +46,21 @@ const [members, setMembers] = useState([]);
 
   loadGroup();
 }, [chatID]);
+
+  async function handleUpdateChatName() {
+    await fetch(
+      `http://localhost:3000/api/updatechatname?chatID=${encodeURIComponent(chatID)}&chatName=${encodeURIComponent(newChatName)}&userID=${encodeURIComponent(userID)}`
+    );
+    setChatName(newChatName);
+  }
+
+  async function handleRemoveMember(memberID) {
+    await fetch(
+      `http://localhost:3000/api/removegroupmember?chatID=${encodeURIComponent(chatID)}&memberID=${encodeURIComponent(memberID)}&userID=${encodeURIComponent(userID)}`
+    );
+
+    setMembers((currentMembers) => currentMembers.filter((member) => member.id !== memberID));
+  }
 
   return (
     <Box
@@ -87,7 +106,20 @@ const [members, setMembers] = useState([]);
         >
           Group Name
         </Typography>
-        <Typography>{chatName}</Typography>
+        {userID === chatAdmin ? (
+          <Stack spacing={1}>
+            <TextField
+              size="small"
+              value={newChatName}
+              onChange={(event) => setNewChatName(event.target.value)}
+            />
+            <Button variant="outlined" onClick={handleUpdateChatName}>
+              Save
+            </Button>
+          </Stack>
+        ) : (
+          <Typography>{chatName}</Typography>
+        )}
       </Paper>
 
       <Paper
@@ -116,8 +148,17 @@ const [members, setMembers] = useState([]);
         <Stack spacing={1}>
           {members.map((member) => (
             <Paper key={member.id} sx={{ padding: "12px" }}>
-              <Typography sx={{ fontWeight: 600 }}>{member.name}</Typography>
-              <Typography variant="body2">{member.id}</Typography>
+              <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+                <div>
+                  <Typography sx={{ fontWeight: 600 }}>{member.name}</Typography>
+                  <Typography variant="body2">{member.id}</Typography>
+                </div>
+                {userID === chatAdmin && member.id !== chatAdmin ? (
+                  <Button variant="outlined" color="error" onClick={() => handleRemoveMember(member.id)}>
+                    Remove
+                  </Button>
+                ) : null}
+              </Stack>
             </Paper>
           ))}
         </Stack>

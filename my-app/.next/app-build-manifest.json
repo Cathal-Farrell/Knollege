@@ -5,60 +5,45 @@
       "static/chunks/main-app.js",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/chats/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/chats/page.js"
     ],
     "/api/session/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/session/route.js"
     ],
-    "/api/searchfiles/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/searchfiles/route.js"
-    ],
-    "/chats/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/chats/page.js"
-    ],
     "/api/searchchat/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchchat/route.js"
     ],
-    "/createchat/page": [
+    "/groupdetails/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/createchat/page.js"
+      "static/chunks/app/groupdetails/page.js"
     ],
-    "/api/newchat/route": [
+    "/api/getchatmembers/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/newchat/route.js"
+      "static/chunks/app/api/getchatmembers/route.js"
     ],
-    "/message/page": [
+    "/api/getProfile/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/message/page.js"
+      "static/chunks/app/api/getProfile/route.js"
     ],
-    "/api/syncmsg/route": [
+    "/api/updatechatname/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/syncmsg/route.js"
+      "static/chunks/app/api/updatechatname/route.js"
     ],
-    "/api/repeatsyncmsg/route": [
+    "/api/removegroupmember/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/repeatsyncmsg/route.js"
-    ],
-    "/api/uploadmsg/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/uploadmsg/route.js"
+      "static/chunks/app/api/removegroupmember/route.js"
     ]
   }
 }

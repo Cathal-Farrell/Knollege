@@ -45,7 +45,7 @@ import { useState, useEffect } from 'react';
 export default function BasicGrid() {
 
     const [data, setData] = useState(null)
-    const [userEmail, setUserEmail] = useState("100");
+    const [userEmail, setUserEmail] = useState(null);
     const userIDRef = React.useRef(null);
     const newFileNameRef = React.useRef(null);
 
@@ -344,19 +344,19 @@ export default function BasicGrid() {
             >
               <Box >
                 <Typography sx={{ fontWeight: 600, fontSize: "1rem" }}>
-                  {item.noteID||"" + item.fileName||""}
+                  {item.fileName||""} ----- {item._id||""}
                 </Typography>
                 
                 <Typography sx={{ fontSize: "0.85rem", color: "text.secondary" }}>
                   User: {item.userID}
                 </Typography>
-                <Button variant="outlined" href={`/editor?userID=${userIDRef.current?.value || "100"}&noteID=${item.noteID}`}>
+                <Button variant="outlined" href={`/editor?noteID=${item._id}`}>
                 EDIT
                 </Button>
               </Box>
 
               {/* RIGHT SIDE: Delete button */}
-              <Button variant="outlined" onClick={() => handleDeleteFile(item.userID, item.fileName)}>
+              <Button variant="outlined" onClick={() => handleDeleteFile(userEmail, item._id)}>
                 Delete
               </Button>
               

@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb'
+
 export async function GET(req, res) {
 
         // Make a note we are on
@@ -48,8 +50,8 @@ export async function GET(req, res) {
 
  
         const filter = {
-            "userID": userID,
-            "fileName": fileName
+            userID: userID,
+            _id: new ObjectId(fileName)
         }
  
 
@@ -71,7 +73,7 @@ export async function GET(req, res) {
 
         const updateJSON = {
             userID: userID,
-            fileName: fileName,
+            _id: new ObjectId(fileName),
             text: "text here"
         }
 

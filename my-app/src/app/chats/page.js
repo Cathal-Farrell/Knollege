@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -155,8 +156,14 @@ export default function BasicGrid() {
 
                     <Button 
                     variant="outlined" 
-                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value || "100")}`}> 
+                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}> 
                     Message 
+                    </Button>
+
+                    <Button
+                    variant="outlined"
+                    href={`/groupdetails?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}>
+                    {<InfoOutlinedIcon />}
                     </Button>
 
                     <Button

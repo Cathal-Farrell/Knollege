@@ -1,4 +1,4 @@
-// File: C:\Users\Catha\Documents\GitHub\Knollege\my-app\src\app\api\newchat\route.js
+// File: /Users/oscarneiland/Documents/GitHub/Knollege/Knollege/my-app/src/app/api/newchat/route.js
 import * as entry from '../../../../../src/app/api/newchat/route.js'
 import type { NextRequest } from 'next/server.js'
 

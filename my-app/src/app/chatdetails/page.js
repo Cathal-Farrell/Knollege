@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import { Box, Paper, Typography, Avatar, TextField, Button, Stack } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-
 export default function ChatDetails() {
 
     const [data, setData] = useState(null)
@@ -134,7 +133,6 @@ export default function ChatDetails() {
                     color="error"
                     onClick={() => handleDeleteChat(item.chatID)}>
                     {<DeleteIcon />}
-                    
                     </Button>
                 </div>
 

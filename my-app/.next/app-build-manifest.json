@@ -1,39 +1,84 @@
 {
   "pages": {
-    "/api/newregister/route": [
+    "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/newregister/route.js"
+      "static/chunks/app/layout.js"
     ],
-    "/api/newchat/route": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/newchat/route.js"
+      "static/chunks/app/page.js"
     ],
-    "/api/uploadmsg/route": [
+    "/api/session/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/uploadmsg/route.js"
+      "static/chunks/app/api/session/route.js"
     ],
-    "/api/login/route": [
+    "/api/searchfiles/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/login/route.js"
+      "static/chunks/app/api/searchfiles/route.js"
+    ],
+    "/chats/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/chats/page.js"
+    ],
+    "/api/searchchat/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/searchchat/route.js"
+    ],
+    "/groupdetails/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/groupdetails/page.js"
+    ],
+    "/api/getchatmembers/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/getchatmembers/route.js"
+    ],
+    "/api/getProfile/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/getProfile/route.js"
+    ],
+    "/message/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/message/page.js"
     ],
     "/api/syncmsg/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/syncmsg/route.js"
     ],
-    "/api/deleteUser/route": [
+    "/api/repeatsyncmsg/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/deleteUser/route.js"
+      "static/chunks/app/api/repeatsyncmsg/route.js"
     ],
-    "/api/deletechat/route": [
+    "/api/uploadmsg/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/deletechat/route.js"
+      "static/chunks/app/api/uploadmsg/route.js"
+    ],
+    "/createchat/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/createchat/page.js"
+    ],
+    "/api/newchat/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/newchat/route.js"
+    ],
+    "/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/page.js"
     ]
   }
 }

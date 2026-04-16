@@ -148,8 +148,6 @@ export default function BasicGrid() {
                     <div><strong>{item.chatName}</strong></div>
                     
                     <div>members: {(item.userID || []).join(', ')}</div>
-
-                    <div>chatID: {item.chatID}</div>
                   </div>
                     
                     {console.log(item.userID)}

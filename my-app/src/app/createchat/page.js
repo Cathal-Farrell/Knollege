@@ -18,15 +18,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
-
-// https://medium.com/@reactcompany01/how-to-redirect-urls-in-reactjs-507411f9e7b7
-import { Redirect, Navigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 
 export default function Home() {
 
-  const handleSubmit = (event) => {
+    const router = useRouter();
+
+    const handleSubmit = async (event) => {
 
     console.log("handling submit");
 
@@ -36,21 +35,24 @@ export default function Home() {
 
     let chatName = data.get('chatName')
 
-    let chatID = data.get('chatID')
-
     let members = data.get('members')
 
     console.log("Sent name:" + chatName)
 
-    console.log("Sent ID:" + chatID)
-
     console.log("Sent members:" + members)
 
-    runDBCallAsync(`http://localhost:3000/api/newchat?chatName=${chatName}&chatID=${chatID}&members=${members}`)
+        const sessionRes = await fetch('/api/session');
+        const sessionData = await sessionRes.json();
+        const admin = sessionData?.email;
 
-  }; // end handle submit
+        runDBCallAsync(
+            `http://localhost:3000/api/newchat?chatName=${encodeURIComponent(chatName)}&members=${encodeURIComponent(members)}&admin=${encodeURIComponent(admin)}`,
+            admin
+        )
 
-  async function runDBCallAsync(url) {
+  };
+
+    async function runDBCallAsync(url, creatorUserID) {
 
     const res = await fetch(url);
 
@@ -60,6 +62,8 @@ export default function Home() {
     if (data.data == "valid") {
 
       console.log("Group creation is valid!")
+        // if valid, redirects to that new chat
+        router.push(`/message?chatID=${encodeURIComponent(data.chatID)}&userID=${encodeURIComponent(creatorUserID)}`);
 
     } else if (data.data == "invalid"){
 
@@ -76,8 +80,6 @@ export default function Home() {
     }
 
   }
-
-
 
     const [openInvalid, setOpenInvalid] = React.useState(false);
     const [openIncomplete, setOpenIncomplete] = React.useState(false);
@@ -158,17 +160,6 @@ export default function Home() {
                         id="chatName"
                         autoComplete=""
                         autoFocus
-                    />
-
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="chatID"
-                        label="Unique ID"
-                        name="chatID"
-                        autoComplete=""
-                        
                     />
 
                     <TextField
@@ -273,7 +264,6 @@ export default function Home() {
         </Dialog>
 
     </Box>
-
-  ); // end return
-
+    
+  ); 
 }

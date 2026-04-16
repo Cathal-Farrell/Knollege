@@ -78,11 +78,7 @@ export default function MultilineTextFields() {
           
     console.log("handling sync");
 
-    const noteID = noteIDRef.current?.value;
-    console.log(noteID);
-    const userID = userIDRef.current?.value;
-    console.log(userID);
-    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteID}&userID=${userEmailRef.current}`)
+    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteIDURL}&userID=${userEmailRef.current}`)
 
   }
 

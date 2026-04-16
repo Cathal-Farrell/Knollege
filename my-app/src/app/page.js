@@ -46,6 +46,7 @@ export default function BasicGrid() {
 
     const [data, setData] = useState(null)
     const [userEmail, setUserEmail] = useState(null);
+    const userEmailRef = React.useRef(null);
     const userIDRef = React.useRef(null);
     const newFileNameRef = React.useRef(null);
 
@@ -68,6 +69,11 @@ export default function BasicGrid() {
       window.location.href = "/login"; 
  
     };
+
+    // Update ref whenever userEmail changes
+    React.useEffect(() => {
+      userEmailRef.current = userEmail;
+    }, [userEmail]);
 
     React.useEffect(() => {
 
@@ -94,8 +100,7 @@ export default function BasicGrid() {
     function handleSearchFile(url) {
         console.log("handling file search");
 
-        const inputUserID = userIDRef.current?.value;
-        runDBCallAsync(`http://localhost:3000/api/searchfiles?userID=${inputUserID}`);
+        runDBCallAsync(`http://localhost:3000/api/searchfiles?userID=${userEmailRef.current}`);
     }
 
     async function runDBCallAsync(url) {
@@ -127,17 +132,14 @@ export default function BasicGrid() {
     async function handleCreateNewFile(url) {
       console.log("handling file search");
 
-      const inputUserID = userIDRef.current?.value;
       const fileName = newFileNameRef.current?.value;
-      await fetch(`http://localhost:3000/api/createfile?userID=${inputUserID}&fileName=${fileName}`);
+      await fetch(`http://localhost:3000/api/createfile?userID=${userEmailRef.current}&fileName=${fileName}`);
     }
 
-    async function handleDeleteFile(userID, fileName) {
+    async function handleDeleteFile(fileName) {
       console.log("handling file search");
 
-      //const inputUserID = userIDRef.current?.value;
-      //const fileName = newFileNameRef.current?.value;
-      await fetch(`http://localhost:3000/api/deletefile?userID=${userID}&fileName=${fileName}`);
+      await fetch(`http://localhost:3000/api/deletefile?userID=${userEmailRef.current}&fileName=${fileName}`);
     }
 
     if (!data) return <p>Loading</p>
@@ -356,7 +358,7 @@ export default function BasicGrid() {
               </Box>
 
               {/* RIGHT SIDE: Delete button */}
-              <Button variant="outlined" onClick={() => handleDeleteFile(userEmail, item._id)}>
+              <Button variant="outlined" onClick={() => handleDeleteFile(item._id)}>
                 Delete
               </Button>
               

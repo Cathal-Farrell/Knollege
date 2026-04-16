@@ -13,49 +13,40 @@ export async function GET(req, res) {
   const { searchParams } = new URL(req.url)
 
   const chatName = searchParams.get('chatName')
-
-  const chatID = searchParams.get('chatID')
-
   const members = searchParams.get('members')
+  const admin = searchParams.get('admin')
 
   console.log(chatName)
-
-  console.log(chatID);
-
   console.log(members);
+  console.log(admin);
 
   // =================================================
 
-  const { MongoClient } = require('mongodb');
+  const { MongoClient, ObjectId } = require('mongodb');
 
   const url = 'mongodb://root:example@localhost:27017/';
   
   const client = new MongoClient(url);
 
- 
-
- 
 
   const dbName = 'app'; // database name
-
   await client.connect();
-
   console.log('Connected successfully to server');
 
   const db = client.db(dbName);
-
   const collection = db.collection('chats'); // collection name
 
-  const filter = {
-    chatID: chatID
+  const membersArray = (members || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter((email) => email !== "");
+
+  // always include creator in gc
+  if (admin !== "" && !membersArray.includes(admin)) {
+    membersArray.push(admin);
   }
 
-  const findResult = await collection.find(filter).toArray();
-
-
- const membersArray = members.split(",").map(email => email.trim());
-
-  // Test if all membersArray's items are numbers
+  // Test if all membersArray's items are emails
   // https://www.geeksforgeeks.org/javascript/how-to-check-if-string-contains-only-digits-in-javascript/
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var isEmailsPass = true;
@@ -68,32 +59,31 @@ export async function GET(req, res) {
     console.log(isEmailsPass);
   }
 
-  if (chatName == "" || chatID == "" || members == "") {
+  if (chatName == "" || admin.trim() == "") {
     return Response.json({ "data": "incomplete" })
-  }
-  else if (findResult.length > 0) {
-    return Response.json({ "data": "invalid" })
   }
   else if (isEmailsPass == false) {
     return Response.json({ "data": "incompliant" })
   }
   else {
 
-    const updateJSON = {
-      chatName: chatName,
-      chatID: chatID,
-      userID: membersArray,
-      text: []
-    }
+    const generatedId = new ObjectId();
 
-    await collection.insertOne(updateJSON);
-    
-    // database call goes here
+    const chatDoc = {
+    _id: generatedId,
+    chatID: generatedId.toString(),
+    chatName: chatName,
+    userID: membersArray,
+    admin: admin,
+    text: [],
+    };
 
-    // at the end of the process we need to send something back.
+    await collection.insertOne(chatDoc);
 
-    return Response.json({ "data":"valid" })
-
+    return Response.json({
+    data: "valid",
+    chatID: generatedId.toString(),
+    });
   }
 }
 

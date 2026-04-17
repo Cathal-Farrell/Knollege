@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:my-app/.next/types/app/api/updatechatname/route.ts
 // File: /Users/oscarneiland/Documents/GitHub/Knollege/Knollege/my-app/src/app/api/updatechatname/route.js
 import * as entry from '../../../../../src/app/api/updatechatname/route.js'
 import type { NextRequest } from 'next/server.js'
 
 type TEntry = typeof import('../../../../../src/app/api/updatechatname/route.js')
-========
-// File: C:\Users\Catha\Documents\GitHub\Knollege\my-app\src\app\api\uploadtext\route.js
-import * as entry from '../../../../../src/app/api/uploadtext/route.js'
-import type { NextRequest } from 'next/server.js'
-
-type TEntry = typeof import('../../../../../src/app/api/uploadtext/route.js')
->>>>>>>> 8d8225ad7ea46083898acc6a415bfb42b19f663a:my-app/.next/types/app/api/uploadtext/route.ts
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Box, Paper, Typography, Button, Stack, TextField } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SaveIcon from "@mui/icons-material/Save";
 
 export default function GroupDetails() {
 
@@ -14,6 +15,7 @@ const [chatName, setChatName] = useState(null);
 const [chatAdmin, setChatAdmin] = useState("");
 const [newChatName, setNewChatName] = useState("");
 const [members, setMembers] = useState([]);
+const [nameSaved, setNameSaved] = useState(false);
 
  useEffect(() => {
   async function loadGroup() {
@@ -48,9 +50,15 @@ const [members, setMembers] = useState([]);
 }, [chatID]);
 
   async function handleUpdateChatName() {
-    await fetch(
+    const res = await fetch(
       `http://localhost:3000/api/updatechatname?chatID=${encodeURIComponent(chatID)}&chatName=${encodeURIComponent(newChatName)}&userID=${encodeURIComponent(userID)}`
     );
+
+    if (res.ok) {
+      setNameSaved(true);
+      setTimeout(() => setNameSaved(false), 300);
+    }
+
     setChatName(newChatName);
   }
 
@@ -107,14 +115,24 @@ const [members, setMembers] = useState([]);
           Group Name
         </Typography>
         {userID === chatAdmin ? (
-          <Stack spacing={1}>
+          <Stack direction="row" spacing={1} alignItems="center" sx={{ width: "100%" }}>
             <TextField
+              label="Edit"
               size="small"
+              fullWidth
               value={newChatName}
               onChange={(event) => setNewChatName(event.target.value)}
+              sx={{ flexGrow: 1 }}
             />
-            <Button variant="outlined" onClick={handleUpdateChatName}>
-              Save
+            <Button
+              size="small"
+              variant={nameSaved ? "contained" : "outlined"}
+              color={nameSaved ? "success" : "primary"}
+              onClick={handleUpdateChatName}
+              aria-label="Save group name"
+              sx={{ height: "39px", minWidth: "39px", width: "39px", padding: 0 }}
+            >
+              <SaveIcon fontSize="small" />
             </Button>
           </Stack>
         ) : (
@@ -137,30 +155,41 @@ const [members, setMembers] = useState([]);
           Members
         </Typography>
 
-        <Typography
-          sx={{
-            marginBottom: "16px",
-          }}
-        >
-          Chat ID: {chatID}
-        </Typography>
-
         <Stack spacing={1}>
-          {members.map((member) => (
-            <Paper key={member.id} sx={{ padding: "12px" }}>
-              <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
-                <div>
-                  <Typography sx={{ fontWeight: 600 }}>{member.name}</Typography>
-                  <Typography variant="body2">{member.id}</Typography>
-                </div>
-                {userID === chatAdmin && member.id !== chatAdmin ? (
+          {members.map((member) => {
+            let displayName = member.name;
+            let memberNameColor = "text.primary";
+
+    
+            if (member.id === chatAdmin) {
+              displayName += " (Admin)";
+              memberNameColor = "error.main";
+            }
+
+            return (
+              <Paper key={member.id} sx={{ padding: "12px" }}>
+                <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+                  <div>
+                    <Typography
+                    sx={{
+                    fontWeight: 600,
+                    color: memberNameColor,
+                    }}
+                   >
+                    {displayName}
+                    </Typography>
+                    <Typography variant="body2">{member.id}</Typography>
+                  </div>
+          
+                  {userID === chatAdmin && member.id !== chatAdmin ? (
                   <Button variant="outlined" color="error" onClick={() => handleRemoveMember(member.id)}>
-                    Remove
+                  Remove
                   </Button>
                 ) : null}
-              </Stack>
+            </Stack>
             </Paper>
-          ))}
+            );
+          })}
         </Stack>
       </Paper>
 
@@ -168,6 +197,15 @@ const [members, setMembers] = useState([]);
         sx={{
         padding: "12px",
         marginTop: "24px",
+        }}
+      >
+        <Typography variant="body2">Chat ID: {chatID}</Typography>
+      </Paper>
+
+      <Paper
+        sx={{
+        padding: "12px",
+        marginTop: "12px",
         }}
       >
         <Typography variant="body2">Signed in as: {userID}</Typography>

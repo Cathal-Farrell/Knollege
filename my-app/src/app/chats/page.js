@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -120,7 +121,7 @@ export default function BasicGrid() {
                 autoComplete="off"
             >
                 <TextField 
-                    label="User Email:"
+                    label="Logged in as:"
                     variant="outlined"
                     value={userEmail}
                     inputRef={userIDRef}
@@ -152,14 +153,22 @@ export default function BasicGrid() {
                     
                     {console.log(item.userID)}
 
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                     <Button 
                     variant="outlined" 
+                    aria-label="Open chat message"
+                    sx={{ minWidth: 48, width: 48, height: 48,
+                     color: '#0b5d1e', borderColor: '#0b5d1e', 
+                    
+                    '&:hover': { borderColor: '#05250b',
+                     backgroundColor: 'rgba(11, 93, 30, 0.08)' } }}
                     href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}> 
-                    Message 
+                    {<ChatBubbleOutlineIcon />}
                     </Button>
 
                     <Button
                     variant="outlined"
+                    sx={{ minWidth: 48, width: 48, height: 48 }}
                     href={`/groupdetails?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}>
                     {<InfoOutlinedIcon />}
                     </Button>
@@ -167,10 +176,12 @@ export default function BasicGrid() {
                     <Button
                     variant="outlined"
                     color="error"
+                    sx={{ minWidth: 48, width: 48, height: 48 }}
                     onClick={() => handleDeleteChat(item.chatID)}>
                     {<DeleteIcon />}
                     
                     </Button>
+                    </div>
                 </div>
 
                 ))

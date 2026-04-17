@@ -6,11 +6,7 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
-<<<<<<<< HEAD:my-app/.next/static/chunks/app/api/updatechatname/route.js
 (self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([["app/api/updatechatname/route"],{
-========
-(self["webpackChunk_N_E"] = self["webpackChunk_N_E"] || []).push([["app/api/synctext/route"],{
->>>>>>>> 8d8225ad7ea46083898acc6a415bfb42b19f663a:my-app/.next/static/chunks/app/api/synctext/route.js
 
 /***/ "(app-pages-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?server=false!":
 /*!*******************************************************************************************************!*\

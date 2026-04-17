@@ -15,16 +15,25 @@ export default function MultilineTextFields() {
 
   const inputRef = React.useRef(null);
   const outputRef = React.useRef(null);
-  const chatIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
   const searchParams = useSearchParams();
   const chatIDUrl = searchParams.get('chatID') || '1';
   const userIDUrl = searchParams.get('userID') || '100';
+  const [chatName, setChatName] = useState('Loading...');
 
   let textChanged = false;
 
   // Run loop every 5 seconds
   React.useEffect(() => {
+    
+    async function loadChatName() {
+      setChatName('Loading...');
+      const res = await fetch(`/api/getchatname?chatID=${encodeURIComponent(chatIDUrl)}`);
+      const data = await res.json();
+      setChatName(data.chatName || 'Unknown chat');
+    }
+
+    loadChatName();
     handleSyncText();
     const intervalID = setInterval(() => {
       if (textChanged == true) {
@@ -53,12 +62,12 @@ export default function MultilineTextFields() {
 
     // Get current textbox value
     const data = inputRef.current?.value || "";
-    const chatID = chatIDRef.current?.value || "";
+    const chatID = chatIDUrl;
     const userID = userIDRef.current?.value || "";
 
     console.log("current text:", data);
 
-    runDBCallAsync(`http://localhost:3000/api/uploadmsg?text=${encodeURIComponent(data)}&chatID=${chatID}&userID=${userID}`);
+    runDBCallAsync(`/api/uploadmsg?text=${encodeURIComponent(data)}&chatID=${chatID}&userID=${userID}`);
 
     inputRef.current.value = "";
   }
@@ -67,11 +76,11 @@ export default function MultilineTextFields() {
           
     console.log("handling sync");
 
-    const chatID = chatIDRef.current?.value;
+    const chatID = chatIDUrl;
     console.log(chatID);
     const userID = userIDRef.current?.value;
     console.log(userID);
-    runDBCallAsyncDownload(`http://localhost:3000/api/syncmsg?chatID=${chatID}&userID=${userID}`)
+    runDBCallAsyncDownload(`/api/syncmsg?chatID=${chatID}&userID=${userID}`)
 
   }
   
@@ -79,11 +88,11 @@ export default function MultilineTextFields() {
           
     console.log("handling repeated sync");
 
-    const chatID = chatIDRef.current?.value;
+    const chatID = chatIDUrl;
     console.log(chatID);
     const userID = userIDRef.current?.value;
     console.log(userID);
-    runDBCallAsyncDownload(`http://localhost:3000/api/repeatsyncmsg?chatID=${chatID}&userID=${userID}`)
+    runDBCallAsyncDownload(`/api/repeatsyncmsg?chatID=${chatID}&userID=${userID}`)
 
   }
 
@@ -211,16 +220,17 @@ export default function MultilineTextFields() {
                 >
                     <TextField 
                         id="outlined-basic" 
-                        label="Chat" 
+                      label="Chat Name" 
                         variant="outlined" 
-                        defaultValue={chatIDUrl}
-                        inputRef={chatIDRef}/>
+                      value={chatName}
+                      inputProps={{ readOnly: true }}/>
                     <TextField 
                         id="outlined-basic" 
                         label="User" 
                         variant="outlined" 
                         defaultValue={userIDUrl}
-                        inputRef={userIDRef}/>
+                        inputRef={userIDRef}
+                        inputProps={{ readOnly: true }}/>
                 </Box>
               </Item>
             </Grid>

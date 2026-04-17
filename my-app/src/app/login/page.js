@@ -4,6 +4,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
@@ -97,19 +98,24 @@ export default function Home() {
 
     <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-        <Grid size={4}>
+        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+            <Typography sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2 }}>
+              Knollege
+            </Typography>
+        </Grid>
+        <Grid size={2}>
             <Item>
-            <Button variant="outlined" href="/"> Home </Button>
+            <Button size="small" variant="outlined" href="/"> Home </Button>
             </Item>
         </Grid>
-        <Grid size={4}>
+        <Grid size={2}>
             <Item>
-            <Button variant="outlined" href="/login"> Login </Button>
+            <Button size="small" variant="outlined" href="/login"> Login </Button>
             </Item>
         </Grid>
-        <Grid size={4}>
+        <Grid size={2}>
             <Item>
-            <Button variant="outlined" href="/chats"> Message </Button>
+            <Button size="small" variant="outlined" href="/chats"> Message </Button>
             </Item>
         </Grid>
         <Grid size={12}>

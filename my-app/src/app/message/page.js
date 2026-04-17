@@ -3,6 +3,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -196,19 +197,24 @@ export default function MultilineTextFields() {
           </Box>
           
           <Grid container spacing={2}>
-            <Grid size={4}>
+            <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+              <Typography sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2 }}>
+                Knollege
+              </Typography>
+            </Grid>
+            <Grid size={2}>
               <Item>
-              <Button variant="outlined" href="/"> Home </Button>
+              <Button size="small" variant="outlined" href="/"> Home </Button>
               </Item>
             </Grid>
-            <Grid size={4}>
+            <Grid size={2}>
               <Item>
-              <Button variant="outlined" href="/login"> Login </Button>
+              <Button size="small" variant="outlined" href="/login"> Login </Button>
               </Item>
             </Grid>
-            <Grid size={4}>
+            <Grid size={2}>
               <Item>
-              <Button variant="outlined" href="/chats"> Message </Button>
+              <Button size="small" variant="outlined" href="/chats"> Message </Button>
               </Item>
             </Grid>
             <Grid size={2}>

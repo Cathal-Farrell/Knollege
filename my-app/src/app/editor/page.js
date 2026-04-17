@@ -21,6 +21,7 @@ export default function MultilineTextFields() {
   const userIDURL = searchParams.get('userID');
   const [userEmail, setUserEmail] = useState(null);
   const userEmailRef = React.useRef(null);
+  const shareEmailRef = React.useRef(null);
   const textChanged = React.useRef(false);;
 
 
@@ -28,6 +29,7 @@ export default function MultilineTextFields() {
   React.useEffect(() => {
     userEmailRef.current = userEmail;
   }, [userEmail]);
+
 
   // Run loop every 5 seconds
   React.useEffect(() => {
@@ -126,6 +128,10 @@ export default function MultilineTextFields() {
     inputRef.current.value = data[0].text;
   }
 
+  function handleShareNote() {
+    console.log(shareEmailRef.current?.value)
+  }
+
   const Item = styled(Paper)(({ theme }) => ({
           backgroundColor: '#fff',
           ...theme.typography.body2,
@@ -203,13 +209,15 @@ export default function MultilineTextFields() {
                         defaultValue={noteIDURL}
                         inputRef={noteIDRef}/>
                     <TextField 
-                        label="User Email:"
-                    variant="outlined"
-                    value={userEmail}
-                    inputRef={userIDRef}
-                    slotProps={{
-                      htmlInput: { readOnly: true },
-                    }}/>
+                        label="Share with:"
+                        variant="outlined"
+                        inputRef={shareEmailRef}
+                        slotProps={{
+                          htmlInput: { readOnly: false },
+                        }}/>
+                    <Button variant="outlined" onClick={handleShareNote}>
+                      Share
+                    </Button>
                 </Box>
               </Item>
             </Grid>

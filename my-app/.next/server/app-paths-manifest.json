@@ -1,6 +1,6 @@
 {
+  "/api/synctext/route": "app/api/synctext/route.js",
+  "/api/session/route": "app/api/session/route.js",
   "/page": "app/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/groupdetails/page": "app/groupdetails/page.js",
-  "/message/page": "app/message/page.js"
+  "/editor/page": "app/editor/page.js"
 }

@@ -22,13 +22,27 @@ export default function MultilineTextFields() {
   const [userEmail, setUserEmail] = useState(null);
   const userEmailRef = React.useRef(null);
   const shareEmailRef = React.useRef(null);
-  const textChanged = React.useRef(false);;
+  const textChanged = React.useRef(false);
+
+  const [groups, setGroups] = useState([]);   
+  const [selectedGC, setSelectedGC] = useState("");
 
 
   // Update ref whenever userEmail changes
   React.useEffect(() => {
     userEmailRef.current = userEmail;
   }, [userEmail]);
+
+  // load group chats for dropdown
+  useEffect(() => { 
+    async function loadGroups() {
+      if (!userEmailRef.current) return;
+      const res = await fetch(`/api/getUserChats?userID=${userEmailRef.current}`);
+      const data = await res.json(); 
+      setGroups(data);
+    }
+    loadGroups();
+  }, [userEmail]); 
 
 
   // Run loop every 5 seconds
@@ -129,8 +143,13 @@ export default function MultilineTextFields() {
   }
 
   function handleShareNote() {
-    console.log(shareEmailRef.current?.value)
+  if (selectedGC) { 
+    fetch(`/api/addInvite?chatID=${selectedGC}&noteID=${noteIDURL}`)
+      .then(() => {
+        window.location.href = `/message?chatID=${selectedGC}&userID=${userEmailRef.current}`;
+      });
   }
+}
 
   const Item = styled(Paper)(({ theme }) => ({
           backgroundColor: '#fff',
@@ -208,16 +227,24 @@ export default function MultilineTextFields() {
                         variant="outlined" 
                         defaultValue={noteIDURL}
                         inputRef={noteIDRef}/>
-                    <TextField 
-                        label="Share with:"
-                        variant="outlined"
-                        inputRef={shareEmailRef}
-                        slotProps={{
-                          htmlInput: { readOnly: false },
-                        }}/>
-                    <Button variant="outlined" onClick={handleShareNote}>
-                      Share
-                    </Button>
+
+                  <TextField
+                    select
+                    label="Send to Group Chat"
+                    SelectProps={{ native: true }}
+                    value={selectedGC}
+                    onChange={(e) => setSelectedGC(e.target.value)}
+                  >
+                    <option value="">None</option>
+                    {groups.map((g) => (
+                      <option key={g.chatID} value={g.chatID}>
+                        {g.chatName}
+                      </option>
+                    ))}
+                  </TextField>
+                  <Button variant="outlined" onClick={handleShareNote}>
+                    Share
+                  </Button>
                 </Box>
               </Item>
             </Grid>

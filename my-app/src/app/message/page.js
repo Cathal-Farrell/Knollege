@@ -11,7 +11,6 @@ import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-
 export default function MultilineTextFields() {
 
   const inputRef = React.useRef(null);
@@ -22,9 +21,11 @@ export default function MultilineTextFields() {
   const userIDUrl = searchParams.get('userID') || '100';
   const [chatName, setChatName] = useState('Loading...');
 
+  const [showInvites, setShowInvites] = useState(false);
+  const [invites, setInvites] = useState([]);
+
   let textChanged = false;
 
-  // Run loop every 5 seconds
   React.useEffect(() => {
     
     async function loadChatName() {
@@ -47,21 +48,17 @@ export default function MultilineTextFields() {
       }
     }, 1000);
 
-    // Cleanup interval when component unmounts
     return () => clearInterval(intervalID);
   }, []);
 
-  
   function handleTextChanged() {
     console.log("text changed");
     textChanged = true;
   }
 
-  
   function handleUploadText() {
     console.log("called the function");
 
-    // Get current textbox value
     const data = inputRef.current?.value || "";
     const chatID = chatIDUrl;
     const userID = userIDRef.current?.value || "";
@@ -97,6 +94,12 @@ export default function MultilineTextFields() {
 
   }
 
+  async function loadInvites() {
+    const res = await fetch(`/api/getInvites?chatID=${chatIDUrl}`);
+    const data = await res.json();
+    setInvites(data.invites);
+  }
+
   async function runDBCallAsync(url) {
 
     const res = await fetch(url);
@@ -105,7 +108,6 @@ export default function MultilineTextFields() {
     return;
     }
     const data = await res.json();
-
 
     if(data.data== "valid"){
 
@@ -125,7 +127,6 @@ export default function MultilineTextFields() {
 
     const data = await res.json();
 
-
     if(data.length > 0){
 
       console.log("data is valid!")
@@ -137,15 +138,11 @@ export default function MultilineTextFields() {
       return;
 
     }
-   
 
     console.log(data[0]);
 
     var displayTexts = "";
     var returnTexts = data[0].text;
-
-
-    
 
     for (var msg in returnTexts) {
       displayTexts += returnTexts[msg][0] + ": " + returnTexts[msg][1] +"\n"
@@ -219,6 +216,11 @@ export default function MultilineTextFields() {
             </Grid>
             <Grid size={2}>
               <Item>
+                <Button size="small" variant="outlined" onClick={() => { loadInvites(); setShowInvites(true); }}>Invites</Button>
+              </Item>
+            </Grid>
+            <Grid size={2}>
+              <Item>
                 <Box
                     sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
                     noValidate
@@ -251,7 +253,7 @@ export default function MultilineTextFields() {
                 >
                   <TextField
                     inputRef={outputRef}
-                    inputProps={{ readOnly: true }} // https://muhimasri.com/blogs/mui-textfield-readonly/
+                    inputProps={{ readOnly: true }}
                     id="allMessagesField"
                     name="allMessagesField"
                     multiline
@@ -259,6 +261,29 @@ export default function MultilineTextFields() {
                     defaultValue=""
                   />
                 </Box>
+
+                {showInvites && (
+                  <Item sx={{ mt: 2, p: 2 }}>
+                    <Typography variant="h6">Shared Notes</Typography>
+                    {invites.length === 0 && (
+                      <Typography>No notes shared with this chat yet.</Typography>
+                    )}
+                    {invites.map((noteID) => (
+                      <Button
+                        key={noteID}
+                        variant="outlined"
+                        sx={{ display: "block", mt: 1 }}
+                        href={`/editor?noteID=${noteID}&userID=${userIDUrl}`}
+                      >
+                        Open Note {noteID}
+                      </Button>
+                    ))}
+                    <Button sx={{ mt: 2 }} onClick={() => setShowInvites(false)}>
+                      Close
+                    </Button>
+                  </Item>
+                )}
+
                 <Grid container spacing={2}>
                   <Grid size={11}>
                     <Box

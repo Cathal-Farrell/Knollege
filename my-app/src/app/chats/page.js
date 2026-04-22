@@ -199,6 +199,11 @@ export default function BasicGrid() {
             <Button variant="outlined" href="/createchat"> New Chat </Button>
           </Item>
         </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button variant="outlined" href="/groupinvites"> Groupchat Invites </Button>
+          </Item>
+        </Grid>
       </Grid>
     </Box>
   );

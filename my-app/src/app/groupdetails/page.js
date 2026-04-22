@@ -154,7 +154,7 @@ const [nameSaved, setNameSaved] = useState(false);
         >
           Members
         </Typography>
-
+{/*puts red admin tag beside admin name*/}
         <Stack spacing={1}>
           {members.map((member) => {
             let displayName = member.name;
@@ -180,7 +180,7 @@ const [nameSaved, setNameSaved] = useState(false);
                     </Typography>
                     <Typography variant="body2">{member.id}</Typography>
                   </div>
-          
+                  {/*lets only admin remove others*/}
                   {userID === chatAdmin && member.id !== chatAdmin ? (
                   <Button variant="outlined" color="error" onClick={() => handleRemoveMember(member.id)}>
                   Remove

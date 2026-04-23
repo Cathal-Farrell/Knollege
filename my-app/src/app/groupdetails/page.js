@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { Box, Paper, Typography, Button, Stack, TextField } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import SaveIcon from "@mui/icons-material/Save";
+import SendIcon from "@mui/icons-material/Send";
 
 export default function GroupDetails() {
 
@@ -17,6 +18,7 @@ const [newChatName, setNewChatName] = useState("");
 const [members, setMembers] = useState([]);
 const [nameSaved, setNameSaved] = useState(false);
 const [invitee, setInvitee] = useState("");
+const [inviteSent, setInviteSent] = useState(false);
 
  useEffect(() => {
   async function loadGroup() {
@@ -72,9 +74,15 @@ const [invitee, setInvitee] = useState("");
   }
 
   async function handleSendInvite() {
-    await fetch(
+    const res = await fetch(
       `http://localhost:3000/api/addInvite?chatID=${encodeURIComponent(chatID)}&invitee=${encodeURIComponent(invitee)}&inviter=${encodeURIComponent(userID)}&chatName=${encodeURIComponent(chatName)}`
     );
+
+    if (res.ok) {
+      setInviteSent(true);
+      setTimeout(() => setInviteSent(false), 300);
+    }
+
     setInvitee("");
   }
 
@@ -225,8 +233,15 @@ const [invitee, setInvitee] = useState("");
             onChange={(event) => setInvitee(event.target.value)}
             sx={{ flexGrow: 1 }}
           />
-          <Button size="small" variant="outlined" color="primary" onClick={handleSendInvite}>
-            Send invite
+          <Button
+            size="small"
+            variant={inviteSent ? "contained" : "outlined"}
+            color={inviteSent ? "success" : "primary"}
+            onClick={handleSendInvite}
+            aria-label="Send invite"
+            sx={{ height: "39px", minWidth: "39px", width: "39px", padding: 0 }}
+          >
+            <SendIcon fontSize="small" />
           </Button>
         </Stack>
       </Paper>

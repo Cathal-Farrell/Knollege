@@ -1,17 +1,16 @@
 export async function GET(req, res) {
     const { searchParams } = new URL(req.url);
-    const chatID = searchParams.get("chatID");
+    const invitee = searchParams.get("invitee");
 
     const { MongoClient } = require("mongodb");
     const client = new MongoClient("mongodb://root:example@localhost:27017/");
     await client.connect();
 
     const db = client.db("app");
-    const chats = db.collection("chats");
+    const invites = db.collection("invites");
 
-    const chat = await chats.findOne({ chatID });
+    const query = invitee ? { invitee } : {};
+    const data = await invites.find(query).toArray();
 
-    return Response.json({
-        invites: chat?.invites || []
-    });
+    return Response.json(data);
 }

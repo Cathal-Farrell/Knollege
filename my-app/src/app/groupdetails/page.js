@@ -16,6 +16,7 @@ const [chatAdmin, setChatAdmin] = useState("");
 const [newChatName, setNewChatName] = useState("");
 const [members, setMembers] = useState([]);
 const [nameSaved, setNameSaved] = useState(false);
+const [invitee, setInvitee] = useState("");
 
  useEffect(() => {
   async function loadGroup() {
@@ -68,6 +69,13 @@ const [nameSaved, setNameSaved] = useState(false);
     );
 
     setMembers((currentMembers) => currentMembers.filter((member) => member.id !== memberID));
+  }
+
+  async function handleSendInvite() {
+    await fetch(
+      `http://localhost:3000/api/addInvite?chatID=${encodeURIComponent(chatID)}&invitee=${encodeURIComponent(invitee)}`
+    );
+    setInvitee("");
   }
 
   return (
@@ -190,6 +198,36 @@ const [nameSaved, setNameSaved] = useState(false);
             </Paper>
             );
           })}
+        </Stack>
+      </Paper>
+
+       <Paper
+        sx={{
+        padding: "16px",
+        marginBottom: "24px",
+        }}
+      >
+        <Typography
+          sx={{
+          fontSize: "20px",
+          fontWeight: 600,
+          marginBottom: "8px",
+          }}
+        >
+          Invite Members
+        </Typography>
+        <Stack direction="row" spacing={1} alignItems="center" sx={{ width: "100%" }}>
+          <TextField
+            label="Email"
+            size="small"
+            fullWidth
+            value={invitee}
+            onChange={(event) => setInvitee(event.target.value)}
+            sx={{ flexGrow: 1 }}
+          />
+          <Button size="small" variant="outlined" color="primary" onClick={handleSendInvite}>
+            Send invite
+          </Button>
         </Stack>
       </Paper>
 

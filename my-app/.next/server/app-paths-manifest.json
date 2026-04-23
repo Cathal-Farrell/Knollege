@@ -1,9 +1,5 @@
 {
-  "/api/searchchat/route": "app/api/searchchat/route.js",
-  "/api/getchatmembers/route": "app/api/getchatmembers/route.js",
-  "/api/getProfile/route": "app/api/getProfile/route.js",
   "/groupdetails/page": "app/groupdetails/page.js",
   "/chats/page": "app/chats/page.js",
-  "/groupinvites/page": "app/groupinvites/page.js",
-  "/message/page": "app/message/page.js"
+  "/groupinvites/page": "app/groupinvites/page.js"
 }

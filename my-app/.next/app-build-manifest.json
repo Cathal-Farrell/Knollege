@@ -30,31 +30,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchchat/route.js"
     ],
-    "/message/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/message/page.js"
-    ],
-    "/api/getchatname/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/getchatname/route.js"
-    ],
-    "/api/syncmsg/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/syncmsg/route.js"
-    ],
-    "/api/repeatsyncmsg/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/repeatsyncmsg/route.js"
-    ],
-    "/api/getInvites/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/getInvites/route.js"
-    ],
     "/groupdetails/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -70,10 +45,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/getProfile/route.js"
     ],
+    "/api/updatechatname/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/updatechatname/route.js"
+    ],
+    "/api/addInvite/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/addInvite/route.js"
+    ],
     "/groupinvites/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/groupinvites/page.js"
+    ],
+    "/api/getInvites/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/getInvites/route.js"
     ]
   }
 }

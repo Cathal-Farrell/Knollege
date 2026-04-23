@@ -21,8 +21,8 @@ export default function MultilineTextFields() {
   const userIDUrl = searchParams.get('userID') || '100';
   const [chatName, setChatName] = useState('Loading...');
 
-  const [showInvites, setShowInvites] = useState(false);
-  const [invites, setInvites] = useState([]);
+  const [showNotes, setShowNotes] = useState(false);
+  const [notes, setNotes] = useState([]);
 
   let textChanged = false;
 
@@ -94,10 +94,10 @@ export default function MultilineTextFields() {
 
   }
 
-  async function loadInvites() {
-    const res = await fetch(`/api/getInvites?chatID=${chatIDUrl}`);
+  async function loadNotes() {
+    const res = await fetch(`/api/getNotes?chatID=${chatIDUrl}`);
     const data = await res.json();
-    setInvites(data.invites);
+    setNotes(data.notes);
   }
 
   async function runDBCallAsync(url) {
@@ -216,7 +216,7 @@ export default function MultilineTextFields() {
             </Grid>
             <Grid size={2}>
               <Item>
-                <Button size="small" variant="outlined" onClick={() => { loadInvites(); setShowInvites(true); }}>Invites</Button>
+                <Button size="small" variant="outlined" onClick={() => { loadNotes(); setShowNotes(true); }}>Notes</Button>
               </Item>
             </Grid>
             <Grid size={2}>
@@ -262,13 +262,13 @@ export default function MultilineTextFields() {
                   />
                 </Box>
 
-                {showInvites && (
+                {showNotes && (
                   <Item sx={{ mt: 2, p: 2 }}>
                     <Typography variant="h6">Shared Notes</Typography>
-                    {invites.length === 0 && (
+                    {notes.length === 0 && (
                       <Typography>No notes shared with this chat yet.</Typography>
                     )}
-                    {invites.map((noteID) => (
+                    {notes.map((noteID) => (
                       <Button
                         key={noteID}
                         variant="outlined"
@@ -278,7 +278,7 @@ export default function MultilineTextFields() {
                         Open Note {noteID}
                       </Button>
                     ))}
-                    <Button sx={{ mt: 2 }} onClick={() => setShowInvites(false)}>
+                    <Button sx={{ mt: 2 }} onClick={() => setShowNotes(false)}>
                       Close
                     </Button>
                   </Item>

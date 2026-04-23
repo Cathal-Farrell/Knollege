@@ -144,7 +144,7 @@ export default function MultilineTextFields() {
 
   function handleShareNote() {
   if (selectedGC) { 
-    fetch(`/api/addInvite?chatID=${selectedGC}&noteID=${noteIDURL}`)
+    fetch(`/api/addNote?chatID=${selectedGC}&noteID=${noteIDURL}`)
       .then(() => {
         window.location.href = `/message?chatID=${selectedGC}&userID=${userEmailRef.current}`;
       });

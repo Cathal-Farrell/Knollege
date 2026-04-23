@@ -73,7 +73,7 @@ const [invitee, setInvitee] = useState("");
 
   async function handleSendInvite() {
     await fetch(
-      `http://localhost:3000/api/addInvite?chatID=${encodeURIComponent(chatID)}&invitee=${encodeURIComponent(invitee)}`
+      `http://localhost:3000/api/addInvite?chatID=${encodeURIComponent(chatID)}&invitee=${encodeURIComponent(invitee)}&inviter=${encodeURIComponent(userID)}&chatName=${encodeURIComponent(chatName)}`
     );
     setInvitee("");
   }

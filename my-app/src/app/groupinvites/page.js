@@ -9,10 +9,10 @@ export default function GroupInvites() {
 
   async function loadInvites(invitee) {
     const res = await fetch(
-      "http://localhost:3000/api/getInvites?invitee=" + encodeURIComponent(invitee)
+    "http://localhost:3000/api/getInvites?invitee=" + encodeURIComponent(invitee)
     );
     const data = await res.json();
-    setInvites(data || []);
+    setInvites(data);
   }
 
   useEffect(() => {
@@ -22,26 +22,43 @@ export default function GroupInvites() {
       const sessionRes = await fetch("http://localhost:3000/api/session");
       const sessionData = await sessionRes.json();
 
-      if (sessionData.email && sessionData.email !== "Not Logged In") {
-        setUserEmail(sessionData.email);
-        await loadInvites(sessionData.email);
-        intervalID = setInterval(() => {
-          loadInvites(sessionData.email);
-        }, 5000);
-      } else {
-        setUserEmail("");
-        setInvites([]);
-      }
+      setUserEmail(sessionData.email);
+      await loadInvites(sessionData.email);
+      intervalID = setInterval(() => {
+        loadInvites(sessionData.email);
+      }, 5000);
     }
 
     loadData();
 
     return () => {
-      if (intervalID) {
-        clearInterval(intervalID);
-      }
+      clearInterval(intervalID);
     };
   }, []);
+
+  let inviteContent;
+
+  if (invites.length === 0) {
+    inviteContent = (
+    <Typography variant="body2">You have no invites right now.</Typography>
+    );
+  } else {
+    inviteContent = invites.map((invite, index) => {
+      return (
+        <Paper
+        key={invite._id}
+        sx={{ padding: "12px", marginBottom: "8px" }}
+        >
+
+        <Typography sx={{ fontWeight: 600 }}>Invite {index + 1}</Typography>
+        <Typography variant="body2">Chat name: {invite.chatName}</Typography>
+        <Typography variant="body2">Chat ID: {invite.chatID}</Typography>
+        <Typography variant="body2">Invited by: {invite.inviter}</Typography>
+        </Paper>
+        
+      );
+    });
+  }
 
   return (
     <Box
@@ -88,24 +105,11 @@ export default function GroupInvites() {
         >
           Pending Invites
         </Typography>
-        {invites.length === 0 ? (
-          <Typography variant="body2">No invites yet.</Typography>
-        ) : (
-          invites.map((invite, index) => (
-            <Paper
-              key={invite._id || `${invite.chatID}-${invite.invitee}-${index}`}
-              sx={{ padding: "12px", marginBottom: "8px" }}
-            >
-              <Typography sx={{ fontWeight: 600 }}>Chat ID: {invite.chatID}</Typography>
-              <Typography variant="body2">Invitee: {invite.invitee}</Typography>
-              <Typography variant="body2">Status: {invite.status}</Typography>
-            </Paper>
-          ))
-        )}
+        {inviteContent}
       </Paper>
-        <Paper sx={{ padding: "12px" }}>
+      <Paper sx={{ padding: "12px" }}>
         <Typography variant="body2">Signed in as: {userEmail}</Typography>
-        </Paper>
+      </Paper>
     </Box>
   );
 }

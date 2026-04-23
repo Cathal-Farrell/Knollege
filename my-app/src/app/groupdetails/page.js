@@ -209,42 +209,45 @@ const [inviteSent, setInviteSent] = useState(false);
         </Stack>
       </Paper>
 
-       <Paper
-        sx={{
-        padding: "16px",
-        marginBottom: "24px",
-        }}
-      >
-        <Typography
+      {userID === chatAdmin && (
+        <Paper
           sx={{
-          fontSize: "20px",
-          fontWeight: 600,
-          marginBottom: "8px",
+            padding: "16px",
+            marginBottom: "24px",
+            marginTop: "24px",
           }}
         >
-          Invite Members
-        </Typography>
-        <Stack direction="row" spacing={1} alignItems="center" sx={{ width: "100%" }}>
-          <TextField
-            label="Email"
-            size="small"
-            fullWidth
-            value={invitee}
-            onChange={(event) => setInvitee(event.target.value)}
-            sx={{ flexGrow: 1 }}
-          />
-          <Button
-            size="small"
-            variant={inviteSent ? "contained" : "outlined"}
-            color={inviteSent ? "success" : "primary"}
-            onClick={handleSendInvite}
-            aria-label="Send invite"
-            sx={{ height: "39px", minWidth: "39px", width: "39px", padding: 0 }}
+          <Typography
+            sx={{
+              fontSize: "20px",
+              fontWeight: 600,
+              marginBottom: "8px",
+            }}
           >
-            <SendIcon fontSize="small" />
-          </Button>
-        </Stack>
-      </Paper>
+            Invite Members
+          </Typography>
+          <Stack direction="row" spacing={1} alignItems="center" sx={{ width: "100%" }}>
+            <TextField
+              label="Email"
+              size="small"
+              fullWidth
+              value={invitee}
+              onChange={(event) => setInvitee(event.target.value)}
+              sx={{ flexGrow: 1 }}
+            />
+            <Button
+              size="small"
+              variant={inviteSent ? "contained" : "outlined"}
+              color={inviteSent ? "success" : "primary"}
+              onClick={handleSendInvite}
+              aria-label="Send invite"
+              sx={{ height: "39px", minWidth: "39px", width: "39px", padding: 0 }}
+            >
+              <SendIcon fontSize="small" />
+            </Button>
+          </Stack>
+        </Paper>
+      )}
 
       <Paper
         sx={{

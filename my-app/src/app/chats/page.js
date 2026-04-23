@@ -196,12 +196,10 @@ export default function BasicGrid() {
         </Grid>
         <Grid size={2}>
           <Item>
-            <Button variant="outlined" href="/createchat"> New Chat </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button variant="outlined" href="/groupinvites"> Groupchat Invites </Button>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <Button variant="outlined" href="/createchat"> New Chat </Button>
+              <Button variant="outlined" href="/groupinvites"> Chat Invites </Button>
+            </Box>
           </Item>
         </Grid>
       </Grid>

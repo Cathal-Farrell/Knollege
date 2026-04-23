@@ -1,4 +1,4 @@
-// File: /Users/oscarneiland/Documents/GitHub/Knollege/Knollege/my-app/src/app/api/searchchat/route.js
+// File: C:\Users\Catha\Documents\GitHub\Knollege\my-app\src\app\api\searchchat\route.js
 import * as entry from '../../../../../src/app/api/searchchat/route.js'
 import type { NextRequest } from 'next/server.js'
 

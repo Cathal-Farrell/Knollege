@@ -14,6 +14,7 @@ import { useSearchParams } from 'next/navigation';
 export default function MultilineTextFields() {
 
   const inputRef = React.useRef(null);
+  const titleInputRef = React.useRef(null);
   const noteIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
   const searchParams = useSearchParams();
@@ -83,12 +84,14 @@ export default function MultilineTextFields() {
   function handleUploadText() {
     console.log("called the function");
 
-    // Get current textbox value
+    // Get current textbox and title value
     const data = inputRef.current?.value || "";
-
     console.log("current text:", data);
+    const title = titleInputRef.current?.value || "";
+    console.log("current title:", title);
+   
 
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteIDURL}&userID=${userEmailRef.current}`);
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&title=${title}&noteID=${noteIDURL}&userID=${userEmailRef.current}`);
   }
 
   const handleSyncText = (event) => {
@@ -140,6 +143,7 @@ export default function MultilineTextFields() {
     console.log(data[0]);
  
     inputRef.current.value = data[0].text;
+    titleInputRef.current.value = data[0].fileName;
   }
 
   function handleShareNote() {
@@ -221,13 +225,6 @@ export default function MultilineTextFields() {
                     noValidate
                     autoComplete="off"
                 >
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Note File" 
-                        variant="outlined" 
-                        defaultValue={noteIDURL}
-                        inputRef={noteIDRef}/>
-
                   <TextField
                     select
                     label="Send to Group Chat"
@@ -257,6 +254,13 @@ export default function MultilineTextFields() {
                   noValidate
                   autoComplete="off"
                 >
+                  <TextField
+                    inputRef={titleInputRef}
+                    id="titleField"
+                    name="titleField"
+                    defaultValue=""
+                    onChange={handleTextChanged}
+                  />
                   <TextField
                     inputRef={inputRef}
                     id="textField"

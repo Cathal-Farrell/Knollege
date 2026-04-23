@@ -132,8 +132,7 @@ export default function BasicGrid() {
     async function handleCreateNewFile(url) {
       console.log("handling file search");
 
-      const fileName = newFileNameRef.current?.value;
-      await fetch(`http://localhost:3000/api/createfile?userID=${userEmailRef.current}&fileName=${fileName}`);
+      await fetch(`http://localhost:3000/api/createfile?userID=${userEmailRef.current}`);
     }
 
     async function handleDeleteFile(fileName) {
@@ -299,29 +298,6 @@ export default function BasicGrid() {
       <Grid container spacing={2}>
         <Grid size={2}>
           <Item>
-            <Box
-                sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField 
-                    label="User Email:"
-                    variant="outlined"
-                    value={userEmail}
-                    inputRef={userIDRef}
-                    slotProps={{
-                      htmlInput: { readOnly: true },
-                    }}/>
-            </Box>
-            {console.log()}
-          </Item>
-          <Item>
-            <TextField 
-              id="outlined-basic" 
-              label="File Name" 
-              variant="outlined" 
-              defaultValue={newFileNameRef.current?.value || "Test"}
-              inputRef={newFileNameRef}/>
             <Button variant="outlined" onClick={() => handleCreateNewFile()}>
               Create new
             </Button>

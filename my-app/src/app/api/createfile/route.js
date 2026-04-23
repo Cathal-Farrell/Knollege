@@ -15,9 +15,7 @@ export async function GET(req, res) {
 
         const userID = searchParams.get('userID')
 
-        const fileName = searchParams.get('fileName')
-
-        console.log(userID, fileName);
+        console.log(userID);
 
  
 
@@ -47,31 +45,16 @@ export async function GET(req, res) {
         const collection = db.collection('notes'); // collection name
 
  
-        const filter = {
-            "userID": userID,
-            "fileName": fileName
-        }
- 
-
-        let findResult = await collection.find(filter).toArray();
-
-        console.log('Found documents before =>', findResult);
-
- 
-
-   
 
  
 
    //==========================================================
 
-        if (findResult[0] != null)
-            return null
 
 
         const updateJSON = {
             userID: userID,
-            fileName: fileName,
+            fileName: "New File",
             text: "text here"
         }
 

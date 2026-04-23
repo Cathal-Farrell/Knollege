@@ -16,11 +16,14 @@ export async function GET(req, res) {
 
   const noteText = searchParams.get('text')
 
+  const title = searchParams.get('title')
+
   const noteID = searchParams.get('noteID')
 
   const userID = searchParams.get('userID')
   
   console.log(noteText);
+  console.log(title);
   console.log(noteID);
   console.log(userID);
  
@@ -54,6 +57,7 @@ export async function GET(req, res) {
   const updateDocument = {
     $set: {
         text: noteText,
+        fileName: title
     },
   };
 

@@ -254,13 +254,14 @@ export default function BasicGrid() {
             marginLeft={-25}
           >
             {[
-              { title: "Blank Document", icon: <FileOpenIcon />, link: "/editor" },
+              { title: "Blank Document", icon: <FileOpenIcon />},
               { title: "Formatted Document", icon: <FolderIcon />, link: "/formatteddoc" },
               { title: "Colourful Document", icon: <AddCircleIcon />, link: "/colordoc" },
               { title: "Ghannt Chart Document", icon: <HomeIcon />, link: "/ghanttdoc" },
             ].map((item, i) => (
               <Grid item xs={12} sm={6} md={3} key={i}>
                 <Box component="a" href={item.link} sx={{ textDecoration: "none" }}>
+                  <IconButton onClick={() => handleCreateNewFile()} >
                   <Paper
                     elevation={4}
                     sx={{
@@ -287,6 +288,7 @@ export default function BasicGrid() {
                       {item.title}
                     </Typography>
                   </Paper>
+                  </IconButton>
                 </Box>
               </Grid>
             ))}
@@ -297,11 +299,6 @@ export default function BasicGrid() {
 
       <Grid container spacing={2}>
         <Grid size={2}>
-          <Item>
-            <Button variant="outlined" onClick={() => handleCreateNewFile()}>
-              Create new
-            </Button>
-          </Item>
         </Grid>
         <Grid size={8}>
           {data.map((item, i) => (

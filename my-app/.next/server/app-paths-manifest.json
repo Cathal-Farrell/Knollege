@@ -1,14 +1,14 @@
 {
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/api/logout/route": "app/api/logout/route.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/api/session/route": "app/api/session/route.js",
+  "/api/deletefile/route": "app/api/deletefile/route.js",
   "/api/createfile/route": "app/api/createfile/route.js",
   "/api/synctext/route": "app/api/synctext/route.js",
-  "/api/session/route": "app/api/session/route.js",
   "/api/getUserChats/route": "app/api/getUserChats/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/searchchat/route": "app/api/searchchat/route.js",
+  "/api/uploadtext/route": "app/api/uploadtext/route.js",
   "/page": "app/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/createchat/page": "app/createchat/page.js",
-  "/message/page": "app/message/page.js",
+  "/login/page": "app/login/page.js",
   "/editor/page": "app/editor/page.js"
 }

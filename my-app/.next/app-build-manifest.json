@@ -20,50 +20,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/searchfiles/route.js"
     ],
+    "/api/logout/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/logout/route.js"
+    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/login/page.js"
     ],
-    "/chats/page": [
+    "/api/login/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/chats/page.js"
+      "static/chunks/app/api/login/route.js"
     ],
-    "/api/searchchat/route": [
+    "/api/deletefile/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/searchchat/route.js"
+      "static/chunks/app/api/deletefile/route.js"
     ],
-    "/createchat/page": [
+    "/api/createfile/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/createchat/page.js"
-    ],
-    "/api/newchat/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/newchat/route.js"
-    ],
-    "/message/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/message/page.js"
-    ],
-    "/api/getchatname/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/getchatname/route.js"
-    ],
-    "/api/syncmsg/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/syncmsg/route.js"
-    ],
-    "/api/repeatsyncmsg/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/repeatsyncmsg/route.js"
+      "static/chunks/app/api/createfile/route.js"
     ],
     "/editor/page": [
       "static/chunks/webpack.js",
@@ -80,20 +60,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/getUserChats/route.js"
     ],
-    "/api/createfile/route": [
+    "/api/uploadtext/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/api/createfile/route.js"
-    ],
-    "/api/deletefile/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/deletefile/route.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/api/uploadtext/route.js"
     ]
   }
 }

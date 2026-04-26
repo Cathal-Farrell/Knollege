@@ -158,14 +158,14 @@ export default function BasicGrid() {
                     
                     '&:hover': { borderColor: '#05250b',
                      backgroundColor: 'rgba(11, 93, 30, 0.08)' } }}
-                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}> 
+                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userEmailRef.current)}`}>
                     {<ChatBubbleOutlineIcon />}
                     </Button>
 
                     <Button
                     variant="outlined"
                     sx={{ minWidth: 48, width: 48, height: 48 }}
-                    href={`/groupdetails?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}>
+                    href={`/groupdetails?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userEmailRef.current)}`}>
                     {<InfoOutlinedIcon />}
                     </Button>
 

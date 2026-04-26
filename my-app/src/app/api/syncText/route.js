@@ -2,89 +2,36 @@ import { ObjectId } from 'mongodb'
 
 export async function GET(req, res) {
 
-        // Make a note we are on
+  console.log("in the api page")
 
-        // the api. This goes to the console.
+  const { searchParams } = new URL(req.url)
 
-        console.log("in the api page")
+  const noteID = searchParams.get('noteID')
+  const userID = searchParams.get('userID')
 
+  console.log(noteID);
+  console.log(userID);
 
-        // get the values
+  const { MongoClient } = require('mongodb');
 
-        // that were sent across to us.
+  const url = 'mongodb://root:example@localhost:27017/';
+  const client = new MongoClient(url);
 
-        const { searchParams } = new URL(req.url)
+  const dbName = 'app';
 
-        const noteID = searchParams.get('noteID')
+  await client.connect();
+  console.log('Connected successfully to server');
+  const db = client.db(dbName);
+  const collection = db.collection('notes');
 
-        const userID = searchParams.get('userID')
+  // allow owner OR editors
+  const filter = { 
+      _id: new ObjectId(noteID),
+      editors: { $in: [userID] }
+  };
 
-        console.log(noteID);
+  const result = await collection.find(filter).toArray();
+  console.log(result);
 
-        console.log(userID);
-        
-
- 
-
-        // =================================================
-
-        const { MongoClient } = require('mongodb');
-
- 
-
-        const url = 'mongodb://root:example@localhost:27017/';
-
-        const client = new MongoClient(url);
-
-   
-
-   
-
-        const dbName = 'app'; // database name
-
- 
-
-        await client.connect();
-
-        console.log('Connected successfully to server');
-
-        const db = client.db(dbName);
-
-        const collection = db.collection('notes'); // collection name
-
- 
-        const filter = { 
-          _id: new ObjectId(noteID),
-          userID: userID
-        };
- 
-
-        const findResult = await collection.find(filter).toArray();
-
-        console.log('Found documents =>', findResult);
-
- 
- 
-
-   //==========================================================
-
- 
-
- 
-
- 
-
- 
-
- 
-
-        // at the end of the process we need to send something back.
-
-        return Response.json(findResult)
-
-  }
-
- 
-
- 
-
+  return Response.json(result);
+}

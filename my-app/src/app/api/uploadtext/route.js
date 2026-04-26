@@ -47,9 +47,9 @@ export async function GET(req, res) {
   const collection = db.collection('notes'); // collection name
 
   const filter = { 
-          _id: new ObjectId(noteID),
-          userID: userID
-        };
+      _id: new ObjectId(noteID),
+      editors: { $in: [userID] }
+  };
       
   console.log(await collection.find(filter).toArray());
         

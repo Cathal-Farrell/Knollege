@@ -27,6 +27,7 @@ export default function MultilineTextFields() {
 
   const [groups, setGroups] = useState([]);   
   const [selectedGC, setSelectedGC] = useState("");
+  const [hasPermission, setHasPermission] = useState(true);
 
 
   // Update ref whenever userEmail changes
@@ -94,12 +95,25 @@ export default function MultilineTextFields() {
     runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&title=${title}&noteID=${noteIDURL}&userID=${userEmailRef.current}`);
   }
 
-  const handleSyncText = (event) => {
-          
+  const handleSyncText = async () => {
     console.log("handling sync");
 
-    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteIDURL}&userID=${userEmailRef.current}`)
+    const res = await fetch(`http://localhost:3000/api/synctext?noteID=${noteIDURL}&userID=${userEmailRef.current}`);
+    const data = await res.json();
 
+    if (data.length === 0) {
+        console.log("NO PERMISSION");
+        setHasPermission(false);
+        return;
+    }
+
+    setHasPermission(true);
+
+    console.log("data is valid!");
+    console.log(data[0]);
+
+    inputRef.current.value = data[0].text;
+    titleInputRef.current.value = data[0].fileName;
   }
 
   async function runDBCallAsync(url) {
@@ -155,6 +169,18 @@ export default function MultilineTextFields() {
   }
 }
 
+  async function handleAcceptInvite() {
+    console.log("accepting invite...");
+
+    const res = await fetch(`/api/acceptInvite?noteID=${noteIDURL}&userID=${userEmailRef.current}`);
+    const data = await res.json();
+
+    if (data.data === "valid") {
+        console.log("Invite accepted!");
+        window.location.reload();
+    }
+  }
+
   const Item = styled(Paper)(({ theme }) => ({
           backgroundColor: '#fff',
           ...theme.typography.body2,
@@ -168,6 +194,21 @@ export default function MultilineTextFields() {
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
+          {!hasPermission && (
+            <Box sx={{ p: 2, textAlign: "center" }}>
+              <Typography sx={{ fontSize: "20px", fontWeight: 600, mb: 2 }}>
+                You do not have permission to view this note.
+              </Typography>
+              <Button 
+                variant="contained" 
+                color="primary"
+                onClick={handleAcceptInvite}
+              >
+                Accept Invite
+              </Button>
+            </Box>
+          )}
+          {/* <<< END ADDED */}
 
           <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
             {[
@@ -260,6 +301,7 @@ export default function MultilineTextFields() {
                     name="titleField"
                     defaultValue=""
                     onChange={handleTextChanged}
+                    disabled={!hasPermission}
                   />
                   <TextField
                     inputRef={inputRef}
@@ -269,6 +311,7 @@ export default function MultilineTextFields() {
                     rows={25}
                     defaultValue=""
                     onChange={handleTextChanged}
+                    disabled={!hasPermission} 
                   />
                 </Box>
               </Item>

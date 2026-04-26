@@ -55,27 +55,21 @@ export async function GET(req, res) {
         const updateJSON = {
             userID: userID,
             fileName: "New File",
-            text: "text here"
+            text: "text here",
+            editors: [userID]   // creator is always an editor
         }
 
  
-        collection.insertOne(updateJSON);
+        const result = await collection.insertOne(updateJSON);
  
 
-        findResult = await collection.find(filter).toArray();
-
-        console.log('Found documents after =>', findResult);
+        console.log('Created note =>', result.insertedId);
  
 
  
 
         // at the end of the process we need to send something back.
 
-        return Response.json(findResult)
+        return Response.json({ noteID: result.insertedId })
 
   }
-
- 
-
- 
-

@@ -19,9 +19,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
-
-// https://medium.com/@reactcompany01/how-to-redirect-urls-in-reactjs-507411f9e7b7
 import { Redirect, Navigate } from 'react-router-dom';
 
 
@@ -61,7 +58,7 @@ export default function Home() {
     const [openInvalid, setOpenInvalid] = React.useState(false);
     const [openIncomplete, setOpenIncomplete] = React.useState(false);
     const [openInconsistent, setOpenInconsistent] = React.useState(false);
-  
+
     const handleClickOpenInvalid = () => {
         setOpenInvalid(true);
     };
@@ -120,19 +117,15 @@ export default function Home() {
     }; // end handle submit
 
     const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: (theme.vars ?? theme).palette.text.secondary,
-        ...theme.applyStyles('dark', {
-            backgroundColor: '#1A2027',
-        }),
+        borderRadius: '16px',
+        padding: 16,
+        boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+        textAlign: 'center'
     }));
 
   return (
 
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, py: 4 }}>
         <Grid container spacing={2}>
         <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
             <Typography sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2 }}>
@@ -159,9 +152,9 @@ export default function Home() {
 
             <Container maxWidth="sm">
 
-                <Box sx={{ height: '100vh' }} >
+                <Box sx={{ height: '75vh' }} >
 
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, p: 3, borderRadius: 3, background: '#fff', boxShadow: '0 6px 20px rgba(0,0,0,0.1)' }}>
 
                     <TextField
                         margin="normal"
@@ -172,7 +165,6 @@ export default function Home() {
                         type="name"
                         id="name"
                         autoComplete=""
-
                     />
 
                     <TextField
@@ -214,23 +206,16 @@ export default function Home() {
                         control={<Checkbox value="remember" color="primary" />}
 
                         label="Remember me"
-
+                        
                     />
 
                     <Button
-
                         type="submit"
-
                         fullWidth
-
                         variant="contained"
-
-                        sx={{ mt: 3, mb: 2 }}
-
+                        sx={{ mt: 3, mb: 2, py: 1.4, fontSize: '16px', fontWeight: 600, background: '#1976d2', ':hover': { background: '#0d47a1' } }}
                     >
-
-                        Sign In
-
+                        Sign Up
                     </Button>
 
                     </Box>

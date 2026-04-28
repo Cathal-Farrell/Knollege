@@ -34,11 +34,12 @@ export async function runDBCallAsync(url, setOpenInvalid, setOpenIncomplete, set
 
 
     if (data.data == "valid") {
-
-      console.log("login is valid!")
+    console.log("registration is valid!");
+    alert("Successfully registered! Redirecting to login…");
+    window.location.href = "/login";
+    return "valid";
 
     } else if (data.data == "invalid"){
-
       console.log("not valid")
       setOpenInvalid(true);
     } else if (data.data == "incomplete"){

@@ -208,7 +208,6 @@ export default function MultilineTextFields() {
               </Button>
             </Box>
           )}
-          {/* <<< END ADDED */}
 
           <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
             {[

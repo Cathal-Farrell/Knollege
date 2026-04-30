@@ -16,11 +16,14 @@ export async function GET(req, res) {
 
   const noteText = searchParams.get('text')
 
+  const title = searchParams.get('title')
+
   const noteID = searchParams.get('noteID')
 
   const userID = searchParams.get('userID')
   
   console.log(noteText);
+  console.log(title);
   console.log(noteID);
   console.log(userID);
  
@@ -44,9 +47,9 @@ export async function GET(req, res) {
   const collection = db.collection('notes'); // collection name
 
   const filter = { 
-          _id: new ObjectId(noteID),
-          userID: userID
-        };
+      _id: new ObjectId(noteID),
+      editors: { $in: [userID] }
+  };
       
   console.log(await collection.find(filter).toArray());
         
@@ -54,6 +57,7 @@ export async function GET(req, res) {
   const updateDocument = {
     $set: {
         text: noteText,
+        fileName: title
     },
   };
 

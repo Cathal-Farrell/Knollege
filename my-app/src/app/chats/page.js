@@ -19,6 +19,7 @@ export default function BasicGrid() {
 
     const [data, setData] = useState(null)
     const [userEmail, setUserEmail] = useState("100");
+    const userEmailRef = React.useRef(null);
     const userIDRef = React.useRef(null);
 
     React.useEffect(() => {
@@ -42,12 +43,16 @@ export default function BasicGrid() {
         // Cleanup interval when component unmounts
         return () => clearInterval(intervalID);
     }, []);
+
+    // Update ref whenever userEmail changes
+        React.useEffect(() => {
+          userEmailRef.current = userEmail;
+        }, [userEmail]);
       
     function handleSearchChat(url) {
         console.log("handling chat search");
 
-        const inputUserID = userIDRef.current?.value;
-        runDBCallAsync(`http://localhost:3000/api/searchchat?userID=${inputUserID}`);
+        runDBCallAsync(`http://localhost:3000/api/searchchat?userID=${userEmailRef.current}`);
     }
 
     async function runDBCallAsync(url) {
@@ -120,22 +125,7 @@ export default function BasicGrid() {
           </Item>
         </Grid>
         <Grid size={2}>
-          <Item>
-            <Box
-                sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField 
-                    label="Logged in as:"
-                    variant="outlined"
-                    value={userEmail}
-                    inputRef={userIDRef}
-                    slotProps={{
-                      htmlInput: { readOnly: true },
-                    }}/>
-            </Box>
-          </Item>
+          
         </Grid>
         <Grid size={8}>
           {
@@ -168,14 +158,14 @@ export default function BasicGrid() {
                     
                     '&:hover': { borderColor: '#05250b',
                      backgroundColor: 'rgba(11, 93, 30, 0.08)' } }}
-                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}> 
+                    href={`/message?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userEmailRef.current)}`}>
                     {<ChatBubbleOutlineIcon />}
                     </Button>
 
                     <Button
                     variant="outlined"
                     sx={{ minWidth: 48, width: 48, height: 48 }}
-                    href={`/groupdetails?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userIDRef.current?.value)}`}>
+                    href={`/groupdetails?chatID=${encodeURIComponent(item.chatID)}&userID=${encodeURIComponent(userEmailRef.current)}`}>
                     {<InfoOutlinedIcon />}
                     </Button>
 

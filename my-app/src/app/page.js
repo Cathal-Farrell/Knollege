@@ -132,8 +132,7 @@ export default function BasicGrid() {
     async function handleCreateNewFile(url) {
       console.log("handling file search");
 
-      const fileName = newFileNameRef.current?.value;
-      await fetch(`http://localhost:3000/api/createfile?userID=${userEmailRef.current}&fileName=${fileName}`);
+      await fetch(`http://localhost:3000/api/createfile?userID=${userEmailRef.current}`);
     }
 
     async function handleDeleteFile(fileName) {
@@ -255,13 +254,14 @@ export default function BasicGrid() {
             marginLeft={-25}
           >
             {[
-              { title: "Blank Document", icon: <FileOpenIcon />, link: "/editor" },
+              { title: "Blank Document", icon: <FileOpenIcon />},
               { title: "Formatted Document", icon: <FolderIcon />, link: "/formatteddoc" },
               { title: "Colourful Document", icon: <AddCircleIcon />, link: "/colordoc" },
               { title: "Ghannt Chart Document", icon: <HomeIcon />, link: "/ghanttdoc" },
             ].map((item, i) => (
               <Grid item xs={12} sm={6} md={3} key={i}>
                 <Box component="a" href={item.link} sx={{ textDecoration: "none" }}>
+                  <IconButton onClick={() => handleCreateNewFile()} >
                   <Paper
                     elevation={4}
                     sx={{
@@ -288,6 +288,7 @@ export default function BasicGrid() {
                       {item.title}
                     </Typography>
                   </Paper>
+                  </IconButton>
                 </Box>
               </Grid>
             ))}
@@ -298,34 +299,6 @@ export default function BasicGrid() {
 
       <Grid container spacing={2}>
         <Grid size={2}>
-          <Item>
-            <Box
-                sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField 
-                    label="User Email:"
-                    variant="outlined"
-                    value={userEmail}
-                    inputRef={userIDRef}
-                    slotProps={{
-                      htmlInput: { readOnly: true },
-                    }}/>
-            </Box>
-            {console.log()}
-          </Item>
-          <Item>
-            <TextField 
-              id="outlined-basic" 
-              label="File Name" 
-              variant="outlined" 
-              defaultValue={newFileNameRef.current?.value || "Test"}
-              inputRef={newFileNameRef}/>
-            <Button variant="outlined" onClick={() => handleCreateNewFile()}>
-              Create new
-            </Button>
-          </Item>
         </Grid>
         <Grid size={8}>
           {data.map((item, i) => (

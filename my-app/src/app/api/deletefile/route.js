@@ -73,8 +73,7 @@ export async function GET(req, res) {
 
         const updateJSON = {
             userID: userID,
-            _id: new ObjectId(fileName),
-            text: "text here"
+            _id: new ObjectId(fileName)
         }
 
  

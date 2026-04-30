@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // File: /Users/oscarneiland/Documents/GitHub/Knollege/Knollege/my-app/src/app/signup/page.js
+=======
+// File: C:\Uni folder Year 3\Year3\Semester 2\Project Second Semester\my-app\Knollege\my-app\src\app\signup\page.js
+>>>>>>> c5282e7d36c1737fa263f85240280a0dbffd9a57
 import * as entry from '../../../../src/app/signup/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

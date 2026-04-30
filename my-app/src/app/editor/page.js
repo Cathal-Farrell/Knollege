@@ -14,6 +14,7 @@ import { useSearchParams } from 'next/navigation';
 export default function MultilineTextFields() {
 
   const inputRef = React.useRef(null);
+  const titleInputRef = React.useRef(null);
   const noteIDRef = React.useRef(null);
   const userIDRef = React.useRef(null);
   const searchParams = useSearchParams();
@@ -26,6 +27,7 @@ export default function MultilineTextFields() {
 
   const [groups, setGroups] = useState([]);   
   const [selectedGC, setSelectedGC] = useState("");
+  const [hasPermission, setHasPermission] = useState(true);
 
 
   // Update ref whenever userEmail changes
@@ -83,20 +85,35 @@ export default function MultilineTextFields() {
   function handleUploadText() {
     console.log("called the function");
 
-    // Get current textbox value
+    // Get current textbox and title value
     const data = inputRef.current?.value || "";
-
     console.log("current text:", data);
+    const title = titleInputRef.current?.value || "";
+    console.log("current title:", title);
+   
 
-    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&noteID=${noteIDURL}&userID=${userEmailRef.current}`);
+    runDBCallAsync(`http://localhost:3000/api/uploadtext?text=${encodeURIComponent(data)}&title=${title}&noteID=${noteIDURL}&userID=${userEmailRef.current}`);
   }
 
-  const handleSyncText = (event) => {
-          
+  const handleSyncText = async () => {
     console.log("handling sync");
 
-    runDBCallAsyncDownload(`http://localhost:3000/api/synctext?noteID=${noteIDURL}&userID=${userEmailRef.current}`)
+    const res = await fetch(`http://localhost:3000/api/synctext?noteID=${noteIDURL}&userID=${userEmailRef.current}`);
+    const data = await res.json();
 
+    if (data.length === 0) {
+        console.log("NO PERMISSION");
+        setHasPermission(false);
+        return;
+    }
+
+    setHasPermission(true);
+
+    console.log("data is valid!");
+    console.log(data[0]);
+
+    inputRef.current.value = data[0].text;
+    titleInputRef.current.value = data[0].fileName;
   }
 
   async function runDBCallAsync(url) {
@@ -140,6 +157,7 @@ export default function MultilineTextFields() {
     console.log(data[0]);
  
     inputRef.current.value = data[0].text;
+    titleInputRef.current.value = data[0].fileName;
   }
 
   function handleShareNote() {
@@ -150,6 +168,18 @@ export default function MultilineTextFields() {
       });
   }
 }
+
+  async function handleAcceptInvite() {
+    console.log("accepting invite...");
+
+    const res = await fetch(`/api/acceptInvite?noteID=${noteIDURL}&userID=${userEmailRef.current}`);
+    const data = await res.json();
+
+    if (data.data === "valid") {
+        console.log("Invite accepted!");
+        window.location.reload();
+    }
+  }
 
   const Item = styled(Paper)(({ theme }) => ({
           backgroundColor: '#fff',
@@ -164,6 +194,20 @@ export default function MultilineTextFields() {
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
+          {!hasPermission && (
+            <Box sx={{ p: 2, textAlign: "center" }}>
+              <Typography sx={{ fontSize: "20px", fontWeight: 600, mb: 2 }}>
+                You do not have permission to view this note.
+              </Typography>
+              <Button 
+                variant="contained" 
+                color="primary"
+                onClick={handleAcceptInvite}
+              >
+                Accept Invite
+              </Button>
+            </Box>
+          )}
 
           <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
             {[
@@ -221,13 +265,6 @@ export default function MultilineTextFields() {
                     noValidate
                     autoComplete="off"
                 >
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Note File" 
-                        variant="outlined" 
-                        defaultValue={noteIDURL}
-                        inputRef={noteIDRef}/>
-
                   <TextField
                     select
                     label="Send to Group Chat"
@@ -258,6 +295,14 @@ export default function MultilineTextFields() {
                   autoComplete="off"
                 >
                   <TextField
+                    inputRef={titleInputRef}
+                    id="titleField"
+                    name="titleField"
+                    defaultValue=""
+                    onChange={handleTextChanged}
+                    disabled={!hasPermission}
+                  />
+                  <TextField
                     inputRef={inputRef}
                     id="textField"
                     name="textField"
@@ -265,6 +310,7 @@ export default function MultilineTextFields() {
                     rows={25}
                     defaultValue=""
                     onChange={handleTextChanged}
+                    disabled={!hasPermission} 
                   />
                 </Box>
               </Item>

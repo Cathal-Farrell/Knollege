@@ -15,9 +15,7 @@ export async function GET(req, res) {
 
         const userID = searchParams.get('userID')
 
-        const fileName = searchParams.get('fileName')
-
-        console.log(userID, fileName);
+        console.log(userID);
 
  
 
@@ -47,52 +45,31 @@ export async function GET(req, res) {
         const collection = db.collection('notes'); // collection name
 
  
-        const filter = {
-            "userID": userID,
-            "fileName": fileName
-        }
- 
-
-        let findResult = await collection.find(filter).toArray();
-
-        console.log('Found documents before =>', findResult);
-
- 
-
-   
 
  
 
    //==========================================================
 
-        if (findResult[0] != null)
-            return null
 
 
         const updateJSON = {
             userID: userID,
-            fileName: fileName,
-            text: "text here"
+            fileName: "New File",
+            text: "text here",
+            editors: [userID]   // creator is always an editor
         }
 
  
-        collection.insertOne(updateJSON);
+        const result = await collection.insertOne(updateJSON);
  
 
-        findResult = await collection.find(filter).toArray();
-
-        console.log('Found documents after =>', findResult);
+        console.log('Created note =>', result.insertedId);
  
 
  
 
         // at the end of the process we need to send something back.
 
-        return Response.json(findResult)
+        return Response.json({ noteID: result.insertedId })
 
   }
-
- 
-
- 
-

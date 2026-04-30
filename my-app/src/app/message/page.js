@@ -21,6 +21,7 @@ export default function MultilineTextFields() {
   const userIDUrl = searchParams.get('userID') || '100';
   const [chatName, setChatName] = useState('Loading...');
 
+
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState([]);
 
@@ -50,6 +51,7 @@ export default function MultilineTextFields() {
 
     return () => clearInterval(intervalID);
   }, []);
+
 
   function handleTextChanged() {
     console.log("text changed");

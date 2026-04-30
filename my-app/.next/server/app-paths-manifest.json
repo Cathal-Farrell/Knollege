@@ -1,10 +1,8 @@
 {
-  "/api/getInvites/route": "app/api/getInvites/route.js",
-  "/api/searchchat/route": "app/api/searchchat/route.js",
   "/api/session/route": "app/api/session/route.js",
-  "/message/page": "app/message/page.js",
-  "/groupdetails/page": "app/groupdetails/page.js",
-  "/createchat/page": "app/createchat/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/groupinvites/page": "app/groupinvites/page.js"
+  "/api/searchchat/route": "app/api/searchchat/route.js",
+  "/api/getInvites/route": "app/api/getInvites/route.js",
+  "/groupinvites/page": "app/groupinvites/page.js",
+  "/page": "app/page.js",
+  "/chats/page": "app/chats/page.js"
 }

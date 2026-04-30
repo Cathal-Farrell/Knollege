@@ -45,7 +45,7 @@ export default function GroupInvites() {
   } else {
     invitePage = invites.map((invite, index) => {
       async function acceptInvite() {
-       await fetch(`http://localhost:3000/api/acceptInvite?inviteId=${invite._id}&chatID=${encodeURIComponent(invite.chatID)}&email=${encodeURIComponent(userEmail)}`);
+       await fetch(`http://localhost:3000/api/chatInvite?inviteId=${invite._id}&chatID=${encodeURIComponent(invite.chatID)}&email=${encodeURIComponent(userEmail)}`);
         var newInvites = [];
         for (var i = 0; i < invites.length; i++) {
           if (invites[i]._id !== invite._id) {

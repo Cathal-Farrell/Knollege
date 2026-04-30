@@ -38,7 +38,7 @@ test('get invites returns sent invite', async () => {
 
 test('accepting invite', async () => {
     const result = await fetch(
-    `http://localhost:3000/api/acceptInvite?inviteId=${testInviteId}&chatID=${testChatID}&email=${encodeURIComponent(testInvitee)}`
+    `http://localhost:3000/api/chatInvite?inviteId=${testInviteId}&chatID=${testChatID}&email=${encodeURIComponent(testInvitee)}`
     );
 
     const data = await result.json();
@@ -68,7 +68,7 @@ test('delete test chat', async () => {
     const result = await fetch(
     `http://localhost:3000/api/deletechat?chatID=${encodeURIComponent(testChatID)}`
     );
-    
+
     const data = await result.json();
     expect(data.data).toBe("valid");
 });

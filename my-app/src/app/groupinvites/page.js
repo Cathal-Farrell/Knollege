@@ -36,14 +36,25 @@ export default function GroupInvites() {
     };
   }, []);
 
-  let inviteContent;
+  let invitePage;
 
   if (invites.length === 0) {
-    inviteContent = (
+    invitePage = (
     <Typography variant="body2">You have no invites right now.</Typography>
     );
   } else {
-    inviteContent = invites.map((invite, index) => {
+    invitePage = invites.map((invite, index) => {
+      async function acceptInvite() {
+       await fetch(`http://localhost:3000/api/acceptInvite?inviteId=${invite._id}&chatID=${encodeURIComponent(invite.chatID)}&email=${encodeURIComponent(userEmail)}`);
+        var newInvites = [];
+        for (var i = 0; i < invites.length; i++) {
+          if (invites[i]._id !== invite._id) {
+          newInvites.push(invites[i]);
+          }
+        }
+        setInvites(newInvites);
+      }
+
       return (
         <Paper
         key={invite._id}
@@ -54,8 +65,9 @@ export default function GroupInvites() {
         <Typography variant="body2">Chat name: {invite.chatName}</Typography>
         <Typography variant="body2">Chat ID: {invite.chatID}</Typography>
         <Typography variant="body2">Invited by: {invite.inviter}</Typography>
+        <button onClick={acceptInvite} style={{ marginTop: "8px" }}>Accept</button>
         </Paper>
-        
+
       );
     });
   }
@@ -105,7 +117,7 @@ export default function GroupInvites() {
         >
           Pending Invites
         </Typography>
-        {inviteContent}
+        {invitePage}
       </Paper>
       <Paper sx={{ padding: "12px" }}>
         <Typography variant="body2">Signed in as: {userEmail}</Typography>

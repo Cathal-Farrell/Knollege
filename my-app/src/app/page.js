@@ -217,33 +217,24 @@ export default function BasicGrid() {
           </Stack>
         </Box>
 
-        {/* RIGHT SIDE — NEW FILES SECTION */}
-        <Box sx={{ flexGrow: 1 }}>
+        
+      </Box>
 
-          <Typography
-            variant="h6"
-            sx={{
-              mt: 0.1,
-              mb: 1,
-              fontWeight: 600,
-              marginLeft: 16,
-            }}
-          >
-            New +
-          </Typography>
+
+      <Grid container spacing={2}>
+        <Grid size={2}>
+          {/* RIGHT SIDE — NEW FILES SECTION */}
+        <Box sx={{ flexGrow: 1 }}>
 
           <Grid
             container
             spacing={4}
             sx={{ mb: 15 }}
-            justifyContent="center"
-            marginLeft={-25}
+            justifyContent="left"
+            marginLeft={0}
           >
             {[
-              { title: "Blank Document", icon: <FileOpenIcon />},
-              { title: "Formatted Document", icon: <FolderIcon />, link: "/formatteddoc" },
-              { title: "Colourful Document", icon: <AddCircleIcon />, link: "/colordoc" },
-              { title: "Ghannt Chart Document", icon: <HomeIcon />, link: "/ghanttdoc" },
+              { title: "Create Blank Document", icon: <FileOpenIcon />},
             ].map((item, i) => (
               <Grid item xs={12} sm={6} md={3} key={i}>
                 <Box component="a" href={item.link} sx={{ textDecoration: "none" }}>
@@ -251,6 +242,7 @@ export default function BasicGrid() {
                   <Paper
                     elevation={4}
                     sx={{
+                      width: 128,
                       p: 4,
                       textAlign: "center",
                       cursor: "pointer",
@@ -280,11 +272,6 @@ export default function BasicGrid() {
             ))}
           </Grid>
         </Box>
-      </Box>
-
-
-      <Grid container spacing={2}>
-        <Grid size={2}>
         </Grid>
         <Grid size={8}>
           {data.map((item, i) => (

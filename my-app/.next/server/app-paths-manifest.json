@@ -1,9 +1,4 @@
 {
-  "/api/uploadtext/route": "app/api/uploadtext/route.js",
-  "/page": "app/page.js",
-  "/api/synctext/route": "app/api/synctext/route.js",
-  "/login/page": "app/login/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/editor/page": "app/editor/page.js",
-  "/chats/page": "app/chats/page.js"
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/page": "app/page.js"
 }

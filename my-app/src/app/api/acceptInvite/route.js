@@ -44,7 +44,7 @@ export async function GET(req, res) {
 
         const updateDocument = {
             $addToSet: {
-                editors: userID
+                userID: userID
             }
         }
 

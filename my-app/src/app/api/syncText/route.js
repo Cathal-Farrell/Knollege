@@ -27,7 +27,7 @@ export async function GET(req, res) {
   // allow owner OR editors
   const filter = { 
       _id: new ObjectId(noteID),
-      editors: { $in: [userID] }
+      userID: { $in: [userID] }
   };
 
   const result = await collection.find(filter).toArray();

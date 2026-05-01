@@ -155,13 +155,19 @@ export default function BasicGrid() {
 
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
+      
       {/* // Avatar menu state (https://mui.com/material-ui/react-menu/#account-menu) VLAD*/}
       <Box sx={{ position: 'absolute', top: 20, right: 20 }}>
+        <Button variant="outlined" sx={{ width: 160, height: 48 }} startIcon={<ChatIcon />} href="/chats">
+              Message
+            </Button>
         <Tooltip title="Account settings">
           <IconButton onClick={handleAvatarClick} size="small" sx={{ ml: 2 }} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} >
             <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
           </IconButton>
         </Tooltip>
+
+        
 
         <Menu anchorEl={anchorEl} id="account-menu" open={open} onClose={handleAvatarClose} onClick={handleAvatarClose} slotProps={{ paper: { elevation: 0, sx: { overflow: 'visible', filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))', mt: 1.5, '& .MuiAvatar-root': { width: 32, height: 32, ml: -0.5, mr: 1, }, '&::before': { content: '""', display: 'block', position: 'absolute', top: 0, right: 14, width: 10, height: 10, bgcolor: 'background.paper', transform: 'translateY(-50%) rotate(45deg)', zIndex: 0, }, }, }, }} transformOrigin={{ horizontal: 'right', vertical: 'top' }} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }} >
           <MenuItem component="a" href="/profile">
@@ -205,29 +211,9 @@ export default function BasicGrid() {
         {/* LEFT SIDEBAR */}
         <Box sx={{ width: "180px" }}>
           <Stack direction="column" spacing={2}>
-            <Button
-              variant="contained"
-              color="white"
-              startIcon={<FolderIcon />}
-              href="/editor"
-            >
-              Open Folder
-            </Button>
+            
 
-            <Button
-              variant="contained"
-              color="white"
-              startIcon={<FileOpenIcon />}
-              href="/editor"
-            >
-              Open File
-            </Button>
-
-            <Divider />
-
-            <Button variant="outlined" startIcon={<ChatIcon />} href="/chats">
-              Message
-            </Button>
+            
           </Stack>
         </Box>
 

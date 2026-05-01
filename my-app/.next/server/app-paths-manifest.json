@@ -1,8 +1,9 @@
 {
-  "/api/session/route": "app/api/session/route.js",
-  "/api/searchchat/route": "app/api/searchchat/route.js",
-  "/api/getInvites/route": "app/api/getInvites/route.js",
-  "/groupinvites/page": "app/groupinvites/page.js",
+  "/api/uploadtext/route": "app/api/uploadtext/route.js",
   "/page": "app/page.js",
+  "/api/synctext/route": "app/api/synctext/route.js",
+  "/login/page": "app/login/page.js",
+  "/signup/page": "app/signup/page.js",
+  "/editor/page": "app/editor/page.js",
   "/chats/page": "app/chats/page.js"
 }

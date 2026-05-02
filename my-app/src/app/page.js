@@ -234,7 +234,7 @@ export default function BasicGrid() {
             marginLeft={0}
           >
             {[
-              { title: "Create Blank Document", icon: <FileOpenIcon />},
+              { title: "Create New Document", icon: <FileOpenIcon />},
             ].map((item, i) => (
               <Grid item xs={12} sm={6} md={3} key={i}>
                 <Box component="a" href={item.link} sx={{ textDecoration: "none" }}>

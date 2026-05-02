@@ -9,7 +9,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "next": "^15.5.9",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.8",
@@ -19,6 +18,7 @@
     "@tiptap/react": "^3.20.1",
     "@tiptap/starter-kit": "^3.20.1",
     "mongodb": "^7.0.0",
+    "next": "^15.5.9",
     "node": "^25.8.0",
     "package.json": "^0.0.0",
     "react": "19.1.0",
@@ -31,7 +31,6 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.2",
     "@babel/preset-react": "^7.28.5",
-    "@tiptap/cli": "^3.19.0",
     "babel-jest": "^30.3.0",
     "concurrently": "^9.2.1",
     "jest": "^30.3.0",

@@ -194,20 +194,6 @@ export default function MultilineTextFields() {
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
-          {!hasPermission && (
-            <Box sx={{ p: 2, textAlign: "center" }}>
-              <Typography sx={{ fontSize: "20px", fontWeight: 600, mb: 2 }}>
-                You do not have permission to view this note.
-              </Typography>
-              <Button 
-                variant="contained" 
-                color="primary"
-                onClick={handleAcceptInvite}
-              >
-                Accept Invite
-              </Button>
-            </Box>
-          )}
 
           <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
             {[

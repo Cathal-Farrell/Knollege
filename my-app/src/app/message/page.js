@@ -165,6 +165,20 @@ export default function MultilineTextFields() {
           }),
       }));
 
+  async function handleAcceptInvite(noteID) {
+    console.log("accepting invite...");
+    console.log(noteID)
+    console.log(userIDUrl)
+
+    const res = await fetch(`/api/acceptInvite?noteID=${noteID}&userID=${userIDUrl}`);
+    const data = await res.json();
+
+    if (data.data === "valid") {
+        console.log("Invite accepted!");
+        window.location.href = `/editor?noteID=${noteID}&userID=${userIDUrl}`;
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
        <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
@@ -275,7 +289,7 @@ export default function MultilineTextFields() {
                         key={noteID}
                         variant="outlined"
                         sx={{ display: "block", mt: 1 }}
-                        href={`/editor?noteID=${noteID}&userID=${userIDUrl}`}
+                        onClick={() => handleAcceptInvite(noteID)}
                       >
                         Open Note {noteID}
                       </Button>

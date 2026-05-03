@@ -53,7 +53,7 @@ export async function GET(req, res) {
 
 
         const updateJSON = {
-            userID: userID,
+            userID: [userID],
             fileName: "New File",
             text: "text here",
             editors: [userID]   // creator is always an editor

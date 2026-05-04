@@ -1,17 +1,8 @@
 {
-  "/api/repeatsyncmsg/route": "app/api/repeatsyncmsg/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/session/route": "app/api/session/route.js",
-  "/api/getchatname/route": "app/api/getchatname/route.js",
-  "/api/syncmsg/route": "app/api/syncmsg/route.js",
-  "/api/getNotes/route": "app/api/getNotes/route.js",
-  "/api/acceptInvite/route": "app/api/acceptInvite/route.js",
-  "/api/synctext/route": "app/api/synctext/route.js",
-  "/api/getUserChats/route": "app/api/getUserChats/route.js",
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/api/session/route": "app/api/session/route.js",
+  "/api/searchchat/route": "app/api/searchchat/route.js",
   "/page": "app/page.js",
-  "/login/page": "app/login/page.js",
-  "/chats/page": "app/chats/page.js",
-  "/message/page": "app/message/page.js",
-  "/editor/page": "app/editor/page.js"
+  "/groupdetails/page": "app/groupdetails/page.js",
+  "/chats/page": "app/chats/page.js"
 }

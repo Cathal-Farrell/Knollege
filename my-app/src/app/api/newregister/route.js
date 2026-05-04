@@ -75,7 +75,7 @@ export async function GET(req, res) {
       password: pass,
     }
 
-    const insertDetails = await collection.insertOne(updateJSON);
+   await collection.insertOne(updateJSON);
 
     
     // database call goes here

@@ -128,7 +128,7 @@ export default function Home() {
     <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
         <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
-            <Typography sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2 }}>
+            <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
               Knollege
             </Typography>
         </Grid>

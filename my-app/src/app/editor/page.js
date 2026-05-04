@@ -194,106 +194,126 @@ export default function MultilineTextFields() {
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
+      <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
+        {[
+          ["😀", "#fff7b3"],
+          ["🙂", "#d9ffb3"],
+          ["😐", "#e8e8e8"],
+          ["😢", "#cfe6ff"],
+          ["😡", "#ffb3b3"]
+        ].map(([emoji, color]) => (
+          <Button
+            key={emoji}
+            onClick={() => {
+              document.documentElement.style.setProperty("--mood-bg", color);
+            }}
+            sx={{ 
+              display: "block",
+              mb: 1,
+              background: "white",
+              borderRadius: "50px",
+              minWidth: "60px",
+              fontSize: "1.4rem",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+            }}
+          >
+            {emoji}
+          </Button>
+        ))}
+      </Box>
 
-          <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
-            {[
-              ["😀", "#fff7b3"],
-              ["🙂", "#d9ffb3"],
-              ["😐", "#e8e8e8"],
-              ["😢", "#cfe6ff"],
-              ["😡", "#ffb3b3"]
-            ].map(([emoji, color]) => (
-              <Button
-                key={emoji}
-                onClick={() => {
-                  document.documentElement.style.setProperty("--mood-bg", color);
-                }}
-                sx={{ 
-                  display: "block",
-                  mb: 1,
-                  background: "white",
-                  borderRadius: "50px",
-                  minWidth: "60px",
-                  fontSize: "1.4rem",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
-                }}
-              >
-                {emoji}
-              </Button>
-            ))}
-          </Box>
+      <Grid container spacing={2}>
+        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+          <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+            Knollege
+          </Typography>
+        </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button size="small" variant="outlined" href="/"> Home </Button>
+          </Item>
+        </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button size="small" variant="outlined" href="/login"> Login </Button>
+          </Item>
+        </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button size="small" variant="outlined" href="/chats"> Message </Button>
+          </Item>
+        </Grid>
+      </Grid>
 
-          <Grid container spacing={2}>
-            <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
-              <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
-                Knollege
-              </Typography>
-            </Grid>
-            <Grid size={2}>
-              <Item>
-              <Button size="small" variant="outlined" href="/"> Home </Button>
-              </Item>
-            </Grid>
-            <Grid size={2}>
-              <Item>
-              <Button size="small" variant="outlined" href="/login"> Login </Button>
-              </Item>
-            </Grid>
-            <Grid size={2}>
-              <Item>
-              <Button size="small" variant="outlined" href="/chats"> Message </Button>
-              </Item>
-            </Grid>
-            <Grid size={2}>
-              <Item>
-                <Box
-                    sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
-                    noValidate
-                    autoComplete="off"
-                >
+      <Grid container spacing={2} sx={{ mt: 2 , ml: 2}}>
+        <Grid size={8}>
+          <Item>
+            <Box sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}>
+              <TextField
+                fullWidth
+                inputRef={titleInputRef}
+                id="titleField"
+                name="titleField"
+                defaultValue=""
+                onChange={handleTextChanged}
+                disabled={!hasPermission}
+              />
+            </Box>
+          </Item>
+        </Grid>
+        <Grid size={3}>
+          <Item>
+            <Box
+                sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
+                noValidate
+                autoComplete="off"
+            >
+              <Grid container spacing={2}>
+                <Grid size={8}>
                   <TextField
+                    fullWidth
                     select
                     label="Send to Group Chat"
                     SelectProps={{ native: true }}
                     value={selectedGC}
                     onChange={(e) => setSelectedGC(e.target.value)}
                   >
-                    <option value="">None</option>
+                    <option value="none">None</option>
                     {groups.map((g) => (
                       <option key={g.chatID} value={g.chatID}>
                         {g.chatName}
                       </option>
-                    ))}
+                    ))} 
                   </TextField>
-                  <Button variant="outlined" onClick={handleShareNote}>
+                </Grid>
+                <Grid size={3}>
+                  <Button 
+                    variant="outlined"
+                    sx={{ height: '55px' }}
+                    onClick={handleShareNote}
+                  >
                     Share
                   </Button>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid size={10}>
+                </Grid>
+              </Grid>
+            </Box>
+          </Item>
+        </Grid>
+            <Grid size={11}>
               <Item id="editor">
                 <Box
                   component="form"
-                  sx={{ '& .MuiTextField-root': { m: 1, width: '150ch' } }}
+                  sx={{ '& .MuiTextField-root': { m: 1, width: '175ch' } }}
                   
                   noValidate
                   autoComplete="off"
                 >
                   <TextField
-                    inputRef={titleInputRef}
-                    id="titleField"
-                    name="titleField"
-                    defaultValue=""
-                    onChange={handleTextChanged}
-                    disabled={!hasPermission}
-                  />
-                  <TextField
                     inputRef={inputRef}
                     id="textField"
                     name="textField"
                     multiline
-                    rows={25}
+                    rows={20}
                     defaultValue=""
                     onChange={handleTextChanged}
                     disabled={!hasPermission} 

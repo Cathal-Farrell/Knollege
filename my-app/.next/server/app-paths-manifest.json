@@ -1,4 +1,8 @@
 {
   "/api/synctext/route": "app/api/synctext/route.js",
-  "/editor/page": "app/editor/page.js"
+  "/api/session/route": "app/api/session/route.js",
+  "/api/getUserChats/route": "app/api/getUserChats/route.js",
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/editor/page": "app/editor/page.js",
+  "/page": "app/page.js"
 }

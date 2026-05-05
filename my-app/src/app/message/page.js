@@ -63,7 +63,7 @@ export default function MultilineTextFields() {
 
     const data = inputRef.current?.value || "";
     const chatID = chatIDUrl;
-    const userID = userIDRef.current?.value || "";
+    const userID = userIDUrl || "";
 
     console.log("current text:", data);
 
@@ -78,7 +78,7 @@ export default function MultilineTextFields() {
 
     const chatID = chatIDUrl;
     console.log(chatID);
-    const userID = userIDRef.current?.value;
+    const userID = userIDUrl;
     console.log(userID);
     runDBCallAsyncDownload(`/api/syncmsg?chatID=${chatID}&userID=${userID}`)
 
@@ -90,7 +90,7 @@ export default function MultilineTextFields() {
 
     const chatID = chatIDUrl;
     console.log(chatID);
-    const userID = userIDRef.current?.value;
+    const userID = userIDUrl;
     console.log(userID);
     runDBCallAsyncDownload(`/api/repeatsyncmsg?chatID=${chatID}&userID=${userID}`)
 
@@ -230,39 +230,12 @@ export default function MultilineTextFields() {
               <Button size="small" variant="outlined" href="/chats"> Message </Button>
               </Item>
             </Grid>
-            <Grid size={2}>
-              <Item>
-                <Button size="small" variant="outlined" onClick={() => { loadNotes(); setShowNotes(true); }}>Notes</Button>
-              </Item>
-            </Grid>
-            <Grid size={2}>
-              <Item>
-                <Box
-                    sx={{ '& > :not(style)': { m: 1, width: '100%' } }}
-                    noValidate
-                    autoComplete="off"
-                >
-                    <TextField 
-                        id="outlined-basic" 
-                      label="Chat Name" 
-                        variant="outlined" 
-                      value={chatName}
-                      inputProps={{ readOnly: true }}/>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="User" 
-                        variant="outlined" 
-                        defaultValue={userIDUrl}
-                        inputRef={userIDRef}
-                        inputProps={{ readOnly: true }}/>
-                </Box>
-              </Item>
-            </Grid>
-            <Grid size={10}>
+
+            <Grid size={9} sx={{mt: 5}}>
               <Item>
                 <Box
                   component="form"
-                  sx={{ '& .MuiTextField-root': { m: 1, width: '155ch' } }}
+                  sx={{ '& .MuiTextField-root': { m: 1, width: '140ch' } }}
                   
                   noValidate
                   autoComplete="off"
@@ -274,11 +247,50 @@ export default function MultilineTextFields() {
                     name="allMessagesField"
                     multiline
                     rows={15}
-                    defaultValue=""
                   />
                 </Box>
 
-                {showNotes && (
+                
+
+                <Grid container spacing={2}>
+                  <Grid size={9} sx={{ml: '10px'}}>
+                    <Box
+                      component="form"
+                      sx={{ '& .MuiTextField-root': { m: 1, width: '118ch' } }}
+                      
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField
+                        inputRef={inputRef}
+                        id="textField"
+                        name="textField"
+                        multiline
+                        rows={2}
+                        defaultValue=""
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid size={2}>
+                    <Button 
+                      variant="outlined" 
+                      sx={{ height: '79px', width: '150px', ml: '90px', mt: '8px'}}
+                      onClick={() => handleUploadText()}
+                    >
+                      Send
+                    </Button>
+                  </Grid>
+                </Grid>
+                
+              </Item>
+              
+            </Grid>
+            <Grid size={3} sx={{mt: 5}}>
+              <Item>
+                <Button size="small" variant="outlined" onClick={() => { loadNotes(); setShowNotes(true); }}>Notes</Button>
+              </Item>
+
+              {showNotes && (
                   <Item sx={{ mt: 2, p: 2 }}>
                     <Typography variant="h6">Shared Notes</Typography>
                     {notes.length === 0 && (
@@ -298,42 +310,7 @@ export default function MultilineTextFields() {
                       Close
                     </Button>
                   </Item>
-                )}
-
-                <Grid container spacing={2}>
-                  <Grid size={11}>
-                    <Box
-                      component="form"
-                      sx={{ '& .MuiTextField-root': { m: 1, width: '141ch' } }}
-                      
-                      noValidate
-                      autoComplete="off"
-                    >
-                      <TextField
-                        inputRef={inputRef}
-                        id="textField"
-                        name="textField"
-                        multiline
-                        rows={3}
-                        defaultValue=""
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid size={1}>
-                    <Button variant="outlined" onClick={() => handleUploadText()}>
-                      Send
-                    </Button>
-                  </Grid>
-                </Grid>
-                
-              </Item>
-              
-            </Grid>
-            <Grid size={8}>
-              
-            </Grid>
-            <Grid size={2}>
-              
+              )}
             </Grid>
           </Grid>
         </Box>

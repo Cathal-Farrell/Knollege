@@ -38,10 +38,10 @@ export default function NavBar() {
       <Box
         sx={{
           width: '100%',
-          height: 40,            
+          height: 30,            
           display: 'flex',
           alignItems: 'center',
-          mb: 3,
+          mb: 4,
           position: 'relative'
         }}
       >
@@ -49,20 +49,20 @@ export default function NavBar() {
           component="a"
           href="/"
           sx={{
-            fontSize: '32px',
+            fontSize: '38px',
             fontWeight: 700,
             textDecoration: 'none',
             color: 'black',
             cursor: 'pointer',
             whiteSpace: 'nowrap',
             ml: 2,
-            textShadow: '0px 2px 4px rgba(6, 32, 54, 0.31)'
+            textShadow: '0px 1px 4px rgba(6, 32, 54, 0.31)'
           }}
         >
-          Knollege
+          Knollege📄
         </Typography>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, ml: 143 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, ml: 133 }}>
 
           <Button 
             variant="outlined" 
@@ -92,7 +92,7 @@ export default function NavBar() {
                     boxShadow: '0 0 6px rgba(25,118,210,0.6)'
                 }}
                 >
-                {userEmail ? userEmail[0].toUpperCase() : "?"}
+                {userEmail && userEmail[0].toUpperCase()}
                 </Avatar>
 
             </IconButton>

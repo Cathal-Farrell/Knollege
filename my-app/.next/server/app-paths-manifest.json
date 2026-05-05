@@ -1,9 +1,12 @@
 {
-  "/api/searchfiles/route": "app/api/searchfiles/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/session/route": "app/api/session/route.js",
-  "/api/createfile/route": "app/api/createfile/route.js",
+  "/api/getProfile/route": "app/api/getProfile/route.js",
+  "/api/updateProfile/route": "app/api/updateProfile/route.js",
+  "/api/searchfiles/route": "app/api/searchfiles/route.js",
   "/page": "app/page.js",
   "/signup/page": "app/signup/page.js",
-  "/login/page": "app/login/page.js"
+  "/login/page": "app/login/page.js",
+  "/editor/page": "app/editor/page.js",
+  "/profile/page": "app/profile/page.js"
 }

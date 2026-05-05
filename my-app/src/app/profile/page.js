@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import { Box, Paper, Typography, Avatar, TextField, Button, Stack } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
+import Navbar from '@/components/NavBar';
 
 export default function ProfilePage() {
 
@@ -47,9 +47,12 @@ export default function ProfilePage() {
     };
 
   return (
-
-    <Box sx={{ p: 4, maxWidth: 600, mx: "auto" }}>
-
+    
+    <Box sx={{ mt: 3, mb: 2 }}>
+        <Navbar />
+        
+        <Box sx={{ p: 2, maxWidth: 480, mx: "auto" }}>
+        
         <Button
         href="/"
         startIcon={<ArrowBackIcon />}
@@ -59,6 +62,7 @@ export default function ProfilePage() {
             fontWeight: 600,
             borderRadius: 2,
             px: 2.5,
+            mb: 2,
             "&:hover": { backgroundColor: "#1565c0", transform: "scale(1.03)"},
             "&:active": { backgroundColor: "#0d47a1"}
         }}
@@ -68,15 +72,30 @@ export default function ProfilePage() {
     
 
       {/* Title */}
-      <Typography variant="h4" sx={{ fontWeight: 700, mb: 3, textAlign: "center" }}>
+      <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, textAlign: "center" }}>
         Profile
       </Typography>
 
       {/* Profile Card */}
-      <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-        <Stack spacing={3} alignItems="center">
+       <Paper elevation={6} 
+            sx={{ 
+                p: 3, 
+                borderRadius: 4, 
+                display: "flex", 
+                justifyContent: "center" 
+            }}
+        >
+        <Stack spacing={2} alignItems="center" sx={{ width: "88%"}}>
           {/* Avatar */}
-          <Avatar sx={{ width: 100, height: 100 }} />
+          <Avatar 
+            sx={{ 
+                width: 70, 
+                height: 70,
+                border: "2px solid #1976d2",
+                boxShadow: "0 0 10px rgba(25,118,210,0.6)",
+            }} 
+            />
+
 
         <TextField
             fullWidth
@@ -120,8 +139,10 @@ export default function ProfilePage() {
 
         
             {/* Save Button */}
-            <Button variant="contained" size="large" sx={{
-                width: "100%" }}
+            <Button 
+                variant="contained" 
+                size="medium" 
+                sx={{ width: "80%", py: 1.2, borderRadius: 3}}
                 onClick={handleSave}
             >
                 Save Changes
@@ -130,6 +151,7 @@ export default function ProfilePage() {
 
         </Stack>
       </Paper>
+      </Box>
     </Box>
   );
 }

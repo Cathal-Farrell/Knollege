@@ -1,11 +1,6 @@
 {
   "/api/synctext/route": "app/api/synctext/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/session/route": "app/api/session/route.js",
-  "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/page": "app/page.js",
-  "/message/page": "app/message/page.js",
-  "/groupinvites/page": "app/groupinvites/page.js",
-  "/createchat/page": "app/createchat/page.js",
+  "/api/getUserChats/route": "app/api/getUserChats/route.js",
   "/editor/page": "app/editor/page.js"
 }

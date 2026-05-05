@@ -10,7 +10,6 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Navbar from '@/components/NavBar';
 
 export default function MultilineTextFields() {
 
@@ -30,16 +29,30 @@ export default function MultilineTextFields() {
   const [selectedGC, setSelectedGC] = useState("");
   const [hasPermission, setHasPermission] = useState(true);
 
+  const hasInitialized = React.useRef(false);
+
 
   // Update ref whenever userEmail changes
   React.useEffect(() => {
     userEmailRef.current = userEmail;
+    console.log(userEmailRef.current)
   }, [userEmail]);
+
+  useEffect(() => {
+    async function fetchSession() {
+      const res = await fetch('http://localhost:3000/api/session');
+      const sessionData = await res.json();
+      if (sessionData.email !== "Not Logged In") {
+          setUserEmail(sessionData.email);
+      }
+    }
+    fetchSession();
+  }, []);
 
   // load group chats for dropdown
   useEffect(() => { 
     async function loadGroups() {
-      if (!userEmailRef.current) return;
+      if (!userEmailRef) return;
       const res = await fetch(`/api/getUserChats?userID=${userEmailRef.current}`);
       const data = await res.json(); 
       setGroups(data);
@@ -47,19 +60,21 @@ export default function MultilineTextFields() {
     loadGroups();
   }, [userEmail]); 
 
-
   // Run loop every 5 seconds
-  React.useEffect(() => {
-     async function fetchSession() {
-            const res = await fetch('http://localhost:3000/api/session');
-            const sessionData = await res.json();
-            if (sessionData.email !== "Not Logged In") {
-                setUserEmail(sessionData.email);
-            }
-        }
-        fetchSession();
+  useEffect(() => {
+    if (userEmail == null) return;
 
-    handleSyncText();
+    if (!hasInitialized.current) {
+      handleSyncText();
+      hasInitialized.current = true;
+    }
+
+    
+  }, [groups]);
+
+  useEffect(() => {
+    if (hasInitialized.current) return;
+
     const intervalID = setInterval(() => {
       console.log(textChanged);
       if (textChanged.current == true) {
@@ -75,7 +90,8 @@ export default function MultilineTextFields() {
     }, 5000);
 
     return () => clearInterval(intervalID);
-  }, []);
+
+  }, [hasInitialized])
     
   function handleTextChanged() {
     console.log("text changed");
@@ -194,8 +210,7 @@ export default function MultilineTextFields() {
       }));
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)", transition: "background-color 0.4s ease", mt: 5, mb: 4 }}>
-      <Navbar />
+    <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
       <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
         {[
           ["😀", "#fff7b3"],
@@ -224,6 +239,29 @@ export default function MultilineTextFields() {
         ))}
       </Box>
 
+      <Grid container spacing={2}>
+        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+          <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+            Knollege
+          </Typography>
+        </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button size="small" variant="outlined" href="/"> Home </Button>
+          </Item>
+        </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button size="small" variant="outlined" href="/login"> Login </Button>
+          </Item>
+        </Grid>
+        <Grid size={2}>
+          <Item>
+          <Button size="small" variant="outlined" href="/chats"> Message </Button>
+          </Item>
+        </Grid>
+      </Grid>
+
       <Grid container spacing={2} sx={{ mt: 2 , ml: 2}}>
         <Grid size={8}>
           <Item>
@@ -233,7 +271,6 @@ export default function MultilineTextFields() {
                 inputRef={titleInputRef}
                 id="titleField"
                 name="titleField"
-                defaultValue=""
                 onChange={handleTextChanged}
                 disabled={!hasPermission}
               />
@@ -293,7 +330,6 @@ export default function MultilineTextFields() {
                     name="textField"
                     multiline
                     rows={20}
-                    defaultValue=""
                     onChange={handleTextChanged}
                     disabled={!hasPermission} 
                   />

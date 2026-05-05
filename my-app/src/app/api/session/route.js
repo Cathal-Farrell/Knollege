@@ -21,6 +21,7 @@ export async function GET(req) {
     return Response.json({ email: "Not Logged In" });
   }
   
+  // database call goes here
 
   // at the end of the process we need to send something back.
 

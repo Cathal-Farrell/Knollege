@@ -1,17 +1,14 @@
 import { ObjectId } from 'mongodb'
 
-export async function GET(req) {
+export async function GET(req, res) {
 
         // Make a note we are on
-
         // the api. This goes to the console.
+        console.log("in the accept invite api page")
 
-        console.log("in the api page")
 
         // get the values
-
         // that were sent across to us.
-
         const { searchParams } = new URL(req.url)
 
         const noteID = searchParams.get('noteID')
@@ -20,8 +17,8 @@ export async function GET(req) {
         console.log(noteID);
         console.log(userID);
 
-        // =================================================
 
+        // =================================================
         const { MongoClient } = require('mongodb');
 
 
@@ -38,7 +35,7 @@ export async function GET(req) {
         const collection = db.collection('notes'); // collection name
 
 
-        //==========================================================
+   //==========================================================
 
 
         const filter = {

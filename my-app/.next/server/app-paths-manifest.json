@@ -1,10 +1,8 @@
 {
+  "/api/synctext/route": "app/api/synctext/route.js",
   "/api/session/route": "app/api/session/route.js",
+  "/api/getUserChats/route": "app/api/getUserChats/route.js",
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
-  "/chats/page": "app/chats/page.js",
   "/editor/page": "app/editor/page.js",
-  "/groupdetails/page": "app/groupdetails/page.js",
-  "/createchat/page": "app/createchat/page.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js"
 }

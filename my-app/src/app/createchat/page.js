@@ -19,31 +19,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation';
+
 
 export default function Home() {
 
     const router = useRouter();
-
-    const [userEmail, setUserEmail] = useState("");
-
-    // Check session on load
-    useEffect(() => {
-        async function fetchSession() {
-            const res = await fetch('/api/session');
-            const sessionData = await res.json();
-            if (sessionData.email !== "Not Logged In") {
-            setUserEmail(sessionData.email);
-            }
-        }
-        fetchSession();
-    }, []);
-
-    const handleLogout = async () => {
-        await fetch('/api/logout');
-        window.location.href = '/login';
-    };
 
     const handleSubmit = async (event) => {
 
@@ -134,7 +115,8 @@ export default function Home() {
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: '#fff',
         ...theme.typography.body2,
-        padding: theme.spacing(4),
+        padding: theme.spacing(1),
+        textAlign: 'center',
         color: (theme.vars ?? theme).palette.text.secondary,
         ...theme.applyStyles('dark', {
             backgroundColor: '#1A2027',
@@ -142,55 +124,108 @@ export default function Home() {
     }));
 
   return (
-    <Box sx={{ padding: "24px", maxWidth: "800px", margin: "0 auto" }}>
-      <Button
-        href="/chats"
-        startIcon={<ArrowBackIcon />}
-        variant="outlined"
-        sx={{ marginBottom: "24px" }}
-      >
-        Back
-      </Button>
 
-      <Typography sx={{ fontSize: "32px", fontWeight: 700, marginBottom: "24px" }}>
-        Create New Chat
-      </Typography>
+    <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+            <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
+              Knollege
+            </Typography>
+        </Grid>
+        <Grid size={2}>
+            <Item>
+            <Button size="small" variant="outlined" href="/"> Home </Button>
+            </Item>
+        </Grid>
+        <Grid size={2}>
+            <Item>
+            <Button size="small" variant="outlined" href="/login"> Login </Button>
+            </Item>
+        </Grid>
+        <Grid size={2}>
+            <Item>
+            <Button size="small" variant="outlined" href="/chats"> Message </Button>
+            </Item>
+        </Grid>
+        <Grid size={12}>
+            <Item>
 
-      <Item>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="chatName"
-              label="Chat Name"
-              type="name"
-              id="chatName"
-              autoComplete=""
-              autoFocus
-          />
+            <Container maxWidth="sm">
 
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="members"
-              label="Emails, seperate with commas"
-              type="members"
-              id="members"
-              autoComplete=""
-          />
+                <Box sx={{ height: '100vh' }} >
 
-          <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-          >
-              Create
-          </Button>
-        </Box>
-      </Item>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="chatName"
+                        label="Chat Name"
+                        type="name"
+                        id="chatName"
+                        autoComplete=""
+                        autoFocus
+                    />
+
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="members"
+                        label="Emails, seperate with commas"
+                        type="members"
+                        id="members"
+                        autoComplete=""
+
+                    />
+
+                    <Button
+
+                        type="submit"
+
+                        fullWidth
+
+                        variant="contained"
+
+                        sx={{ mt: 3, mb: 2 }}
+
+                    >
+
+                        Create
+
+                    </Button>
+
+                    </Box>
+
+                </Box>
+
+                </Container>
+
+            </Item>
+        </Grid>
+        </Grid>
+
+        <Dialog
+            open={openInvalid}
+            onClose={handleCloseInvalid}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">
+            {"Group creation failed!"}
+            </DialogTitle>
+            <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+                This chat ID is already in use.
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleCloseInvalid} autoFocus>
+                Okay
+            </Button>
+            </DialogActions>
+        </Dialog>
 
         <Dialog
             open={openIncomplete}

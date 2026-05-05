@@ -78,6 +78,8 @@ export async function GET(req, res) {
    await collection.insertOne(updateJSON);
 
     
+    // database call goes here
+
     // at the end of the process we need to send something back.
 
     return Response.json({ "data":"valid" })

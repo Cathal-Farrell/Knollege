@@ -16,40 +16,18 @@ export async function GET(req) {
     
     const noteID = searchParams.get("noteID");
 
-    // =================================================
 
-        const { MongoClient } = require('mongodb');
+    const { MongoClient } = require("mongodb");
+    const client = new MongoClient("mongodb://root:example@localhost:27017/");
+    await client.connect();
 
- 
+    const db = client.db("app");
+    const chats = db.collection("chats");
 
-        const url = 'mongodb://root:example@localhost:27017/';
-
-        const client = new MongoClient(url);
-
-   
-        const dbName = 'app'; // database name
-
-        await client.connect();
-
-        console.log('Connected successfully to server');
-
-        const db = client.db(dbName);
-
-        const collection = db.collection('chats'); // collection name
-
-    // =================================================
-
-        const filter = {
-        chatID: chatID
-        };
-
-        const updateDoc = {
-            $push: {
-            notes: noteID
-            }
-        };
-    
-    await collection.updateOne(filter, updateDoc);
+    await chats.updateOne(
+        { chatID },
+        { $push: { notes: noteID } }
+    );
 
     return Response.json({ status: "ok" });
 }

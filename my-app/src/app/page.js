@@ -40,6 +40,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 import { useState, useEffect } from 'react';
+import Navbar from '@/components/NavBar';
 
 
 export default function BasicGrid() {
@@ -154,56 +155,12 @@ export default function BasicGrid() {
     }));
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
-      
-      {/* // Avatar menu state (https://mui.com/material-ui/react-menu/#account-menu) VLAD*/}
-      <Box sx={{ position: 'absolute', top: 20, right: 20 }}>
-        <Button variant="outlined" sx={{ width: 160, height: 48 }} startIcon={<ChatIcon />} href="/chats">
-              Message
-            </Button>
-        <Tooltip title="Account settings">
-          <IconButton onClick={handleAvatarClick} size="small" sx={{ ml: 2 }} aria-controls={open ? 'account-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
-        </Tooltip>
-
-        
-
-        <Menu anchorEl={anchorEl} id="account-menu" open={open} onClose={handleAvatarClose} onClick={handleAvatarClose} slotProps={{ paper: { elevation: 0, sx: { overflow: 'visible', filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))', mt: 1.5, '& .MuiAvatar-root': { width: 32, height: 32, ml: -0.5, mr: 1, }, '&::before': { content: '""', display: 'block', position: 'absolute', top: 0, right: 14, width: 10, height: 10, bgcolor: 'background.paper', transform: 'translateY(-50%) rotate(45deg)', zIndex: 0, }, }, }, }} transformOrigin={{ horizontal: 'right', vertical: 'top' }} anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }} >
-          <MenuItem component="a" href="/profile">
-            <Avatar /> Profile
-          </MenuItem>
-          <Divider />
-          <MenuItem component="a" href="/login">
-           <ListItemIcon> <PersonAdd fontSize="small" /> 
-           </ListItemIcon> 
-           Login 
-           </MenuItem>
-           <MenuItem component="a" href="/signup">
-           <ListItemIcon> <PersonAdd fontSize="small" /> 
-           </ListItemIcon> 
-           Register 
-           </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Settings fontSize="small"/>
-            </ListItemIcon>
-            Settings
-          </MenuItem>
-          <MenuItem onClick={handleLogout}>
-            <ListItemIcon>
-              <Logout fontSize="small" />
-            </ListItemIcon>
-            Logout
-          </MenuItem>
-        </Menu>
-      </Box>
-
-      {/*Home */}
-      <Typography variant="h4" sx={{ mb: 1, fontWeight: 600 }}>
-        Dashboard
+    <Box sx={{ flexGrow: 1, py: 4 }}>
+      <Navbar />
+      <Typography variant="h4" sx={{ mt: 3, mb: 3, fontWeight: 300, justifyContent: "center", display: "flex" }}>
+        Hello{userEmail && ", " + userEmail.split("@")[0]}
       </Typography>
-      <Divider sx={{ my: 2 }} />
+
 
       {/* FLEX CONTAINER — LEFT SIDEBAR + RIGHT NEW FILES */}
       <Box sx={{ display: "flex", gap: 6, alignItems: "flex-start" }}>
@@ -307,7 +264,6 @@ export default function BasicGrid() {
               <Button variant="outlined" onClick={() => handleDeleteFile(item._id)}>
                 Delete
               </Button>
-              
             </Paper>
           ))}
         </Grid>

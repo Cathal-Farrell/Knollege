@@ -19,6 +19,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Navbar from '@/components/NavBar';
 
 
 // https://medium.com/@reactcompany01/how-to-redirect-urls-in-reactjs-507411f9e7b7
@@ -93,28 +94,7 @@ export default function Home() {
   return (
 
     <Box sx={{ flexGrow: 1, py: 4 }}>
-        <Grid container spacing={2}>
-        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
-            <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
-              Knollege
-            </Typography>
-        </Grid>
-        <Grid size={2}>
-            <Item>
-            <Button size="small" variant="outlined" href="/"> Home </Button>
-            </Item>
-        </Grid>
-        <Grid size={2}>
-            <Item>
-            <Button size="small" variant="outlined" href="/login"> Login </Button>
-            </Item>
-        </Grid>
-        <Grid size={2}>
-            <Item>
-            <Button size="small" variant="outlined" href="/chats"> Message </Button>
-            </Item>
-        </Grid>
-        <Grid size={12}>
+        <Navbar/>
             <Item>
 
             <Container maxWidth="sm">
@@ -224,8 +204,6 @@ export default function Home() {
 
             </Container>
             </Item>
-        </Grid>
-        </Grid>
 
         <Dialog
             open={open}

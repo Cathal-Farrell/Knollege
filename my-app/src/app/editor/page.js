@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Navbar from '@/components/NavBar';
 
 export default function MultilineTextFields() {
 
@@ -193,7 +194,8 @@ export default function MultilineTextFields() {
       }));
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
+    <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)", transition: "background-color 0.4s ease", mt: 5, mb: 4 }}>
+      <Navbar />
       <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
         {[
           ["😀", "#fff7b3"],
@@ -221,29 +223,6 @@ export default function MultilineTextFields() {
           </Button>
         ))}
       </Box>
-
-      <Grid container spacing={2}>
-        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
-          <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
-            Knollege
-          </Typography>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/"> Home </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/login"> Login </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/chats"> Message </Button>
-          </Item>
-        </Grid>
-      </Grid>
 
       <Grid container spacing={2} sx={{ mt: 2 , ml: 2}}>
         <Grid size={8}>

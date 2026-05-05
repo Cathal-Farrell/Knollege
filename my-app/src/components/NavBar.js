@@ -56,7 +56,11 @@ export default function NavBar() {
             cursor: 'pointer',
             whiteSpace: 'nowrap',
             ml: 2,
-            textShadow: '0px 1px 4px rgba(6, 32, 54, 0.31)'
+            textShadow: '0px 1px 4px rgba(6, 32, 54, 0.31)',
+            "&:hover": {
+             transform: "scale(1.03)",
+             },
+             transition: "0.5s", 
           }}
         >
           Knollege📄
@@ -71,7 +75,13 @@ export default function NavBar() {
               height: 45, 
               fontSize: '16px',
               border: '1px solid #1976d2',
-              boxShadow: '0px 3px 6px rgba(5, 57, 91, 0.49)'
+              boxShadow: '0px 3px 6px rgba(5, 57, 91, 0.49)',
+              "&:hover": {
+                transform: "scale(1.03)",
+                backgroundColor: "#e3f2fd"
+                },
+                transition: "0.5s",
+                backgroundColor: "#ffffff",
             }} 
             startIcon={<ChatIcon />} 
             href="/chats"
@@ -89,7 +99,12 @@ export default function NavBar() {
                     width: 40, 
                     height: 40,
                     border: '1px solid #1976d2',
-                    boxShadow: '0 0 6px rgba(25,118,210,0.6)'
+                    boxShadow: '0 0 6px rgba(25,118,210,0.6)',
+                    "&:hover": {
+                    transform: "scale(1.03)",
+                    backgroundColor: "#666666"
+                    },
+                    transition: "0.5s",
                 }}
                 >
                 {userEmail && userEmail[0].toUpperCase()}
@@ -150,11 +165,6 @@ export default function NavBar() {
             <MenuItem component="a" href="/signup">
               <ListItemIcon><PersonAdd fontSize="small" /></ListItemIcon>
               Register
-            </MenuItem>
-
-            <MenuItem>
-              <ListItemIcon><Settings fontSize="small" /></ListItemIcon>
-              Settings
             </MenuItem>
 
             {userEmail && (

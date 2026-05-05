@@ -1,12 +1,10 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/session/route": "app/api/session/route.js",
-  "/api/getProfile/route": "app/api/getProfile/route.js",
-  "/api/updateProfile/route": "app/api/updateProfile/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/groupdetails/page": "app/groupdetails/page.js",
   "/page": "app/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/login/page": "app/login/page.js",
-  "/editor/page": "app/editor/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/message/page": "app/message/page.js",
+  "/groupinvites/page": "app/groupinvites/page.js",
+  "/createchat/page": "app/createchat/page.js"
 }

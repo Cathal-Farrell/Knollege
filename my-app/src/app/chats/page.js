@@ -12,8 +12,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useState, useEffect } from 'react';
-
-
+import Navbar from '@/components/NavBar';
 
 export default function BasicGrid() {
 
@@ -102,31 +101,10 @@ export default function BasicGrid() {
     }));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, mt: 5, mb: 4}}>
+      <Navbar />
       <Grid container spacing={2}>
-        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
-          <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
-            Knollege
-          </Typography>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/"> Home </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/login"> Login </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/chats"> Message </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          
-        </Grid>
+
         <Grid size={8}>
           {
 

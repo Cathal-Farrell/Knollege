@@ -67,17 +67,12 @@ export default function ChatDetails() {
 
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid size={4}>
-          <Item>
-          <Button variant="outlined" href="/"> Home </Button>
-          </Item>
-        </Grid>
-        <Grid size={4}>
+        <Grid size={6}>
           <Item>
           <Button variant="outlined" href="/login"> Login </Button>
           </Item>
         </Grid>
-        <Grid size={4}>
+        <Grid size={6}>
           <Item>
           <Button variant="outlined" href="/chats"> Message </Button>
           </Item>

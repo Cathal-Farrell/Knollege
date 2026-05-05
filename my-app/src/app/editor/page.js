@@ -54,6 +54,8 @@ export default function MultilineTextFields() {
             const sessionData = await res.json();
             if (sessionData.email !== "Not Logged In") {
                 setUserEmail(sessionData.email);
+            } else {
+                window.location.href = '/login';
             }
         }
         fetchSession();
@@ -181,6 +183,11 @@ export default function MultilineTextFields() {
     }
   }
 
+  const handleLogout = async () => {
+    await fetch('/api/logout');
+    window.location.href = '/login';
+  };
+
   const Item = styled(Paper)(({ theme }) => ({
           backgroundColor: '#fff',
           ...theme.typography.body2,
@@ -223,19 +230,15 @@ export default function MultilineTextFields() {
       </Box>
 
       <Grid container spacing={2}>
-        <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+        <Grid size={8} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
           <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
             Knollege
           </Typography>
         </Grid>
         <Grid size={2}>
           <Item>
-          <Button size="small" variant="outlined" href="/"> Home </Button>
-          </Item>
-        </Grid>
-        <Grid size={2}>
-          <Item>
-          <Button size="small" variant="outlined" href="/login"> Login </Button>
+            {userEmail && userEmail !== "100" && <Button size="small" variant="outlined" onClick={handleLogout}> Logout </Button>}
+            {(!userEmail || userEmail === "100") && <Button size="small" variant="outlined" href="/login"> Login </Button>}
           </Item>
         </Grid>
         <Grid size={2}>

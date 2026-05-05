@@ -20,7 +20,7 @@ export default function MultilineTextFields() {
   const chatIDUrl = searchParams.get('chatID') || '1';
   const userIDUrl = searchParams.get('userID') || '100';
   const [chatName, setChatName] = useState('Loading...');
-
+  const [userEmail, setUserEmail] = useState("100");
 
   const [showNotes, setShowNotes] = useState(false);
   const [notes, setNotes] = useState([]);
@@ -28,7 +28,17 @@ export default function MultilineTextFields() {
   let textChanged = false;
 
   React.useEffect(() => {
-    
+    async function fetchSession() {
+      const res = await fetch('/api/session');
+      const sessionData = await res.json();
+      if (sessionData.email !== "Not Logged In") {
+        setUserEmail(sessionData.email);
+      } else {
+        window.location.href = '/login';
+      }
+    }
+    fetchSession();
+
     async function loadChatName() {
       setChatName('Loading...');
       const res = await fetch(`/api/getchatname?chatID=${encodeURIComponent(chatIDUrl)}`);
@@ -179,6 +189,11 @@ export default function MultilineTextFields() {
     }
   }
 
+  const handleLogout = async () => {
+    await fetch('/api/logout');
+    window.location.href = '/login';
+  };
+
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)" }}>
        <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
@@ -210,19 +225,15 @@ export default function MultilineTextFields() {
           </Box>
           
           <Grid container spacing={2}>
-            <Grid size={6} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
+            <Grid size={8} sx={{ display: 'flex', alignItems: 'center', px: 2 }}>
               <Typography component="a" href="/" sx={{ fontSize: '32px', fontWeight: 700, lineHeight: 1.2, textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>
                 Knollege
               </Typography>
             </Grid>
             <Grid size={2}>
               <Item>
-              <Button size="small" variant="outlined" href="/"> Home </Button>
-              </Item>
-            </Grid>
-            <Grid size={2}>
-              <Item>
-              <Button size="small" variant="outlined" href="/login"> Login </Button>
+                {userEmail && userEmail !== "100" && <Button size="small" variant="outlined" onClick={handleLogout}> Logout </Button>}
+                {(!userEmail || userEmail === "100") && <Button size="small" variant="outlined" href="/login"> Login </Button>}
               </Item>
             </Grid>
             <Grid size={2}>

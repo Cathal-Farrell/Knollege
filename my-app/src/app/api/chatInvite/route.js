@@ -55,7 +55,6 @@ export async function GET(req) {
 
   await db.collection("invites").deleteOne({ _id: new ObjectId(inviteId) });
 
-  // database call goes here
 
   // at the end of the process we need to send something back.
 

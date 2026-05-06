@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-export async function login(email) {
+export async function sessionLogin(email) {
 
 const user = { email };
 

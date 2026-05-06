@@ -64,7 +64,7 @@ export async function GET(req, res) {
           valid = true;
           console.log("login valid")
 
-          await login(email);
+          await sessionLogin(email);
 
           const cookieStore = await cookies();
           const sessionValue = cookieStore.get('session')?.value;

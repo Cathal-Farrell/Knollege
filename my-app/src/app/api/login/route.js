@@ -1,5 +1,4 @@
-import { login } from '../../lib/session';
-import { NextResponse } from 'next/server';
+import { sessionLogin } from '../../lib/session';
 import { cookies } from 'next/headers';
 
 export async function GET(req, res) {
@@ -55,7 +54,7 @@ export async function GET(req, res) {
 
   
 
-  console.log('Found documents =>', findResult);
+  console.log('Found User =>', findResult);
 
   let valid = false
 
@@ -66,6 +65,7 @@ export async function GET(req, res) {
 
           await sessionLogin(email);
 
+          
           const cookieStore = await cookies();
           const sessionValue = cookieStore.get('session')?.value;
           console.log("sess id:", sessionValue);

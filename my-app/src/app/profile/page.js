@@ -12,7 +12,7 @@ export default function ProfilePage() {
     useEffect(() => {
         async function loadProfile() {
 
-            const res = await fetch('/api/session');
+            const res = await fetch('/api/sessionEmail');
 
             const data = await res.json();
 

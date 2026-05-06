@@ -42,7 +42,7 @@ export default function Home() {
 
     console.log("Sent members:" + members)
 
-        const sessionRes = await fetch('/api/session');
+        const sessionRes = await fetch('/api/sessionEmail');
         const sessionData = await sessionRes.json();
         const admin = sessionData?.email;
 

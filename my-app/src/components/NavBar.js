@@ -15,7 +15,7 @@ export default function NavBar() {
 
   useEffect(() => {
     async function fetchSession() {
-      const res = await fetch('/api/session');
+      const res = await fetch('/api/sessionEmail');
       const data = await res.json();
       if (data.email !== "Not Logged In") {
         setUserEmail(data.email);

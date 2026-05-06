@@ -19,7 +19,7 @@ export default function GroupInvites() {
     let intervalID;
 
     async function loadData() {
-      const sessionRes = await fetch("http://localhost:3000/api/session");
+      const sessionRes = await fetch("http://localhost:3000/api/sessionEmail");
       const sessionData = await sessionRes.json();
 
       setUserEmail(sessionData.email);

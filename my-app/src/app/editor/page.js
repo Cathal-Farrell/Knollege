@@ -41,7 +41,7 @@ export default function MultilineTextFields() {
 
   useEffect(() => {
     async function fetchSession() {
-      const res = await fetch('http://localhost:3000/api/session');
+      const res = await fetch('http://localhost:3000/api/sessionEmail');
       const sessionData = await res.json();
       if (sessionData.email !== "Not Logged In") {
           setUserEmail(sessionData.email);

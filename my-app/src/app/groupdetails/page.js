@@ -69,7 +69,7 @@ const [inviteSent, setInviteSent] = useState(false);
     await fetch(
       `http://localhost:3000/api/removegroupmember?chatID=${encodeURIComponent(chatID)}&memberID=${encodeURIComponent(memberID)}&userID=${encodeURIComponent(userID)}`
     );
-
+// update local statee to remove member.
     setMembers((currentMembers) => currentMembers.filter((member) => member.id !== memberID));
   }
 
@@ -77,12 +77,12 @@ const [inviteSent, setInviteSent] = useState(false);
     const res = await fetch(
       `http://localhost:3000/api/addInvite?chatID=${encodeURIComponent(chatID)}&invitee=${encodeURIComponent(invitee)}&inviter=${encodeURIComponent(userID)}&chatName=${encodeURIComponent(chatName)}`
     );
-
+    // small animation when success
     if (res.ok) {
       setInviteSent(true);
       setTimeout(() => setInviteSent(false), 300);
     }
-
+    //clear field 
     setInvitee("");
   }
 

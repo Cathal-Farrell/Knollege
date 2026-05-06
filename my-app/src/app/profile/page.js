@@ -6,35 +6,26 @@ import Navbar from '@/components/NavBar';
 
 export default function ProfilePage() {
 
-    const [profile, setProfile] = useState({theme: "system", profilePicture: "" });
-     const [sessionEmail, setSessionEmail] = useState(null);
-     useEffect(() => {
-
-     fetch('/api/session')
-            .then((res) => res.json())
-            .then((data) => {
-            if (data.email && data.email !== "Not Logged In") {
-            setSessionEmail(data.email);
-            setProfile((prev) => ({
-        ...prev,
-          email: prev.email || data.email,
-                }));
-            }
-        })
-}, []);
+    const [profile, setProfile] = useState({ profilePicture: "" });
+    const [sessionEmail, setSessionEmail] = useState(null);
 
     useEffect(() => {
-        if (sessionEmail) {
-        fetch(`/api/getProfile?userID=${encodeURIComponent(sessionEmail)}`)
-        .then(res => res.json())
-        .then(data => {
-        setProfile({
-            ...data,
-            email: data.email || sessionEmail 
-             });
-        });
+        async function loadProfile() {
+
+            const res = await fetch('/api/session');
+
+            const data = await res.json();
+
+            if (data.email && data.email !== "Not Logged In") 
+            {
+                setSessionEmail(data.email);
+                const profileRes = await fetch(`/api/getProfile?userID=${encodeURIComponent(data.email)}`);
+                const profileData = await profileRes.json();
+                setProfile({ ...profileData, email: profileData.email || data.email });
+            }
         }
-    }, [sessionEmail]);
+        loadProfile();
+    }, []);
 
     const handleSave = () => {
     fetch(`/api/updateProfile?userID=${encodeURIComponent(sessionEmail)}&displayName=${profile.displayName}&email=${profile.email}

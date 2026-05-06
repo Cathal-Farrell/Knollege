@@ -15,11 +15,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/session/route.js"
     ],
-    "/api/searchchat/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/searchchat/route.js"
-    ],
     "/groupinvites/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -70,15 +65,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/groupdetails/page.js"
     ],
-    "/api/getchatmembers/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/getchatmembers/route.js"
-    ],
     "/api/getProfile/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/getProfile/route.js"
+    ],
+    "/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/page.js"
     ]
   }
 }

@@ -6,7 +6,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export default function GroupInvites() {
   const [invites, setInvites] = useState([]);
   const [userEmail, setUserEmail] = useState("");
-
+//initial load of invs
   async function loadInvites(invitee) {
     const res = await fetch(
     "http://localhost:3000/api/getInvites?invitee=" + encodeURIComponent(invitee)
@@ -24,6 +24,7 @@ export default function GroupInvites() {
 
       setUserEmail(sessionData.email);
       await loadInvites(sessionData.email);
+      //calls every 5 seconds to check for new invs
       intervalID = setInterval(() => {
         loadInvites(sessionData.email);
       }, 5000);
@@ -38,11 +39,13 @@ export default function GroupInvites() {
 
   let invitePage;
 
+  //modifies page based on presense if invs
   if (invites.length === 0) {
     invitePage = (
     <Typography variant="body2">You have no invites right now.</Typography>
     );
   } else {
+    //maps each invite to a paper with details and accept button
     invitePage = invites.map((invite, index) => {
       async function acceptInvite() {
        await fetch(`http://localhost:3000/api/chatInvite?inviteId=${invite._id}&chatID=${encodeURIComponent(invite.chatID)}&email=${encodeURIComponent(userEmail)}`);

@@ -50,6 +50,7 @@ const [inviteSent, setInviteSent] = useState(false);
   }
 
   loadGroup();
+  //runs again if chatID changes 
 }, [chatID]);
 
   async function handleUpdateChatName() {

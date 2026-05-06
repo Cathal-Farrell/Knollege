@@ -19,13 +19,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useRouter } from 'next/navigation';
 import Navbar from '@/components/NavBar';
 
 
 export default function Home() {
 
-    const router = useRouter();
+
 
     const handleSubmit = async (event) => {
 
@@ -65,7 +64,7 @@ export default function Home() {
 
       console.log("Group creation is valid!")
         // if valid, redirects to that new chat
-        router.push(`/message?chatID=${encodeURIComponent(data.chatID)}&userID=${encodeURIComponent(creatorUserID)}`);
+        window.location.href = `/message?chatID=${encodeURIComponent(data.chatID)}&userID=${encodeURIComponent(creatorUserID)}`;
 
     } else if (data.data == "invalid"){
 

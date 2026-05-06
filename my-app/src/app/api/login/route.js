@@ -64,11 +64,7 @@ export async function GET(req, res) {
           valid = true;
           console.log("login valid")
 
-          const formData = new FormData();
-
-          formData.append('email', email);
-
-          await login(formData);
+          await login(email);
 
           const cookieStore = await cookies();
           const sessionValue = cookieStore.get('session')?.value;

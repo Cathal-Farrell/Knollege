@@ -1,9 +1,8 @@
 import { cookies } from 'next/headers';
 
-export async function login(formData) {
+export async function login(email) {
 
-
-const user = { email: formData.get('email')};
+const user = { email };
 
 const expires = new Date(Date.now() + 9999999999); 
 

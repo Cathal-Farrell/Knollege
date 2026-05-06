@@ -36,6 +36,7 @@ export async function GET(req, res) {
   const db = client.db(dbName);
   const collection = db.collection('chats'); // collection name
 
+  
   const membersArray = (members || "")
     .split(",")
     .map((email) => email.trim())

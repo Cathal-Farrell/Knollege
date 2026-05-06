@@ -1,8 +1,10 @@
 {
   "/api/searchfiles/route": "app/api/searchfiles/route.js",
+  "/api/logout/route": "app/api/logout/route.js",
   "/api/sessionEmail/route": "app/api/sessionEmail/route.js",
-  "/profile/page": "app/profile/page.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/api/newregister/route": "app/api/newregister/route.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/signup/page": "app/signup/page.js",
-  "/login/page": "app/login/page.js"
+  "/signup/page": "app/signup/page.js"
 }

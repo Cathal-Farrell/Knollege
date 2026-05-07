@@ -249,7 +249,7 @@ export default function BasicGrid() {
             >
               <Box >
                 <Typography sx={{ fontWeight: 600, fontSize: "1rem" }}>
-                  {item.fileName||""} ----- {item._id||""}
+                  {item.fileName||""}
                 </Typography>
                 
                 <Typography sx={{ fontSize: "0.85rem", color: "text.secondary" }}>

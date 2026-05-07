@@ -213,7 +213,7 @@ export default function MultilineTextFields() {
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "var(--mood-bg)", transition: "background-color 0.4s ease", mt: 5, mb: 4 }}>
       <Navbar />
-      <Box sx={{ position: "fixed", right: "20px", top: "140px", zIndex: 2000 }}>
+      <Box sx={{ position: "fixed", right: "20px", top: "340px", zIndex: 2000 }}>
         {[
           ["😀", "#fff7b3"],
           ["🙂", "#d9ffb3"],

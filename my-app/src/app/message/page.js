@@ -277,14 +277,14 @@ export default function MultilineTextFields() {
                     {notes.length === 0 && (
                       <Typography>No notes shared with this chat yet.</Typography>
                     )}
-                    {notes.map((noteID) => (
+                    {notes.map((noteID, fileName) => (
                       <Button
                         key={noteID}
                         variant="outlined"
-                        sx={{ display: "block", mt: 1 }}
+                        sx={{ display: "block", mt: 1}}
                         onClick={() => handleAcceptInvite(noteID)}
                       >
-                        Open Note {noteID}
+                        Open Note {fileName}
                       </Button>
                     ))}
                     <Button sx={{ mt: 2 }} onClick={() => setShowNotes(false)}>
